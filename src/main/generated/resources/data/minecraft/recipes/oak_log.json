@@ -1,0 +1,19 @@
+{
+  "type": "industriaemutatio:macerator",
+  "item": "minecraft:oak_log",
+  "results": [
+    {
+      "item": "industriaemutatio:wood_pulp",
+      "count": 4,
+      "chance": 1.0,
+      "primary": true
+    },
+    {
+      "item": "industriaemutatio:wood_pulp",
+      "count": 1,
+      "chance": 0.75,
+      "primary": false
+    }
+  ],
+  "ticks": 100
+}

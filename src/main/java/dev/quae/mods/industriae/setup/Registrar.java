@@ -11,5 +11,6 @@ public class Registrar {
     IMBlocks.BLOCKS.register(bus);
     IMTiles.TILES.register(bus);
     IMContainers.CONTAINERS.register(bus);
+    IMRecipeSerializers.RECIPE_SERIALIZERS.register(bus);
   }
 }
