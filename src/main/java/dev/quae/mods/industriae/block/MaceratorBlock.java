@@ -1,18 +1,19 @@
 package dev.quae.mods.industriae.block;
 
 import dev.quae.mods.industriae.setup.IMTiles;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
+import dev.quae.mods.industriae.tileentity.SpeedTier;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.DirectionalBlock;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockReader;
 import org.jetbrains.annotations.Nullable;
 
-public class LVMaceratorBlock extends IMMachineBlock {
+public class MaceratorBlock extends IMMachineBlock {
 
-  public LVMaceratorBlock() {
+  private SpeedTier speedTier;
+
+  public MaceratorBlock(SpeedTier speedTier) {
     super();
+    this.speedTier = speedTier;
   }
 
   @Override

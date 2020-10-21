@@ -1,6 +1,6 @@
 package dev.quae.mods.industriae.tileentity;
 
-public interface IMMachineSpeedMultiplierTier {
+public interface IMSpeedTier {
   double getSpeed();
 }
 

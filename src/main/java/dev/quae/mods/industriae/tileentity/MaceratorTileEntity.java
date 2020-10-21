@@ -1,34 +1,33 @@
 package dev.quae.mods.industriae.tileentity;
 
 import dev.quae.mods.industriae.capability.IMMaceratorItemHandler;
-import dev.quae.mods.industriae.data.recipe.IMMaceratorRecipeOutput;
 import dev.quae.mods.industriae.setup.IMRecipeTypes;
+import dev.quae.mods.industriae.setup.IMTiles;
 import java.util.Objects;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class IMMaceratorTileEntity extends TileEntity implements ITickableTileEntity {
+public class MaceratorTileEntity extends TileEntity implements ITickableTileEntity {
 
   private final IMMaceratorItemHandler inventory = new IMMaceratorItemHandler(4);
   private final LazyOptional<IItemHandler> inventoryLO = LazyOptional.of(this::getInventory);
   private int processingTime;
   private int requiredProcessingTime;
+  private SpeedTier speedTier;
 
-  public IMMaceratorTileEntity(TileEntityType<?> tileEntityTypeIn) {
-    super(tileEntityTypeIn);
+  public MaceratorTileEntity(SpeedTier speedTier) {
+    super(IMTiles.LV_MACERATOR.get());
+    this.speedTier = speedTier;
   }
 
   private IItemHandler getInventory() {
@@ -62,7 +61,7 @@ public abstract class IMMaceratorTileEntity extends TileEntity implements ITicka
     if (this.inventory.getStackInSlot(1).getCount() + results.stream().findFirst().get().getCount() > 64){
       return;
     }
-    this.processingTime += getSpeedMultiplier();
+    this.processingTime += speedTier.getSpeed();
     if (this.processingTime >= this.requiredProcessingTime) {
 
       int resultIndexCounter = 0;
@@ -90,6 +89,4 @@ public abstract class IMMaceratorTileEntity extends TileEntity implements ITicka
   public void tick() {
     processInput();
   }
-
-  protected abstract double getSpeedMultiplier();
 }
