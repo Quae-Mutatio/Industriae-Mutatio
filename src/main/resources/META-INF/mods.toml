@@ -1,0 +1,31 @@
+modLoader = "javafml"
+loaderVersion = "[34,)"
+license = "GNU LGPLv3"
+issueTrackerURL = "https://github.com/Quae-Mutatio/Industriae-Mutatio/issues"
+
+[[mods]]
+modId = "industriaemutatio" #mandatory
+version = "${file.jarVersion}" #mandatory
+displayName = "Industriae Mutatio" #mandatory
+#updateJSONURL="?"
+displayURL = "https://industriae.mods.quae.dev/"
+logoFile = "logo.png"
+credits = "?"
+authors = "Quae Mutatio"
+description = '''
+Gregtech, but RF.
+'''
+
+[[dependencies.ludomutatio]]
+modId = "forge"
+mandatory = true
+versionRange = "[34,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.ludomutatio]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.16.3]"
+ordering = "NONE"
+side = "BOTH"
