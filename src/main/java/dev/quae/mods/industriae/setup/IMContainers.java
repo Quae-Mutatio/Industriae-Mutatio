@@ -7,5 +7,5 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class IMContainers {
 
-  public static final DeferredRegister<ContainerType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.CONTAINERS, IndustriaeMutatio.ID);
+  static final DeferredRegister<ContainerType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.CONTAINERS, IndustriaeMutatio.ID);
 }

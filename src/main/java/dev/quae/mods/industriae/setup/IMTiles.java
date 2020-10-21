@@ -7,5 +7,5 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class IMTiles {
 
-  public static final DeferredRegister<TileEntityType<?>> TILES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, IndustriaeMutatio.ID);
+  static final DeferredRegister<TileEntityType<?>> TILES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, IndustriaeMutatio.ID);
 }
