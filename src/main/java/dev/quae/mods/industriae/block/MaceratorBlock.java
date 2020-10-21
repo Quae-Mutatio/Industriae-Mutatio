@@ -1,5 +1,6 @@
 package dev.quae.mods.industriae.block;
 
+import dev.quae.mods.industriae.helper.TileEntityTypeResolver;
 import dev.quae.mods.industriae.setup.IMTiles;
 import dev.quae.mods.industriae.tileentity.SpeedTier;
 import net.minecraft.block.BlockState;
@@ -24,6 +25,6 @@ public class MaceratorBlock extends IMMachineBlock {
   @Nullable
   @Override
   public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-    return IMTiles.LV_MACERATOR.get().create();
+    return TileEntityTypeResolver.resolveMacerator(speedTier).create();
   }
 }

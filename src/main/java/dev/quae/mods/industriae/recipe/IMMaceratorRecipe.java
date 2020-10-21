@@ -88,6 +88,10 @@ public class IMMaceratorRecipe implements IRecipe<Inventory> {
     return IMRecipeTypes.MACERATOR;
   }
 
+  public int getTicks(){
+    return this.ticks;
+  }
+
   public static final class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<IMMaceratorRecipe> {
 
     @Override

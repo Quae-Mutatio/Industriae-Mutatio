@@ -19,7 +19,7 @@ public class IMRecipeProvider extends RecipeProvider {
     IMMaceratorRecipeBuilder.create(Items.OAK_LOG.getDefaultInstance())
         .addPrimaryResult(IMItems.WOOD_PULP.get(), 4)
         .addSecondaryResult(IMItems.WOOD_PULP.get(), 0.75)
-        .addTickLength(2)
+        .addTickLength(100)
         .build(consumer);
   }
 }

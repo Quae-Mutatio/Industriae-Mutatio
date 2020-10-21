@@ -4,14 +4,16 @@
   "results": [
     {
       "item": "industriaemutatio:wood_pulp",
-      "chance": 4.0,
+      "count": 4,
+      "chance": 1.0,
       "primary": true
     },
     {
       "item": "industriaemutatio:wood_pulp",
+      "count": 1,
       "chance": 0.75,
       "primary": false
     }
   ],
-  "ticks": 2
+  "ticks": 100
 }

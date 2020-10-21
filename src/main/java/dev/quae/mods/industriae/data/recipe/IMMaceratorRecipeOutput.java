@@ -7,17 +7,18 @@ import dev.quae.mods.industriae.recipe.RandomChanceHelper;
 import java.util.List;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class IMMaceratorRecipeOutput {
 
-  private final Item item;
+  private final ItemStack item;
   private final double chance;
   private final boolean primary;
 
-  public IMMaceratorRecipeOutput(Item item, double chance, boolean primary) {
+  public IMMaceratorRecipeOutput(ItemStack item, double chance, boolean primary) {
     this.item = item;
     this.chance = chance;
     this.primary = primary;
@@ -25,7 +26,8 @@ public class IMMaceratorRecipeOutput {
 
   public JsonObject serialize() {
     final JsonObject result = new JsonObject();
-    result.addProperty("item", item.getRegistryName().toString());
+    result.addProperty("item", item.getItem().getRegistryName().toString());
+    result.addProperty("count", item.getCount());
     result.addProperty("chance", chance);
     result.addProperty("primary", primary);
     return result;
@@ -33,7 +35,7 @@ public class IMMaceratorRecipeOutput {
 
   public static IMMaceratorRecipeOutput from(JsonObject json) {
     return new IMMaceratorRecipeOutput(
-        ForgeRegistries.ITEMS.getValue(new ResourceLocation(json.get("item").getAsString())),
+        new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(json.get("item").getAsString())), json.get("count").getAsInt()),
         json.get("chance").getAsDouble(),
         json.get("primary").getAsBoolean()
     );
@@ -41,25 +43,26 @@ public class IMMaceratorRecipeOutput {
 
   public static IMMaceratorRecipeOutput read(PacketBuffer buffer) {
     return new IMMaceratorRecipeOutput(
-        ForgeRegistries.ITEMS.getValue(buffer.readResourceLocation()),
+        new ItemStack(ForgeRegistries.ITEMS.getValue(buffer.readResourceLocation()), buffer.readInt()),
         buffer.readDouble(),
         buffer.readBoolean()
     );
   }
 
   public void write(PacketBuffer buffer) {
-    buffer.writeResourceLocation(this.item.getRegistryName());
+    buffer.writeResourceLocation(this.item.getItem().getRegistryName());
+    buffer.writeInt(this.item.getCount());
     buffer.writeDouble(this.chance);
     buffer.writeBoolean(this.primary);
   }
 
 
   public ItemStack resolveStack() {
-    return new ItemStack(item, RandomChanceHelper.getCountFor(chance));
+    return RandomChanceHelper.getShouldReturnFor(chance) ? item : ItemStack.EMPTY;
   }
 
 
-  public Item getItem() {
+  public ItemStack getItem() {
     return item;
   }
 

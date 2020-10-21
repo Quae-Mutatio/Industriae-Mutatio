@@ -29,18 +29,28 @@ public class IMMaceratorRecipeBuilder {
     return new IMMaceratorRecipeBuilder(ingredient);
   }
 
-  public IMMaceratorRecipeBuilder addPrimaryResult(final IItemProvider result, final double chance) {
-    this.result.add(new IMMaceratorRecipeOutput(result.asItem(), chance, true));
+  public IMMaceratorRecipeBuilder addPrimaryResult(final IItemProvider result, final int count,  final double chance) {
+    this.result.add(new IMMaceratorRecipeOutput(new ItemStack(result.asItem(), count), chance, true));
+    return this;
+  }
+
+  public IMMaceratorRecipeBuilder addPrimaryResult(final IItemProvider result, final int count) {
+    this.addPrimaryResult(result.asItem(), count, 1.d);
     return this;
   }
 
   public IMMaceratorRecipeBuilder addPrimaryResult(final IItemProvider result) {
-    this.addPrimaryResult(result, 1.d);
+    this.addPrimaryResult(result.asItem(), 1, 1.d);
+    return this;
+  }
+
+  public IMMaceratorRecipeBuilder addSecondaryResult(final IItemProvider result, final int count, final double chance) {
+    this.result.add(new IMMaceratorRecipeOutput(new ItemStack(result, count), chance, false));
     return this;
   }
 
   public IMMaceratorRecipeBuilder addSecondaryResult(final IItemProvider result, final double chance) {
-    this.result.add(new IMMaceratorRecipeOutput(result.asItem(), chance, false));
+    this.addSecondaryResult(result, 1, chance);
     return this;
   }
 

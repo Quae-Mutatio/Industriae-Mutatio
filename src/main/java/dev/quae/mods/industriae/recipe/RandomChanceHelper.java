@@ -7,9 +7,9 @@ public class RandomChanceHelper {
 
   private static Random rnd = new Random();
 
-  public static int getCountFor(double chance) {
-    int base = MathHelper.floor(chance);
-    return base + (rnd.nextDouble() <= chance % 1 ? 1 : 0);
+  public static boolean getShouldReturnFor(double chance) {
+    double next = rnd.nextDouble();
+    return next <= chance;
   }
 
 }
