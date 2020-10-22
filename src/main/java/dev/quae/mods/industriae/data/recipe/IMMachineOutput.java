@@ -1,24 +1,19 @@
 package dev.quae.mods.industriae.data.recipe;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import dev.quae.mods.industriae.recipe.IMMaceratorRecipe;
 import dev.quae.mods.industriae.recipe.RandomChanceHelper;
-import java.util.List;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class IMMaceratorRecipeOutput {
+public class IMMachineOutput {
 
   private final ItemStack item;
   private final double chance;
   private final boolean primary;
 
-  public IMMaceratorRecipeOutput(ItemStack item, double chance, boolean primary) {
+  public IMMachineOutput(ItemStack item, double chance, boolean primary) {
     this.item = item;
     this.chance = chance;
     this.primary = primary;
@@ -33,16 +28,16 @@ public class IMMaceratorRecipeOutput {
     return result;
   }
 
-  public static IMMaceratorRecipeOutput from(JsonObject json) {
-    return new IMMaceratorRecipeOutput(
+  public static IMMachineOutput from(JsonObject json) {
+    return new IMMachineOutput(
         new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(json.get("item").getAsString())), json.get("count").getAsInt()),
         json.get("chance").getAsDouble(),
         json.get("primary").getAsBoolean()
     );
   }
 
-  public static IMMaceratorRecipeOutput read(PacketBuffer buffer) {
-    return new IMMaceratorRecipeOutput(
+  public static IMMachineOutput read(PacketBuffer buffer) {
+    return new IMMachineOutput(
         new ItemStack(ForgeRegistries.ITEMS.getValue(buffer.readResourceLocation()), buffer.readInt()),
         buffer.readDouble(),
         buffer.readBoolean()

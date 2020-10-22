@@ -7,8 +7,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockReader;
 import org.jetbrains.annotations.Nullable;
 
-public class MaceratorBlock extends IMTieredMachineBlock {
-  public MaceratorBlock(SpeedTier speedTier) {
+public class ForgeHammerBlock extends IMTieredMachineBlock {
+
+  public ForgeHammerBlock(SpeedTier speedTier) {
     super(speedTier);
   }
 
@@ -20,6 +21,6 @@ public class MaceratorBlock extends IMTieredMachineBlock {
   @Nullable
   @Override
   public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-    return TileEntityTypeResolver.resolveMacerator(speedTier).create();
+    return TileEntityTypeResolver.resolveForgeHammer(speedTier).create();
   }
 }

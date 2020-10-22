@@ -5,13 +5,13 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
-public class IMMaceratorItemHandler extends ItemStackHandler {
+public class IMSingleInputItemHandler extends ItemStackHandler {
 
-  public IMMaceratorItemHandler(int size) {
+  public IMSingleInputItemHandler(int size) {
     super(size);
   }
 
-  public IMMaceratorItemHandler(NonNullList<ItemStack> items){
+  public IMSingleInputItemHandler(NonNullList<ItemStack> items){
     super(items);
   }
 

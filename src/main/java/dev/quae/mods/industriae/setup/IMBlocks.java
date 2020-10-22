@@ -1,6 +1,7 @@
 package dev.quae.mods.industriae.setup;
 
 import dev.quae.mods.industriae.IndustriaeMutatio;
+import dev.quae.mods.industriae.block.ForgeHammerBlock;
 import dev.quae.mods.industriae.block.MaceratorBlock;
 import dev.quae.mods.industriae.tileentity.SpeedTier;
 import net.minecraft.block.Block;
@@ -22,4 +23,16 @@ public class IMBlocks {
   public static final RegistryObject<Block> ZPM_MACERATOR = BLOCKS.register("zpm_macerator", () -> new MaceratorBlock(SpeedTier.ZPM));
   public static final RegistryObject<Block> UV_MACERATOR = BLOCKS.register("uv_macerator", () -> new MaceratorBlock(SpeedTier.UV));
   public static final RegistryObject<Block> MAX_MACERATOR = BLOCKS.register("max_macerator", () -> new MaceratorBlock(SpeedTier.MAX));
+
+  public static final RegistryObject<Block> LV_FORGE_HAMMER = BLOCKS.register("lv_forge_hammer", () -> new ForgeHammerBlock(SpeedTier.LV));
+  public static final RegistryObject<Block> MV_FORGE_HAMMER = BLOCKS.register("mv_forge_hammer", () -> new ForgeHammerBlock(SpeedTier.MV));
+  public static final RegistryObject<Block> HV_FORGE_HAMMER = BLOCKS.register("hv_forge_hammer", () -> new ForgeHammerBlock(SpeedTier.HV));
+  public static final RegistryObject<Block> EV_FORGE_HAMMER = BLOCKS.register("ev_forge_hammer", () -> new ForgeHammerBlock(SpeedTier.EV));
+  public static final RegistryObject<Block> IV_FORGE_HAMMER = BLOCKS.register("iv_forge_hammer", () -> new ForgeHammerBlock(SpeedTier.IV));
+  public static final RegistryObject<Block> LUV_FORGE_HAMMER = BLOCKS.register("luv_forge_hammer", () -> new ForgeHammerBlock(SpeedTier.LUV));
+  public static final RegistryObject<Block> ZPM_FORGE_HAMMER = BLOCKS.register("zpm_forge_hammer", () -> new ForgeHammerBlock(SpeedTier.ZPM));
+  public static final RegistryObject<Block> UV_FORGE_HAMMER = BLOCKS.register("uv_forge_hammer", () -> new ForgeHammerBlock(SpeedTier.UV));
+  public static final RegistryObject<Block> MAX_FORGE_HAMMER = BLOCKS.register("max_forge_hammer", () -> new ForgeHammerBlock(SpeedTier.MAX));
+
+
 }

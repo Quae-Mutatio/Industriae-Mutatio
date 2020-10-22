@@ -28,4 +28,28 @@ public class TileEntityTypeResolver {
     }
   }
 
+  public static TileEntityType<?> resolveForgeHammer(SpeedTier tier) {
+    switch (tier) {
+      case MV:
+        return IMTiles.MV_FORGE_HAMMER.get();
+      case HV:
+        return IMTiles.HV_FORGE_HAMMER.get();
+      case EV:
+        return IMTiles.EV_FORGE_HAMMER.get();
+      case IV:
+        return IMTiles.IV_FORGE_HAMMER.get();
+      case LUV:
+        return IMTiles.LuV_FORGE_HAMMER.get();
+      case ZPM:
+        return IMTiles.ZPM_FORGE_HAMMER.get();
+      case UV:
+        return IMTiles.UV_FORGE_HAMMER.get();
+      case MAX:
+        return IMTiles.MAX_FORGE_HAMMER.get();
+      default:
+        return IMTiles.LV_FORGE_HAMMER.get();
+    }
+  }
+
+
 }
