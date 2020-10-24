@@ -9,7 +9,7 @@ public class IMMachineBlock extends IMDirectionalBlock {
 
   protected IMMachineBlock() {
     super(AbstractBlock.Properties.create(Material.IRON)
-        .hardnessAndResistance(5.f, 6.f)
+        .hardnessAndResistance(1, 10)
         .harvestTool(ToolType.PICKAXE)
         .harvestLevel(3)
         .sound(SoundType.METAL));

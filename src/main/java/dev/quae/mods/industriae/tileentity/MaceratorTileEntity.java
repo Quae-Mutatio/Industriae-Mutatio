@@ -1,20 +1,13 @@
 package dev.quae.mods.industriae.tileentity;
 
 import dev.quae.mods.industriae.helper.TileEntityTypeResolver;
-import dev.quae.mods.industriae.recipe.MaceratorRecipe;
+import dev.quae.mods.industriae.recipe.IMCustomMachineRecipe;
 import dev.quae.mods.industriae.setup.IMRecipeTypes;
 import java.util.List;
-import java.util.Objects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.util.Direction;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.CapabilityItemHandler;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-public class MaceratorTileEntity extends IMTieredProcessingMachineTileEntity<MaceratorRecipe> implements ITickableTileEntity {
+public class MaceratorTileEntity extends IMTieredProcessingMachineTileEntity implements ITickableTileEntity {
 
 
   public MaceratorTileEntity(SpeedTier speedTier) {
