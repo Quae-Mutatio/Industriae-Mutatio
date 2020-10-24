@@ -3,10 +3,12 @@ package dev.quae.mods.industriae.worldgen.feature;
 import com.mojang.serialization.Codec;
 import dev.quae.mods.industriae.worldgen.feature.config.IMOreFeatureConfig;
 import java.util.BitSet;
+import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Random;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IWorld;
@@ -16,15 +18,23 @@ import net.minecraft.world.gen.feature.Feature;
 
 public class IMOreFeature extends Feature<IMOreFeatureConfig> {
 
+  private static final HashMap<ChunkPos, IMOreFeature> FEATURE_PER_CHUNK = new HashMap<>();
+
   public IMOreFeature(Codec<IMOreFeatureConfig> p_i231976_1_) {
     super(p_i231976_1_);
   }
 
   @Override
   public boolean func_241855_a(ISeedReader p_241855_1_, ChunkGenerator p_241855_2_, Random p_241855_3_, BlockPos p_241855_4_, IMOreFeatureConfig p_241855_5_) {
-    if (p_241855_5_.chunkchance < p_241855_3_.nextFloat()) {
-      return true;
+    ChunkPos pos = new ChunkPos(p_241855_4_);
+
+    if (FEATURE_PER_CHUNK.get(pos) != null) {
+      return true; // We already generated an ore vein in this chunk.
     }
+    if (p_241855_5_.getWeight() < p_241855_3_.nextFloat()) {
+      return true; // Not this ore spawning in here
+    }
+    FEATURE_PER_CHUNK.put(pos, this);
 
     float f = p_241855_3_.nextFloat() * (float) Math.PI;
     float f1 = (float) p_241855_5_.size / 8.0F;
@@ -120,15 +130,15 @@ public class IMOreFeature extends Feature<IMOreFeatureConfig> {
                       bitset.set(l2);
                       blockpos$mutable.setPos(i2, j2, k2);
                       if (config.target.test(worldIn.getBlockState(blockpos$mutable), random)) {
-                        float chance = random.nextFloat();
-                        for (Entry<Float, BlockState> ore : config.oreDistribution.entrySet()) {
-                          chance -= ore.getKey();
-                          if (chance <= 0) {
-                            worldIn.setBlockState(blockpos$mutable, ore.getValue(), 2);
+                        float spawnedOreRoll = random.nextFloat();
+                        for (Entry<BlockState, Float> ore : config.oreDistribution.entrySet()) {
+                          spawnedOreRoll -= ore.getValue() * config.density;
+                          if (spawnedOreRoll <= 0) {
+                            worldIn.setBlockState(blockpos$mutable, ore.getKey(), 2);
+                            ++i;
                             break;
                           }
                         }
-                        ++i;
                       }
                     }
                   }

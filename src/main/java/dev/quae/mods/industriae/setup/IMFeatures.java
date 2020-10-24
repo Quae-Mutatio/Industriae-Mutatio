@@ -1,10 +1,10 @@
 package dev.quae.mods.industriae.setup;
 
 import dev.quae.mods.industriae.IndustriaeMutatio;
-import dev.quae.mods.industriae.worldgen.feature.IMOreFeature;
-import dev.quae.mods.industriae.worldgen.feature.config.IMOreFeatureConfig;
+import dev.quae.mods.industriae.worldgen.OreFeatures.Vein;
+import dev.quae.mods.industriae.worldgen.feature.MultiChunkOreFeature;
+import dev.quae.mods.industriae.worldgen.feature.config.MultiChunkOreFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -12,6 +12,10 @@ public class IMFeatures {
 
   static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, IndustriaeMutatio.ID);
 
-  public static final RegistryObject<Feature<IMOreFeatureConfig>> IM_ORE = FEATURES.register("ore", () -> new IMOreFeature(IMOreFeatureConfig.CODEC));
+  static {
+    for (Vein vein : Vein.values()) {
+      vein.setFeatureBase(FEATURES.register(vein.name().toLowerCase() + "_vein", () -> new MultiChunkOreFeature(MultiChunkOreFeatureConfig.CODEC)));
+    }
+  }
 
 }
