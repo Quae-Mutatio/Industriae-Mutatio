@@ -1,8 +1,8 @@
 package dev.quae.mods.industriae.tileentity;
 
 import dev.quae.mods.industriae.capability.IMSingleInputItemHandler;
-import dev.quae.mods.industriae.helper.ItemStackCountHelper;
-import dev.quae.mods.industriae.recipe.IMMachineRecipe;
+import dev.quae.mods.industriae.helper.IMItemStackHelper;
+import dev.quae.mods.industriae.recipe.IMCustomMachineRecipe;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -20,7 +20,7 @@ import net.minecraftforge.items.IItemHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class IMTieredProcessingMachineTileEntity<RECIPE extends IMMachineRecipe> extends TileEntity {
+public abstract class IMTieredProcessingMachineTileEntity extends TileEntity {
 
   protected final IMSingleInputItemHandler inventory = new IMSingleInputItemHandler(getInventorySize());
   protected final LazyOptional<IItemHandler> inventoryLO = LazyOptional.of(this::getInventory);
@@ -54,13 +54,13 @@ public abstract class IMTieredProcessingMachineTileEntity<RECIPE extends IMMachi
     this.inventoryLO.invalidate();
   }
 
-  protected List<ItemStack> calculateOutput(IRecipeType<RECIPE> recipeType) {
+  protected List<ItemStack> calculateOutput(IRecipeType<IMCustomMachineRecipe> recipeType) {
     ItemStack input = this.inventory.getStackInSlot(0);
     if (input.isEmpty()) {
       return null;
     }
     final Inventory craftingInv = new Inventory(input);
-    RECIPE recipe = this.getWorld().getRecipeManager().getRecipe(recipeType, craftingInv, this.getWorld()).orElse(null);
+    IMCustomMachineRecipe recipe = this.getWorld().getRecipeManager().getRecipe(recipeType, craftingInv, this.getWorld()).orElse(null);
     if (recipe == null) {
       return null;
     }
@@ -99,10 +99,10 @@ public abstract class IMTieredProcessingMachineTileEntity<RECIPE extends IMMachi
     ItemStack stackInSlot = this.inventory.getStackInSlot(outputSlot);
     if (stackInSlot.isEmpty()) {
       this.inventory.setStackInSlot(outputSlot, stack);
-      this.inventory.setStackInSlot(inputSlot, ItemStackCountHelper.takeFromStack(inputStack, 1));
+      this.inventory.setStackInSlot(inputSlot, IMItemStackHelper.takeFromStack(inputStack, 1));
     } else if (stackInSlot.isItemEqual(stack)) {
-      this.inventory.setStackInSlot(outputSlot, ItemStackCountHelper.addToStack(stackInSlot, stack.getCount()));
-      this.inventory.setStackInSlot(inputSlot, ItemStackCountHelper.takeFromStack(inputStack, 1));
+      this.inventory.setStackInSlot(outputSlot, IMItemStackHelper.addToStack(stackInSlot, stack.getCount()));
+      this.inventory.setStackInSlot(inputSlot, IMItemStackHelper.takeFromStack(inputStack, 1));
     }
   }
 }
