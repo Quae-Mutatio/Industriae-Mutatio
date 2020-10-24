@@ -1,0 +1,13 @@
+{
+  "type": "industriaemutatio:forge_hammer",
+  "item": "minecraft:cobblestone",
+  "ticks": 100,
+  "results": [
+    {
+      "item": "minecraft:gravel",
+      "count": 1,
+      "chance": 1.0,
+      "primary": true
+    }
+  ]
+}

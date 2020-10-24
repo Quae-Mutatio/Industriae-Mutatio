@@ -23,6 +23,17 @@ public class IMItems {
   public static final RegistryObject<Item> UV_MACERATOR = ITEMS.register("uv_macerator", () -> new IMBlockItem(IMBlocks.UV_MACERATOR, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
   public static final RegistryObject<Item> MAX_MACERATOR = ITEMS.register("max_macerator", () -> new IMBlockItem(IMBlocks.MAX_MACERATOR, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
 
+  public static final RegistryObject<Item> LV_FORGE_HAMMER = ITEMS.register("lv_forge_hammer", () -> new IMBlockItem(IMBlocks.LV_FORGE_HAMMER, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> MV_FORGE_HAMMER = ITEMS.register("mv_forge_hammer", () -> new IMBlockItem(IMBlocks.MV_FORGE_HAMMER, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> HV_FORGE_HAMMER = ITEMS.register("hv_forge_hammer", () -> new IMBlockItem(IMBlocks.HV_FORGE_HAMMER, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> EV_FORGE_HAMMER = ITEMS.register("ev_forge_hammer", () -> new IMBlockItem(IMBlocks.EV_FORGE_HAMMER, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> IV_FORGE_HAMMER = ITEMS.register("iv_forge_hammer", () -> new IMBlockItem(IMBlocks.IV_FORGE_HAMMER, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> LUV_FORGE_HAMMER = ITEMS.register("luv_forge_hammer", () -> new IMBlockItem(IMBlocks.LUV_FORGE_HAMMER, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> ZPM_FORGE_HAMMER = ITEMS.register("zpm_forge_hammer", () -> new IMBlockItem(IMBlocks.ZPM_FORGE_HAMMER, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> UV_FORGE_HAMMER = ITEMS.register("uv_forge_hammer", () -> new IMBlockItem(IMBlocks.UV_FORGE_HAMMER, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> MAX_FORGE_HAMMER = ITEMS.register("max_forge_hammer", () -> new IMBlockItem(IMBlocks.MAX_FORGE_HAMMER, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+
+
   // Crafting Items
   public static final RegistryObject<Item> WOOD_PULP = ITEMS.register("wood_pulp", IMCraftingItem::new);
 }
