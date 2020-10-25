@@ -32,5 +32,13 @@ public class IMRecipeProvider extends RecipeProvider {
         .addPrimaryResult(Items.GRAVEL, 1)
         .addTickLength(100)
         .build(consumer);
+
+    // Alloy Furnace Recipes
+    IMCustomMachineRecipeBuilder.create(IMRecipeSerializers.ALLOY_FURNACE.get(), IMRecipeTypes.ALLOY_FURNACE)
+        .addIngredient(Items.COAL, 2)
+        .addIngredient(Items.IRON_INGOT, 1)
+        .addPrimaryResult(Items.GOLD_INGOT, 1)
+        .addTickLength(100)
+        .build(consumer);
   }
 }

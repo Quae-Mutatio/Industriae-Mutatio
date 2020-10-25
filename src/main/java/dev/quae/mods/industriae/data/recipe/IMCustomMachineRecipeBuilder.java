@@ -3,6 +3,7 @@ package dev.quae.mods.industriae.data.recipe;
 import com.google.common.collect.Lists;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import dev.quae.mods.industriae.IndustriaeMutatio;
 import dev.quae.mods.industriae.helper.IMItemStackHelper;
 import dev.quae.mods.industriae.helper.RecipeTypeHelper;
 import dev.quae.mods.industriae.recipe.IMCustomMachineRecipe;
@@ -10,6 +11,7 @@ import dev.quae.mods.industriae.setup.IMRecipeSerializers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
+import javax.annotation.Resource;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -19,7 +21,7 @@ import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.Nullable;
 
 public class IMCustomMachineRecipeBuilder {
-
+  private static int counter = 0;
   protected final List<IMMachineOutput> result = Lists.newArrayList();
   protected final List<ItemStack> ingredients;
   private IRecipeSerializer<?> serializer;
@@ -73,7 +75,7 @@ public class IMCustomMachineRecipeBuilder {
 
 
   public void build(Consumer<IFinishedRecipe> consumer) {
-    ResourceLocation id = this.ingredients.stream().map(x -> x.getItem().getRegistryName()).reduce((x, y) -> new ResourceLocation(x.toString() + y.toString())).orElse(null);
+    ResourceLocation id = new ResourceLocation(IndustriaeMutatio.ID, "im_recipe_" + counter++);
     consumer.accept(new Result(id, this.ingredients, this.result, this.ticks, this.serializer, this.type));
   }
 

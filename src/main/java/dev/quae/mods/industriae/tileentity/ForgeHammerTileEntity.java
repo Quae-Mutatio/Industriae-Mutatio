@@ -30,6 +30,11 @@ public class ForgeHammerTileEntity extends IMTieredProcessingMachineTileEntity i
   }
 
   @Override
+  protected int getOutputStartIndex() {
+    return 1;
+  }
+
+  @Override
   public void tick() {
     processInput();
   }

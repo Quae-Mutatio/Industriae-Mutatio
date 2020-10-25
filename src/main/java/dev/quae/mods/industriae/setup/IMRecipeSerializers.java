@@ -12,5 +12,6 @@ public class IMRecipeSerializers {
 
   public static final RegistryObject<IMCustomMachineRecipe.Serializer> MACERATOR = RECIPE_SERIALIZERS.register("macerator", IMCustomMachineRecipe.Serializer::new);
   public static final RegistryObject<IMCustomMachineRecipe.Serializer> FORGE_HAMMER = RECIPE_SERIALIZERS.register("forge_hammer", IMCustomMachineRecipe.Serializer::new);
+  public static final RegistryObject<IMCustomMachineRecipe.Serializer> ALLOY_FURNACE = RECIPE_SERIALIZERS.register("alloy_furnace", IMCustomMachineRecipe.Serializer::new);
 
 }

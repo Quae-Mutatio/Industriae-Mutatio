@@ -1,6 +1,6 @@
 package dev.quae.mods.industriae.tileentity;
 
-import dev.quae.mods.industriae.capability.IMSingleInputItemHandler;
+import dev.quae.mods.industriae.capability.IMMachineItemHandler;
 import dev.quae.mods.industriae.helper.IMItemStackHelper;
 import dev.quae.mods.industriae.recipe.IMCustomMachineRecipe;
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 
 public abstract class IMTieredProcessingMachineTileEntity extends TileEntity {
 
-  protected final IMSingleInputItemHandler inventory = new IMSingleInputItemHandler(getInventorySize());
+  protected final IMMachineItemHandler inventory = new IMMachineItemHandler(getInventorySize(), getOutputStartIndex());
   protected final LazyOptional<IItemHandler> inventoryLO = LazyOptional.of(this::getInventory);
   protected int processingTime;
   protected int requiredProcessingTime;
@@ -34,6 +34,7 @@ public abstract class IMTieredProcessingMachineTileEntity extends TileEntity {
   }
 
   protected abstract int getInventorySize();
+  protected abstract int getOutputStartIndex();
 
   @NotNull
   protected IItemHandler getInventory() {
@@ -55,11 +56,10 @@ public abstract class IMTieredProcessingMachineTileEntity extends TileEntity {
   }
 
   protected List<ItemStack> calculateOutput(IRecipeType<IMCustomMachineRecipe> recipeType) {
-    ItemStack input = this.inventory.getStackInSlot(0);
-    if (input.isEmpty()) {
-      return null;
+    final Inventory craftingInv = new Inventory(getOutputStartIndex());
+    for (int i = 0; i < this.getOutputStartIndex(); i++) {
+      craftingInv.setInventorySlotContents(i, this.inventory.getStackInSlot(i));
     }
-    final Inventory craftingInv = new Inventory(input);
     IMCustomMachineRecipe recipe = this.getWorld().getRecipeManager().getRecipe(recipeType, craftingInv, this.getWorld()).orElse(null);
     if (recipe == null) {
       return null;

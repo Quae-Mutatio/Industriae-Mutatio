@@ -51,5 +51,26 @@ public class TileEntityTypeResolver {
     }
   }
 
-
+  public static TileEntityType<?> resolveAlloySmelter(SpeedTier tier) {
+    switch (tier) {
+      case MV:
+        return IMTiles.MV_ALLOY_SMELTER.get();
+      case HV:
+        return IMTiles.HV_ALLOY_SMELTER.get();
+      case EV:
+        return IMTiles.EV_ALLOY_SMELTER.get();
+      case IV:
+        return IMTiles.IV_ALLOY_SMELTER.get();
+      case LUV:
+        return IMTiles.LUV_ALLOY_SMELTER.get();
+      case ZPM:
+        return IMTiles.ZPM_ALLOY_SMELTER.get();
+      case UV:
+        return IMTiles.UV_ALLOY_SMELTER.get();
+      case MAX:
+        return IMTiles.MAX_ALLOY_SMELTER.get();
+      default:
+        return IMTiles.LV_ALLOY_SMELTER.get();
+    }
+  }
 }

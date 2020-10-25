@@ -1,6 +1,7 @@
 package dev.quae.mods.industriae.setup;
 
 import dev.quae.mods.industriae.IndustriaeMutatio;
+import dev.quae.mods.industriae.tileentity.AlloySmelterTileEntity;
 import dev.quae.mods.industriae.tileentity.ForgeHammerTileEntity;
 import dev.quae.mods.industriae.tileentity.MaceratorTileEntity;
 import dev.quae.mods.industriae.tileentity.SpeedTier;
@@ -34,4 +35,13 @@ public class IMTiles {
   public static final RegistryObject<TileEntityType<ForgeHammerTileEntity>> UV_FORGE_HAMMER = TILES.register("uv_forge_hammer", () -> TileEntityType.Builder.create(() -> new ForgeHammerTileEntity(SpeedTier.UV), IMBlocks.UV_FORGE_HAMMER.get()).build(null));
   public static final RegistryObject<TileEntityType<ForgeHammerTileEntity>> MAX_FORGE_HAMMER = TILES.register("max_forge_hammer", () -> TileEntityType.Builder.create(() -> new ForgeHammerTileEntity(SpeedTier.MAX), IMBlocks.MAX_FORGE_HAMMER.get()).build(null));
 
+  public static final RegistryObject<TileEntityType<AlloySmelterTileEntity>> LV_ALLOY_SMELTER = TILES.register("lv_alloy_smelter", () -> TileEntityType.Builder.create(() -> new AlloySmelterTileEntity(SpeedTier.LV), IMBlocks.LV_ALLOY_SMELTER.get()).build(null));
+  public static final RegistryObject<TileEntityType<AlloySmelterTileEntity>> MV_ALLOY_SMELTER = TILES.register("mv_alloy_smelter", () -> TileEntityType.Builder.create(() -> new AlloySmelterTileEntity(SpeedTier.MV), IMBlocks.MV_ALLOY_SMELTER.get()).build(null));
+  public static final RegistryObject<TileEntityType<AlloySmelterTileEntity>> HV_ALLOY_SMELTER = TILES.register("hv_alloy_smelter", () -> TileEntityType.Builder.create(() -> new AlloySmelterTileEntity(SpeedTier.HV), IMBlocks.HV_ALLOY_SMELTER.get()).build(null));
+  public static final RegistryObject<TileEntityType<AlloySmelterTileEntity>> EV_ALLOY_SMELTER = TILES.register("ev_alloy_smelter", () -> TileEntityType.Builder.create(() -> new AlloySmelterTileEntity(SpeedTier.EV), IMBlocks.EV_ALLOY_SMELTER.get()).build(null));
+  public static final RegistryObject<TileEntityType<AlloySmelterTileEntity>> IV_ALLOY_SMELTER = TILES.register("iv_alloy_smelter", () -> TileEntityType.Builder.create(() -> new AlloySmelterTileEntity(SpeedTier.IV), IMBlocks.IV_ALLOY_SMELTER.get()).build(null));
+  public static final RegistryObject<TileEntityType<AlloySmelterTileEntity>> LUV_ALLOY_SMELTER = TILES.register("luv_alloy_smelter", () -> TileEntityType.Builder.create(() -> new AlloySmelterTileEntity(SpeedTier.LUV), IMBlocks.LUV_ALLOY_SMELTER.get()).build(null));
+  public static final RegistryObject<TileEntityType<AlloySmelterTileEntity>> ZPM_ALLOY_SMELTER = TILES.register("zpm_alloy_smelter", () -> TileEntityType.Builder.create(() -> new AlloySmelterTileEntity(SpeedTier.ZPM), IMBlocks.ZPM_ALLOY_SMELTER.get()).build(null));
+  public static final RegistryObject<TileEntityType<AlloySmelterTileEntity>> UV_ALLOY_SMELTER = TILES.register("uv_alloy_smelter", () -> TileEntityType.Builder.create(() -> new AlloySmelterTileEntity(SpeedTier.UV), IMBlocks.UV_ALLOY_SMELTER.get()).build(null));
+  public static final RegistryObject<TileEntityType<AlloySmelterTileEntity>> MAX_ALLOY_SMELTER = TILES.register("max_alloy_smelter", () -> TileEntityType.Builder.create(() -> new AlloySmelterTileEntity(SpeedTier.MAX), IMBlocks.MAX_ALLOY_SMELTER.get()).build(null));
 }

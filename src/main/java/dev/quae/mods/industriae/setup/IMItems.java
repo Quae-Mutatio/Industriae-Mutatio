@@ -33,6 +33,15 @@ public class IMItems {
   public static final RegistryObject<Item> UV_FORGE_HAMMER = ITEMS.register("uv_forge_hammer", () -> new IMBlockItem(IMBlocks.UV_FORGE_HAMMER, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
   public static final RegistryObject<Item> MAX_FORGE_HAMMER = ITEMS.register("max_forge_hammer", () -> new IMBlockItem(IMBlocks.MAX_FORGE_HAMMER, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
 
+  public static final RegistryObject<Item> LV_ALLOY_SMELTER = ITEMS.register("lv_alloy_smelter", () -> new IMBlockItem(IMBlocks.LV_ALLOY_SMELTER, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> MV_ALLOY_SMELTER = ITEMS.register("mv_alloy_smelter", () -> new IMBlockItem(IMBlocks.MV_ALLOY_SMELTER, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> HV_ALLOY_SMELTER = ITEMS.register("hv_alloy_smelter", () -> new IMBlockItem(IMBlocks.HV_ALLOY_SMELTER, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> EV_ALLOY_SMELTER = ITEMS.register("ev_alloy_smelter", () -> new IMBlockItem(IMBlocks.EV_ALLOY_SMELTER, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> IV_ALLOY_SMELTER = ITEMS.register("iv_alloy_smelter", () -> new IMBlockItem(IMBlocks.IV_ALLOY_SMELTER, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> LUV_ALLOY_SMELTER = ITEMS.register("luv_alloy_smelter", () -> new IMBlockItem(IMBlocks.LUV_ALLOY_SMELTER, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> ZPM_ALLOY_SMELTER = ITEMS.register("zpm_alloy_smelter", () -> new IMBlockItem(IMBlocks.ZPM_ALLOY_SMELTER, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> UV_ALLOY_SMELTER = ITEMS.register("uv_alloy_smelter", () -> new IMBlockItem(IMBlocks.UV_ALLOY_SMELTER, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> MAX_ALLOY_SMELTER = ITEMS.register("max_alloy_smelter", () -> new IMBlockItem(IMBlocks.MAX_ALLOY_SMELTER, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
 
   // Crafting Items
   public static final RegistryObject<Item> WOOD_PULP = ITEMS.register("wood_pulp", IMCraftingItem::new);

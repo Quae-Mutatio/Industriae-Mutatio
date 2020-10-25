@@ -19,6 +19,11 @@ public class MaceratorTileEntity extends IMTieredProcessingMachineTileEntity imp
     return 4;
   }
 
+  @Override
+  protected int getOutputStartIndex() {
+    return 1;
+  }
+
   private void processInput() {
     List<ItemStack> results = this.calculateOutput(IMRecipeTypes.MACERATOR);
     if (results == null) {

@@ -61,7 +61,17 @@ public class IMCustomMachineRecipe implements IMMachineRecipe {
     for (int i = 0; i < inv.getSizeInventory(); i++) {
       invContents.add(inv.getStackInSlot(i));
     }
-    return RecipeMatcher.findMatches(invContents, ingredientTests) != null;
+    boolean match = true;
+    for (final Predicate<ItemStack> ingredientTest : ingredientTests) {
+      boolean foundIngredient = false;
+      for (ItemStack invContent : invContents) {
+        if (ingredientTest.test(invContent)) {
+          foundIngredient = true;
+        }
+      }
+      match = foundIngredient;
+    }
+    return match;
   }
 
   @Override
