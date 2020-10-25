@@ -1,17 +1,16 @@
 package dev.quae.mods.industriae.tileentity;
 
 import dev.quae.mods.industriae.helper.TileEntityTypeResolver;
-import dev.quae.mods.industriae.recipe.IMCustomMachineRecipe;
 import dev.quae.mods.industriae.setup.IMRecipeTypes;
 import java.util.List;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.ITickableTileEntity;
 
-public class MaceratorTileEntity extends IMTieredProcessingMachineTileEntity implements ITickableTileEntity {
+public class ThermalCentrifugeTileEntity extends IMTieredProcessingMachineTileEntity implements ITickableTileEntity {
 
 
-  public MaceratorTileEntity(SpeedTier speedTier) {
-    super(TileEntityTypeResolver.resolveMacerator(speedTier), speedTier);
+  public ThermalCentrifugeTileEntity(SpeedTier speedTier) {
+    super(TileEntityTypeResolver.resolveThermalCentrifuge(speedTier), speedTier);
   }
 
   @Override
@@ -25,14 +24,14 @@ public class MaceratorTileEntity extends IMTieredProcessingMachineTileEntity imp
   }
 
   private void processInput() {
-    List<ItemStack> results = this.calculateOutput(IMRecipeTypes.MACERATOR);
+    List<ItemStack> results = this.calculateOutput(IMRecipeTypes.THERMAL_CENTRIFUGE);
     if (results == null) {
       return;
     }
     consumeEnergy();
     if (hasFinishedProcess()) {
       for (int i = 0; i < results.size(); i++) {
-        this.setResultStack(results.get(i), 0, i + this.getOutputStartIndex());
+        this.setResultStack(results.get(i), 0, i + 1);
       }
     }
   }

@@ -22,6 +22,8 @@ public class RecipeTypeHelper {
       return IMRecipeTypes.UNPACKAGER;
     } else if (rl.equals(IMRecipeConstants.PACKAGER_RL)) {
       return IMRecipeTypes.PACKAGER;
+    } else if (rl.equals(IMRecipeConstants.THERMAL_CENTRIFUGE_RL)) {
+      return IMRecipeTypes.THERMAL_CENTRIFUGE;
     }
     return null;
   }
@@ -39,6 +41,8 @@ public class RecipeTypeHelper {
       return new ResourceLocation(IMRecipeConstants.UNPACKAGER_RL);
     } else if (recipeType.equals(IMRecipeTypes.PACKAGER)) {
       return new ResourceLocation(IMRecipeConstants.PACKAGER_RL);
+    } else if (recipeType.equals(IMRecipeTypes.THERMAL_CENTRIFUGE)) {
+      return new ResourceLocation(IMRecipeConstants.THERMAL_CENTRIFUGE_RL);
     }
     return new ResourceLocation("");
   }

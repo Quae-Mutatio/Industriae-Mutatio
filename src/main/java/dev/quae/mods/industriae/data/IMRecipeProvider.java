@@ -63,5 +63,12 @@ public class IMRecipeProvider extends RecipeProvider {
         .addPrimaryResult(Items.GOLD_INGOT, 4)
         .addTickLength(100)
         .build(consumer);
+
+    // Thermal Centrifuge Recipes
+    IMCustomMachineRecipeBuilder.create(IMRecipeSerializers.THERMAL_CENTRIFUGE.get(), IMRecipeTypes.THERMAL_CENTRIFUGE)
+        .addIngredient(Items.WHITE_WOOL, 1)
+        .addPrimaryResult(Items.STRING, 4)
+        .addTickLength(100)
+        .build(consumer);
   }
 }

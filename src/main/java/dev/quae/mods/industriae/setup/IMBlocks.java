@@ -5,6 +5,7 @@ import dev.quae.mods.industriae.block.AlloySmelterBlock;
 import dev.quae.mods.industriae.block.ForgeHammerBlock;
 import dev.quae.mods.industriae.block.MaceratorBlock;
 import dev.quae.mods.industriae.block.PackagerBlock;
+import dev.quae.mods.industriae.block.ThermalCentrifugeBlock;
 import dev.quae.mods.industriae.block.UnPackagerBlock;
 import dev.quae.mods.industriae.block.WireMillBlock;
 import dev.quae.mods.industriae.tileentity.SpeedTier;
@@ -77,4 +78,15 @@ public class IMBlocks {
   public static final RegistryObject<Block> ZPM_PACKAGER = BLOCKS.register("zpm_packager", () -> new PackagerBlock(SpeedTier.ZPM));
   public static final RegistryObject<Block> UV_PACKAGER = BLOCKS.register("uv_packager", () -> new PackagerBlock(SpeedTier.UV));
   public static final RegistryObject<Block> MAX_PACKAGER = BLOCKS.register("max_packager", () -> new PackagerBlock(SpeedTier.MAX));
+
+  public static final RegistryObject<Block> LV_THERMAL_CENTRIFUGE = BLOCKS.register("lv_thermal_centrifuge", () -> new ThermalCentrifugeBlock(SpeedTier.LV));
+  public static final RegistryObject<Block> MV_THERMAL_CENTRIFUGE = BLOCKS.register("mv_thermal_centrifuge", () -> new ThermalCentrifugeBlock(SpeedTier.MV));
+  public static final RegistryObject<Block> HV_THERMAL_CENTRIFUGE = BLOCKS.register("hv_thermal_centrifuge", () -> new ThermalCentrifugeBlock(SpeedTier.HV));
+  public static final RegistryObject<Block> EV_THERMAL_CENTRIFUGE = BLOCKS.register("ev_thermal_centrifuge", () -> new ThermalCentrifugeBlock(SpeedTier.EV));
+  public static final RegistryObject<Block> IV_THERMAL_CENTRIFUGE = BLOCKS.register("iv_thermal_centrifuge", () -> new ThermalCentrifugeBlock(SpeedTier.IV));
+  public static final RegistryObject<Block> LUV_THERMAL_CENTRIFUGE = BLOCKS.register("luv_thermal_centrifuge", () -> new ThermalCentrifugeBlock(SpeedTier.LUV));
+  public static final RegistryObject<Block> ZPM_THERMAL_CENTRIFUGE = BLOCKS.register("zpm_thermal_centrifuge", () -> new ThermalCentrifugeBlock(SpeedTier.ZPM));
+  public static final RegistryObject<Block> UV_THERMAL_CENTRIFUGE = BLOCKS.register("uv_thermal_centrifuge", () -> new ThermalCentrifugeBlock(SpeedTier.UV));
+  public static final RegistryObject<Block> MAX_THERMAL_CENTRIFUGE = BLOCKS.register("max_thermal_centrifuge", () -> new ThermalCentrifugeBlock(SpeedTier.MAX));
+
 }
