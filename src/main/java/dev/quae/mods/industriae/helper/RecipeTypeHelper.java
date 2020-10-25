@@ -14,12 +14,14 @@ public class RecipeTypeHelper {
       return IMRecipeTypes.FORGE_HAMMER;
     } else if (rl.equals(IMRecipeConstants.MACERATOR_RL)) {
       return IMRecipeTypes.MACERATOR;
-    } else if (rl.equals(IMRecipeConstants.ALLOY_FURNACE_RL)){
+    } else if (rl.equals(IMRecipeConstants.ALLOY_FURNACE_RL)) {
       return IMRecipeTypes.ALLOY_FURNACE;
-    }  else if (rl.equals(IMRecipeConstants.WIREMILL_RL)){
+    } else if (rl.equals(IMRecipeConstants.WIREMILL_RL)) {
       return IMRecipeTypes.WIREMILL;
-    }   else if (rl.equals(IMRecipeConstants.UNPACKAGER_RL)){
+    } else if (rl.equals(IMRecipeConstants.UNPACKAGER_RL)) {
       return IMRecipeTypes.UNPACKAGER;
+    } else if (rl.equals(IMRecipeConstants.PACKAGER_RL)) {
+      return IMRecipeTypes.PACKAGER;
     }
     return null;
   }
@@ -31,10 +33,12 @@ public class RecipeTypeHelper {
       return new ResourceLocation(IMRecipeConstants.FORGE_HAMMER_RL);
     } else if (recipeType.equals(IMRecipeTypes.ALLOY_FURNACE)) {
       return new ResourceLocation(IMRecipeConstants.ALLOY_FURNACE_RL);
-    } else if (recipeType.equals(IMRecipeTypes.WIREMILL)){
+    } else if (recipeType.equals(IMRecipeTypes.WIREMILL)) {
       return new ResourceLocation(IMRecipeConstants.WIREMILL_RL);
-    } else if (recipeType.equals(IMRecipeTypes.UNPACKAGER)){
+    } else if (recipeType.equals(IMRecipeTypes.UNPACKAGER)) {
       return new ResourceLocation(IMRecipeConstants.UNPACKAGER_RL);
+    } else if (recipeType.equals(IMRecipeTypes.PACKAGER)) {
+      return new ResourceLocation(IMRecipeConstants.PACKAGER_RL);
     }
     return new ResourceLocation("");
   }

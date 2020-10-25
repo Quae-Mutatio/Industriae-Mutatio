@@ -15,5 +15,6 @@ public class IMRecipeSerializers {
   public static final RegistryObject<IMCustomMachineRecipe.Serializer> ALLOY_FURNACE = RECIPE_SERIALIZERS.register("alloy_furnace", IMCustomMachineRecipe.Serializer::new);
   public static final RegistryObject<IMCustomMachineRecipe.Serializer> WIREMILL = RECIPE_SERIALIZERS.register("wiremill", IMCustomMachineRecipe.Serializer::new);
   public static final RegistryObject<IMCustomMachineRecipe.Serializer> UNPACKAGER = RECIPE_SERIALIZERS.register("unpackager", IMCustomMachineRecipe.Serializer::new);
+  public static final RegistryObject<IMCustomMachineRecipe.Serializer> PACKAGER = RECIPE_SERIALIZERS.register("packager", IMCustomMachineRecipe.Serializer::new);
 
 }
