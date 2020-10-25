@@ -7,5 +7,6 @@ public class IMRecipeConstants {
   public static final String MACERATOR_RL = IndustriaeMutatio.ID + ":macerator";
   public static final String FORGE_HAMMER_RL = IndustriaeMutatio.ID + ":forge_hammer";
   public static final String WIREMILL_RL = IndustriaeMutatio.ID + ":wiremill";
+  public static final String UNPACKAGER_RL = IndustriaeMutatio.ID + ":unpackager";
 
 }

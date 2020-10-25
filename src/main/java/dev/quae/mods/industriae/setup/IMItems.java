@@ -53,6 +53,15 @@ public class IMItems {
   public static final RegistryObject<Item> UV_WIREMILL = ITEMS.register("uv_wiremill", () -> new IMBlockItem(IMBlocks.UV_WIREMILL, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
   public static final RegistryObject<Item> MAX_WIREMILL = ITEMS.register("max_wiremill", () -> new IMBlockItem(IMBlocks.MAX_WIREMILL, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
 
+  public static final RegistryObject<Item> LV_UNPACKAGER = ITEMS.register("lv_unpackager", () -> new IMBlockItem(IMBlocks.LV_UNPACKAGER, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> MV_UNPACKAGER = ITEMS.register("mv_unpackager", () -> new IMBlockItem(IMBlocks.MV_UNPACKAGER, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> HV_UNPACKAGER = ITEMS.register("hv_unpackager", () -> new IMBlockItem(IMBlocks.HV_UNPACKAGER, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> EV_UNPACKAGER = ITEMS.register("ev_unpackager", () -> new IMBlockItem(IMBlocks.EV_UNPACKAGER, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> IV_UNPACKAGER = ITEMS.register("iv_unpackager", () -> new IMBlockItem(IMBlocks.IV_UNPACKAGER, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> LUV_UNPACKAGER = ITEMS.register("luv_unpackager", () -> new IMBlockItem(IMBlocks.LUV_UNPACKAGER, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> ZPM_UNPACKAGER = ITEMS.register("zpm_unpackager", () -> new IMBlockItem(IMBlocks.ZPM_UNPACKAGER, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> UV_UNPACKAGER = ITEMS.register("uv_unpackager", () -> new IMBlockItem(IMBlocks.UV_UNPACKAGER, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> MAX_UNPACKAGER = ITEMS.register("max_unpackager", () -> new IMBlockItem(IMBlocks.MAX_UNPACKAGER, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
 
   // Crafting Items
   public static final RegistryObject<Item> WOOD_PULP = ITEMS.register("wood_pulp", IMCraftingItem::new);

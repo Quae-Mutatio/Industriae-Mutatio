@@ -1,0 +1,25 @@
+{
+  "type": "industriaemutatio:unpackager",
+  "ticks": 100,
+  "machine": "industriaemutatio:unpackager",
+  "results": [
+    {
+      "item": "minecraft:gold_ingot",
+      "count": 4,
+      "chance": 1.0,
+      "primary": true
+    },
+    {
+      "item": "minecraft:gold_nugget",
+      "count": 1,
+      "chance": 1.0,
+      "primary": false
+    }
+  ],
+  "inputs": [
+    {
+      "item": "minecraft:gold_block",
+      "count": 1
+    }
+  ]
+}
