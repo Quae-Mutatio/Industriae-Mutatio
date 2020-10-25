@@ -4,6 +4,7 @@ import dev.quae.mods.industriae.IndustriaeMutatio;
 import dev.quae.mods.industriae.block.AlloySmelterBlock;
 import dev.quae.mods.industriae.block.ForgeHammerBlock;
 import dev.quae.mods.industriae.block.MaceratorBlock;
+import dev.quae.mods.industriae.block.UnPackagerBlock;
 import dev.quae.mods.industriae.block.WireMillBlock;
 import dev.quae.mods.industriae.tileentity.SpeedTier;
 import net.minecraft.block.Block;
@@ -56,6 +57,15 @@ public class IMBlocks {
   public static final RegistryObject<Block> UV_WIREMILL = BLOCKS.register("uv_wiremill", () -> new WireMillBlock(SpeedTier.UV));
   public static final RegistryObject<Block> MAX_WIREMILL = BLOCKS.register("max_wiremill", () -> new WireMillBlock(SpeedTier.MAX));
 
+  public static final RegistryObject<Block> LV_UNPACKAGER = BLOCKS.register("lv_unpackager", () -> new UnPackagerBlock(SpeedTier.LV));
+  public static final RegistryObject<Block> MV_UNPACKAGER = BLOCKS.register("mv_unpackager", () -> new UnPackagerBlock(SpeedTier.MV));
+  public static final RegistryObject<Block> HV_UNPACKAGER = BLOCKS.register("hv_unpackager", () -> new UnPackagerBlock(SpeedTier.HV));
+  public static final RegistryObject<Block> EV_UNPACKAGER = BLOCKS.register("ev_unpackager", () -> new UnPackagerBlock(SpeedTier.EV));
+  public static final RegistryObject<Block> IV_UNPACKAGER = BLOCKS.register("iv_unpackager", () -> new UnPackagerBlock(SpeedTier.IV));
+  public static final RegistryObject<Block> LUV_UNPACKAGER = BLOCKS.register("luv_unpackager", () -> new UnPackagerBlock(SpeedTier.LUV));
+  public static final RegistryObject<Block> ZPM_UNPACKAGER = BLOCKS.register("zpm_unpackager", () -> new UnPackagerBlock(SpeedTier.ZPM));
+  public static final RegistryObject<Block> UV_UNPACKAGER = BLOCKS.register("uv_unpackager", () -> new UnPackagerBlock(SpeedTier.UV));
+  public static final RegistryObject<Block> MAX_UNPACKAGER = BLOCKS.register("max_unpackager", () -> new UnPackagerBlock(SpeedTier.MAX));
 
 
 }

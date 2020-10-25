@@ -94,7 +94,8 @@ public abstract class IMTieredProcessingMachineTileEntity extends TileEntity {
     // TODO add voltaic RF usage
   }
 
-  protected void setResultStack(ItemStack stack, int inputSlot, int outputSlot) {
+  protected void setResultStack(ItemStack result, int inputSlot, int outputSlot) {
+    ItemStack stack = result.copy();
     if (stack.isEmpty()) {
       return;
     }

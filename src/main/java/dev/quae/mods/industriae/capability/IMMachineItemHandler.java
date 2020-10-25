@@ -27,11 +27,12 @@ public class IMMachineItemHandler extends ItemStackHandler {
   @NotNull
   @Override
   public ItemStack extractItem(int slot, int amount, boolean simulate) {
+    int extractSlot = slot;
     if (slot <= outputStart) {
-      slot += outputStart;
+      extractSlot += outputStart;
     }
-    slot = MathHelper.clamp(slot, outputStart, getSlots() - 1);
-    return super.extractItem(slot, amount, simulate);
+    extractSlot = MathHelper.clamp(extractSlot, outputStart, getSlots() - 1);
+    return super.extractItem(extractSlot, amount, simulate);
   }
 
   public NonNullList<ItemStack> getStacks(){

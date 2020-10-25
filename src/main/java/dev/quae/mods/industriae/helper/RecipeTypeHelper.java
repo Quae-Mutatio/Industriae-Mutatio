@@ -18,6 +18,8 @@ public class RecipeTypeHelper {
       return IMRecipeTypes.ALLOY_FURNACE;
     }  else if (rl.equals(IMRecipeConstants.WIREMILL_RL)){
       return IMRecipeTypes.WIREMILL;
+    }   else if (rl.equals(IMRecipeConstants.UNPACKAGER_RL)){
+      return IMRecipeTypes.UNPACKAGER;
     }
     return null;
   }
@@ -31,6 +33,8 @@ public class RecipeTypeHelper {
       return new ResourceLocation(IMRecipeConstants.ALLOY_FURNACE_RL);
     } else if (recipeType.equals(IMRecipeTypes.WIREMILL)){
       return new ResourceLocation(IMRecipeConstants.WIREMILL_RL);
+    } else if (recipeType.equals(IMRecipeTypes.UNPACKAGER)){
+      return new ResourceLocation(IMRecipeConstants.UNPACKAGER_RL);
     }
     return new ResourceLocation("");
   }

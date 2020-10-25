@@ -47,5 +47,13 @@ public class IMRecipeProvider extends RecipeProvider {
         .addPrimaryResult(Items.GOLD_INGOT, 1)
         .addTickLength(100)
         .build(consumer);
+
+  // UnPackager Recipes
+    IMCustomMachineRecipeBuilder.create(IMRecipeSerializers.UNPACKAGER.get(), IMRecipeTypes.UNPACKAGER)
+        .addIngredient(Items.GOLD_BLOCK, 1)
+        .addPrimaryResult(Items.GOLD_INGOT, 4)
+        .addSecondaryResult(Items.GOLD_NUGGET, 1, 1.0)
+        .addTickLength(100)
+        .build(consumer);
   }
 }

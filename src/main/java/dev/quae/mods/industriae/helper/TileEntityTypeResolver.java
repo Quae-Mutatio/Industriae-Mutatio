@@ -97,4 +97,27 @@ public class TileEntityTypeResolver {
         return IMTiles.LV_WIREMILL.get();
     }
   }
+
+  public static TileEntityType<?> resolveUnPackager(SpeedTier tier) {
+    switch (tier) {
+      case MV:
+        return IMTiles.MV_UNPACKAGER.get();
+      case HV:
+        return IMTiles.HV_UNPACKAGER.get();
+      case EV:
+        return IMTiles.EV_UNPACKAGER.get();
+      case IV:
+        return IMTiles.IV_UNPACKAGER.get();
+      case LUV:
+        return IMTiles.LUV_UNPACKAGER.get();
+      case ZPM:
+        return IMTiles.ZPM_UNPACKAGER.get();
+      case UV:
+        return IMTiles.UV_UNPACKAGER.get();
+      case MAX:
+        return IMTiles.MAX_UNPACKAGER.get();
+      default:
+        return IMTiles.LV_UNPACKAGER.get();
+    }
+  }
 }
