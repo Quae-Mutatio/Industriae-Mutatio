@@ -5,6 +5,7 @@ import dev.quae.mods.industriae.tileentity.AlloySmelterTileEntity;
 import dev.quae.mods.industriae.tileentity.ForgeHammerTileEntity;
 import dev.quae.mods.industriae.tileentity.MaceratorTileEntity;
 import dev.quae.mods.industriae.tileentity.SpeedTier;
+import dev.quae.mods.industriae.tileentity.WireMillTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -44,4 +45,16 @@ public class IMTiles {
   public static final RegistryObject<TileEntityType<AlloySmelterTileEntity>> ZPM_ALLOY_SMELTER = TILES.register("zpm_alloy_smelter", () -> TileEntityType.Builder.create(() -> new AlloySmelterTileEntity(SpeedTier.ZPM), IMBlocks.ZPM_ALLOY_SMELTER.get()).build(null));
   public static final RegistryObject<TileEntityType<AlloySmelterTileEntity>> UV_ALLOY_SMELTER = TILES.register("uv_alloy_smelter", () -> TileEntityType.Builder.create(() -> new AlloySmelterTileEntity(SpeedTier.UV), IMBlocks.UV_ALLOY_SMELTER.get()).build(null));
   public static final RegistryObject<TileEntityType<AlloySmelterTileEntity>> MAX_ALLOY_SMELTER = TILES.register("max_alloy_smelter", () -> TileEntityType.Builder.create(() -> new AlloySmelterTileEntity(SpeedTier.MAX), IMBlocks.MAX_ALLOY_SMELTER.get()).build(null));
+
+  public static final RegistryObject<TileEntityType<WireMillTileEntity>> LV_WIREMILL = TILES.register("lv_wiremill", () -> TileEntityType.Builder.create(() ->   new WireMillTileEntity(SpeedTier.LV), IMBlocks.LV_WIREMILL.get()).build(null));
+  public static final RegistryObject<TileEntityType<WireMillTileEntity>> MV_WIREMILL = TILES.register("mv_wiremill", () -> TileEntityType.Builder.create(() ->   new WireMillTileEntity(SpeedTier.MV), IMBlocks.MV_WIREMILL.get()).build(null));
+  public static final RegistryObject<TileEntityType<WireMillTileEntity>> HV_WIREMILL = TILES.register("hv_wiremill", () -> TileEntityType.Builder.create(() ->   new WireMillTileEntity(SpeedTier.HV), IMBlocks.HV_WIREMILL.get()).build(null));
+  public static final RegistryObject<TileEntityType<WireMillTileEntity>> EV_WIREMILL = TILES.register("ev_wiremill", () -> TileEntityType.Builder.create(() ->   new WireMillTileEntity(SpeedTier.EV), IMBlocks.EV_WIREMILL.get()).build(null));
+  public static final RegistryObject<TileEntityType<WireMillTileEntity>> IV_WIREMILL = TILES.register("iv_wiremill", () -> TileEntityType.Builder.create(() ->   new WireMillTileEntity(SpeedTier.IV), IMBlocks.IV_WIREMILL.get()).build(null));
+  public static final RegistryObject<TileEntityType<WireMillTileEntity>> LUV_WIREMILL = TILES.register("luv_wiremill", () -> TileEntityType.Builder.create(() -> new WireMillTileEntity(SpeedTier.LUV), IMBlocks.LUV_WIREMILL.get()).build(null));
+  public static final RegistryObject<TileEntityType<WireMillTileEntity>> ZPM_WIREMILL = TILES.register("zpm_wiremill", () -> TileEntityType.Builder.create(() -> new WireMillTileEntity(SpeedTier.ZPM), IMBlocks.ZPM_WIREMILL.get()).build(null));
+  public static final RegistryObject<TileEntityType<WireMillTileEntity>> UV_WIREMILL = TILES.register("uv_wiremill", () -> TileEntityType.Builder.create(() ->   new WireMillTileEntity(SpeedTier.UV), IMBlocks.UV_WIREMILL.get()).build(null));
+  public static final RegistryObject<TileEntityType<WireMillTileEntity>> MAX_WIREMILL = TILES.register("max_wiremill", () -> TileEntityType.Builder.create(() -> new WireMillTileEntity(SpeedTier.MAX), IMBlocks.MAX_WIREMILL.get()).build(null));
+
+
 }
