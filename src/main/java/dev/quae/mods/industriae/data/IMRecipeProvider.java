@@ -55,5 +55,13 @@ public class IMRecipeProvider extends RecipeProvider {
         .addSecondaryResult(Items.GOLD_NUGGET, 1, 1.0)
         .addTickLength(100)
         .build(consumer);
+
+    // Packager Recipes
+    IMCustomMachineRecipeBuilder.create(IMRecipeSerializers.PACKAGER.get(), IMRecipeTypes.PACKAGER)
+        .addIngredient(Items.GOLD_BLOCK, 1)
+        .addIngredient(Items.WHITE_WOOL, 1)
+        .addPrimaryResult(Items.GOLD_INGOT, 4)
+        .addTickLength(100)
+        .build(consumer);
   }
 }

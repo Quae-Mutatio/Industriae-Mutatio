@@ -1,0 +1,23 @@
+{
+  "type": "industriaemutatio:packager",
+  "ticks": 100,
+  "machine": "industriaemutatio:packager",
+  "results": [
+    {
+      "item": "minecraft:gold_ingot",
+      "count": 4,
+      "chance": 1.0,
+      "primary": true
+    }
+  ],
+  "inputs": [
+    {
+      "item": "minecraft:gold_block",
+      "count": 1
+    },
+    {
+      "item": "minecraft:white_wool",
+      "count": 1
+    }
+  ]
+}

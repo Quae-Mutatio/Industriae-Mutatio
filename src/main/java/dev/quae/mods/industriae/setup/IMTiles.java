@@ -4,6 +4,7 @@ import dev.quae.mods.industriae.IndustriaeMutatio;
 import dev.quae.mods.industriae.tileentity.AlloySmelterTileEntity;
 import dev.quae.mods.industriae.tileentity.ForgeHammerTileEntity;
 import dev.quae.mods.industriae.tileentity.MaceratorTileEntity;
+import dev.quae.mods.industriae.tileentity.PackagerTileEntity;
 import dev.quae.mods.industriae.tileentity.SpeedTier;
 import dev.quae.mods.industriae.tileentity.UnPackagerTileEntity;
 import dev.quae.mods.industriae.tileentity.WireMillTileEntity;
@@ -47,25 +48,34 @@ public class IMTiles {
   public static final RegistryObject<TileEntityType<AlloySmelterTileEntity>> UV_ALLOY_SMELTER = TILES.register("uv_alloy_smelter", () -> TileEntityType.Builder.create(() -> new AlloySmelterTileEntity(SpeedTier.UV), IMBlocks.UV_ALLOY_SMELTER.get()).build(null));
   public static final RegistryObject<TileEntityType<AlloySmelterTileEntity>> MAX_ALLOY_SMELTER = TILES.register("max_alloy_smelter", () -> TileEntityType.Builder.create(() -> new AlloySmelterTileEntity(SpeedTier.MAX), IMBlocks.MAX_ALLOY_SMELTER.get()).build(null));
 
-  public static final RegistryObject<TileEntityType<WireMillTileEntity>> LV_WIREMILL = TILES.register("lv_wiremill", () -> TileEntityType.Builder.create(() ->   new WireMillTileEntity(SpeedTier.LV), IMBlocks.LV_WIREMILL.get()).build(null));
-  public static final RegistryObject<TileEntityType<WireMillTileEntity>> MV_WIREMILL = TILES.register("mv_wiremill", () -> TileEntityType.Builder.create(() ->   new WireMillTileEntity(SpeedTier.MV), IMBlocks.MV_WIREMILL.get()).build(null));
-  public static final RegistryObject<TileEntityType<WireMillTileEntity>> HV_WIREMILL = TILES.register("hv_wiremill", () -> TileEntityType.Builder.create(() ->   new WireMillTileEntity(SpeedTier.HV), IMBlocks.HV_WIREMILL.get()).build(null));
-  public static final RegistryObject<TileEntityType<WireMillTileEntity>> EV_WIREMILL = TILES.register("ev_wiremill", () -> TileEntityType.Builder.create(() ->   new WireMillTileEntity(SpeedTier.EV), IMBlocks.EV_WIREMILL.get()).build(null));
-  public static final RegistryObject<TileEntityType<WireMillTileEntity>> IV_WIREMILL = TILES.register("iv_wiremill", () -> TileEntityType.Builder.create(() ->   new WireMillTileEntity(SpeedTier.IV), IMBlocks.IV_WIREMILL.get()).build(null));
+  public static final RegistryObject<TileEntityType<WireMillTileEntity>> LV_WIREMILL = TILES.register("lv_wiremill", () -> TileEntityType.Builder.create(() -> new WireMillTileEntity(SpeedTier.LV), IMBlocks.LV_WIREMILL.get()).build(null));
+  public static final RegistryObject<TileEntityType<WireMillTileEntity>> MV_WIREMILL = TILES.register("mv_wiremill", () -> TileEntityType.Builder.create(() -> new WireMillTileEntity(SpeedTier.MV), IMBlocks.MV_WIREMILL.get()).build(null));
+  public static final RegistryObject<TileEntityType<WireMillTileEntity>> HV_WIREMILL = TILES.register("hv_wiremill", () -> TileEntityType.Builder.create(() -> new WireMillTileEntity(SpeedTier.HV), IMBlocks.HV_WIREMILL.get()).build(null));
+  public static final RegistryObject<TileEntityType<WireMillTileEntity>> EV_WIREMILL = TILES.register("ev_wiremill", () -> TileEntityType.Builder.create(() -> new WireMillTileEntity(SpeedTier.EV), IMBlocks.EV_WIREMILL.get()).build(null));
+  public static final RegistryObject<TileEntityType<WireMillTileEntity>> IV_WIREMILL = TILES.register("iv_wiremill", () -> TileEntityType.Builder.create(() -> new WireMillTileEntity(SpeedTier.IV), IMBlocks.IV_WIREMILL.get()).build(null));
   public static final RegistryObject<TileEntityType<WireMillTileEntity>> LUV_WIREMILL = TILES.register("luv_wiremill", () -> TileEntityType.Builder.create(() -> new WireMillTileEntity(SpeedTier.LUV), IMBlocks.LUV_WIREMILL.get()).build(null));
   public static final RegistryObject<TileEntityType<WireMillTileEntity>> ZPM_WIREMILL = TILES.register("zpm_wiremill", () -> TileEntityType.Builder.create(() -> new WireMillTileEntity(SpeedTier.ZPM), IMBlocks.ZPM_WIREMILL.get()).build(null));
-  public static final RegistryObject<TileEntityType<WireMillTileEntity>> UV_WIREMILL = TILES.register("uv_wiremill", () -> TileEntityType.Builder.create(() ->   new WireMillTileEntity(SpeedTier.UV), IMBlocks.UV_WIREMILL.get()).build(null));
+  public static final RegistryObject<TileEntityType<WireMillTileEntity>> UV_WIREMILL = TILES.register("uv_wiremill", () -> TileEntityType.Builder.create(() -> new WireMillTileEntity(SpeedTier.UV), IMBlocks.UV_WIREMILL.get()).build(null));
   public static final RegistryObject<TileEntityType<WireMillTileEntity>> MAX_WIREMILL = TILES.register("max_wiremill", () -> TileEntityType.Builder.create(() -> new WireMillTileEntity(SpeedTier.MAX), IMBlocks.MAX_WIREMILL.get()).build(null));
 
-  public static final RegistryObject<TileEntityType<UnPackagerTileEntity>> LV_UNPACKAGER = TILES.register("lv_unpackager", () -> TileEntityType.Builder.create(() ->   new UnPackagerTileEntity(SpeedTier.LV), IMBlocks.LV_UNPACKAGER.get()).build(null));
-  public static final RegistryObject<TileEntityType<UnPackagerTileEntity>> MV_UNPACKAGER = TILES.register("mv_unpackager", () -> TileEntityType.Builder.create(() ->   new  UnPackagerTileEntity(SpeedTier.MV), IMBlocks.MV_UNPACKAGER.get()).build(null));
-  public static final RegistryObject<TileEntityType<UnPackagerTileEntity>> HV_UNPACKAGER = TILES.register("hv_unpackager", () -> TileEntityType.Builder.create(() ->   new  UnPackagerTileEntity(SpeedTier.HV), IMBlocks.HV_UNPACKAGER.get()).build(null));
-  public static final RegistryObject<TileEntityType<UnPackagerTileEntity>> EV_UNPACKAGER = TILES.register("ev_unpackager", () -> TileEntityType.Builder.create(() ->   new  UnPackagerTileEntity(SpeedTier.EV), IMBlocks.EV_UNPACKAGER.get()).build(null));
-  public static final RegistryObject<TileEntityType<UnPackagerTileEntity>> IV_UNPACKAGER = TILES.register("iv_unpackager", () -> TileEntityType.Builder.create(() ->   new  UnPackagerTileEntity(SpeedTier.IV), IMBlocks.IV_UNPACKAGER.get()).build(null));
-  public static final RegistryObject<TileEntityType<UnPackagerTileEntity>> LUV_UNPACKAGER = TILES.register("luv_unpackager", () -> TileEntityType.Builder.create(() -> new  UnPackagerTileEntity(SpeedTier.LUV), IMBlocks.LUV_UNPACKAGER.get()).build(null));
-  public static final RegistryObject<TileEntityType<UnPackagerTileEntity>> ZPM_UNPACKAGER = TILES.register("zpm_unpackager", () -> TileEntityType.Builder.create(() -> new  UnPackagerTileEntity(SpeedTier.ZPM), IMBlocks.ZPM_UNPACKAGER.get()).build(null));
-  public static final RegistryObject<TileEntityType<UnPackagerTileEntity>> UV_UNPACKAGER = TILES.register("uv_unpackager", () -> TileEntityType.Builder.create(() ->   new  UnPackagerTileEntity(SpeedTier.UV), IMBlocks.UV_UNPACKAGER.get()).build(null));
-  public static final RegistryObject<TileEntityType<UnPackagerTileEntity>> MAX_UNPACKAGER = TILES.register("max_unpackager", () -> TileEntityType.Builder.create(() -> new  UnPackagerTileEntity(SpeedTier.MAX), IMBlocks.MAX_UNPACKAGER.get()).build(null));
+  public static final RegistryObject<TileEntityType<UnPackagerTileEntity>> LV_UNPACKAGER = TILES.register("lv_unpackager", () -> TileEntityType.Builder.create(() -> new UnPackagerTileEntity(SpeedTier.LV), IMBlocks.LV_UNPACKAGER.get()).build(null));
+  public static final RegistryObject<TileEntityType<UnPackagerTileEntity>> MV_UNPACKAGER = TILES.register("mv_unpackager", () -> TileEntityType.Builder.create(() -> new UnPackagerTileEntity(SpeedTier.MV), IMBlocks.MV_UNPACKAGER.get()).build(null));
+  public static final RegistryObject<TileEntityType<UnPackagerTileEntity>> HV_UNPACKAGER = TILES.register("hv_unpackager", () -> TileEntityType.Builder.create(() -> new UnPackagerTileEntity(SpeedTier.HV), IMBlocks.HV_UNPACKAGER.get()).build(null));
+  public static final RegistryObject<TileEntityType<UnPackagerTileEntity>> EV_UNPACKAGER = TILES.register("ev_unpackager", () -> TileEntityType.Builder.create(() -> new UnPackagerTileEntity(SpeedTier.EV), IMBlocks.EV_UNPACKAGER.get()).build(null));
+  public static final RegistryObject<TileEntityType<UnPackagerTileEntity>> IV_UNPACKAGER = TILES.register("iv_unpackager", () -> TileEntityType.Builder.create(() -> new UnPackagerTileEntity(SpeedTier.IV), IMBlocks.IV_UNPACKAGER.get()).build(null));
+  public static final RegistryObject<TileEntityType<UnPackagerTileEntity>> LUV_UNPACKAGER = TILES.register("luv_unpackager", () -> TileEntityType.Builder.create(() -> new UnPackagerTileEntity(SpeedTier.LUV), IMBlocks.LUV_UNPACKAGER.get()).build(null));
+  public static final RegistryObject<TileEntityType<UnPackagerTileEntity>> ZPM_UNPACKAGER = TILES.register("zpm_unpackager", () -> TileEntityType.Builder.create(() -> new UnPackagerTileEntity(SpeedTier.ZPM), IMBlocks.ZPM_UNPACKAGER.get()).build(null));
+  public static final RegistryObject<TileEntityType<UnPackagerTileEntity>> UV_UNPACKAGER = TILES.register("uv_unpackager", () -> TileEntityType.Builder.create(() -> new UnPackagerTileEntity(SpeedTier.UV), IMBlocks.UV_UNPACKAGER.get()).build(null));
+  public static final RegistryObject<TileEntityType<UnPackagerTileEntity>> MAX_UNPACKAGER = TILES.register("max_unpackager", () -> TileEntityType.Builder.create(() -> new UnPackagerTileEntity(SpeedTier.MAX), IMBlocks.MAX_UNPACKAGER.get()).build(null));
 
+  public static final RegistryObject<TileEntityType<PackagerTileEntity>> LV_PACKAGER = TILES.register("lv_packager", () -> TileEntityType.Builder.create(() -> new PackagerTileEntity(SpeedTier.LV), IMBlocks.LV_PACKAGER.get()).build(null));
+  public static final RegistryObject<TileEntityType<PackagerTileEntity>> MV_PACKAGER = TILES.register("mv_packager", () -> TileEntityType.Builder.create(() -> new PackagerTileEntity(SpeedTier.MV), IMBlocks.MV_PACKAGER.get()).build(null));
+  public static final RegistryObject<TileEntityType<PackagerTileEntity>> HV_PACKAGER = TILES.register("hv_packager", () -> TileEntityType.Builder.create(() -> new PackagerTileEntity(SpeedTier.HV), IMBlocks.HV_PACKAGER.get()).build(null));
+  public static final RegistryObject<TileEntityType<PackagerTileEntity>> EV_PACKAGER = TILES.register("ev_packager", () -> TileEntityType.Builder.create(() -> new PackagerTileEntity(SpeedTier.EV), IMBlocks.EV_PACKAGER.get()).build(null));
+  public static final RegistryObject<TileEntityType<PackagerTileEntity>> IV_PACKAGER = TILES.register("iv_packager", () -> TileEntityType.Builder.create(() -> new PackagerTileEntity(SpeedTier.IV), IMBlocks.IV_PACKAGER.get()).build(null));
+  public static final RegistryObject<TileEntityType<PackagerTileEntity>> LUV_PACKAGER = TILES.register("luv_packager", () -> TileEntityType.Builder.create(() -> new PackagerTileEntity(SpeedTier.LUV), IMBlocks.LUV_PACKAGER.get()).build(null));
+  public static final RegistryObject<TileEntityType<PackagerTileEntity>> ZPM_PACKAGER = TILES.register("zpm_packager", () -> TileEntityType.Builder.create(() -> new PackagerTileEntity(SpeedTier.ZPM), IMBlocks.ZPM_PACKAGER.get()).build(null));
+  public static final RegistryObject<TileEntityType<PackagerTileEntity>> UV_PACKAGER = TILES.register("uv_packager", () -> TileEntityType.Builder.create(() -> new PackagerTileEntity(SpeedTier.UV), IMBlocks.UV_PACKAGER.get()).build(null));
+  public static final RegistryObject<TileEntityType<PackagerTileEntity>> MAX_PACKAGER = TILES.register("max_packager", () -> TileEntityType.Builder.create(() -> new PackagerTileEntity(SpeedTier.MAX), IMBlocks.MAX_PACKAGER.get()).build(null));
 
 }
