@@ -4,6 +4,7 @@ import dev.quae.mods.industriae.IndustriaeMutatio;
 import dev.quae.mods.industriae.block.AlloySmelterBlock;
 import dev.quae.mods.industriae.block.ForgeHammerBlock;
 import dev.quae.mods.industriae.block.MaceratorBlock;
+import dev.quae.mods.industriae.block.WireMillBlock;
 import dev.quae.mods.industriae.tileentity.SpeedTier;
 import net.minecraft.block.Block;
 import net.minecraftforge.fml.RegistryObject;
@@ -44,4 +45,17 @@ public class IMBlocks {
   public static final RegistryObject<Block> ZPM_ALLOY_SMELTER = BLOCKS.register("zpm_alloy_smelter", () -> new AlloySmelterBlock(SpeedTier.ZPM));
   public static final RegistryObject<Block> UV_ALLOY_SMELTER = BLOCKS.register("uv_alloy_smelter", () -> new AlloySmelterBlock(SpeedTier.UV));
   public static final RegistryObject<Block> MAX_ALLOY_SMELTER = BLOCKS.register("max_alloy_smelter", () -> new AlloySmelterBlock(SpeedTier.MAX));
+
+  public static final RegistryObject<Block> LV_WIREMILL = BLOCKS.register("lv_wiremill", () -> new WireMillBlock(SpeedTier.LV));
+  public static final RegistryObject<Block> MV_WIREMILL = BLOCKS.register("mv_wiremill", () -> new WireMillBlock(SpeedTier.MV));
+  public static final RegistryObject<Block> HV_WIREMILL = BLOCKS.register("hv_wiremill", () -> new WireMillBlock(SpeedTier.HV));
+  public static final RegistryObject<Block> EV_WIREMILL = BLOCKS.register("ev_wiremill", () -> new WireMillBlock(SpeedTier.EV));
+  public static final RegistryObject<Block> IV_WIREMILL = BLOCKS.register("iv_wiremill", () -> new WireMillBlock(SpeedTier.IV));
+  public static final RegistryObject<Block> LUV_WIREMILL = BLOCKS.register("luv_wiremill", () -> new WireMillBlock(SpeedTier.LUV));
+  public static final RegistryObject<Block> ZPM_WIREMILL = BLOCKS.register("zpm_wiremill", () -> new WireMillBlock(SpeedTier.ZPM));
+  public static final RegistryObject<Block> UV_WIREMILL = BLOCKS.register("uv_wiremill", () -> new WireMillBlock(SpeedTier.UV));
+  public static final RegistryObject<Block> MAX_WIREMILL = BLOCKS.register("max_wiremill", () -> new WireMillBlock(SpeedTier.MAX));
+
+
+
 }

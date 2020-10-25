@@ -1,6 +1,7 @@
 package dev.quae.mods.industriae.capability;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
@@ -31,5 +32,9 @@ public class IMMachineItemHandler extends ItemStackHandler {
     }
     slot = MathHelper.clamp(slot, outputStart, getSlots() - 1);
     return super.extractItem(slot, amount, simulate);
+  }
+
+  public NonNullList<ItemStack> getStacks(){
+    return this.stacks;
   }
 }

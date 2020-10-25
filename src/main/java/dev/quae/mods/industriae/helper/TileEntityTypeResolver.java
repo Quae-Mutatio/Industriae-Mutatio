@@ -5,7 +5,8 @@ import dev.quae.mods.industriae.tileentity.SpeedTier;
 import net.minecraft.tileentity.TileEntityType;
 
 public class TileEntityTypeResolver {
-  public static TileEntityType<?> resolveMacerator(SpeedTier tier){
+
+  public static TileEntityType<?> resolveMacerator(SpeedTier tier) {
     switch (tier) {
       case MV:
         return IMTiles.MV_MACERATOR.get();
@@ -71,6 +72,29 @@ public class TileEntityTypeResolver {
         return IMTiles.MAX_ALLOY_SMELTER.get();
       default:
         return IMTiles.LV_ALLOY_SMELTER.get();
+    }
+  }
+
+  public static TileEntityType<?> resolveWireMill(SpeedTier tier) {
+    switch (tier) {
+      case MV:
+        return IMTiles.MV_WIREMILL.get();
+      case HV:
+        return IMTiles.HV_WIREMILL.get();
+      case EV:
+        return IMTiles.EV_WIREMILL.get();
+      case IV:
+        return IMTiles.IV_WIREMILL.get();
+      case LUV:
+        return IMTiles.LUV_WIREMILL.get();
+      case ZPM:
+        return IMTiles.ZPM_WIREMILL.get();
+      case UV:
+        return IMTiles.UV_WIREMILL.get();
+      case MAX:
+        return IMTiles.MAX_WIREMILL.get();
+      default:
+        return IMTiles.LV_WIREMILL.get();
     }
   }
 }

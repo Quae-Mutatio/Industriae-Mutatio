@@ -16,6 +16,8 @@ public class RecipeTypeHelper {
       return IMRecipeTypes.MACERATOR;
     } else if (rl.equals(IMRecipeConstants.ALLOY_FURNACE_RL)){
       return IMRecipeTypes.ALLOY_FURNACE;
+    }  else if (rl.equals(IMRecipeConstants.WIREMILL_RL)){
+      return IMRecipeTypes.WIREMILL;
     }
     return null;
   }
@@ -27,6 +29,8 @@ public class RecipeTypeHelper {
       return new ResourceLocation(IMRecipeConstants.FORGE_HAMMER_RL);
     } else if (recipeType.equals(IMRecipeTypes.ALLOY_FURNACE)) {
       return new ResourceLocation(IMRecipeConstants.ALLOY_FURNACE_RL);
+    } else if (recipeType.equals(IMRecipeTypes.WIREMILL)){
+      return new ResourceLocation(IMRecipeConstants.WIREMILL_RL);
     }
     return new ResourceLocation("");
   }

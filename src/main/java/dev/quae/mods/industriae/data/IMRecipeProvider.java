@@ -40,5 +40,12 @@ public class IMRecipeProvider extends RecipeProvider {
         .addPrimaryResult(Items.GOLD_INGOT, 1)
         .addTickLength(100)
         .build(consumer);
+
+    // Wire Mill Recipes
+    IMCustomMachineRecipeBuilder.create(IMRecipeSerializers.WIREMILL.get(), IMRecipeTypes.WIREMILL)
+        .addIngredient(Items.IRON_INGOT, 1)
+        .addPrimaryResult(Items.GOLD_INGOT, 1)
+        .addTickLength(100)
+        .build(consumer);
   }
 }

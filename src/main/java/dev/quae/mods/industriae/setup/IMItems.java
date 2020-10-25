@@ -43,6 +43,17 @@ public class IMItems {
   public static final RegistryObject<Item> UV_ALLOY_SMELTER = ITEMS.register("uv_alloy_smelter", () -> new IMBlockItem(IMBlocks.UV_ALLOY_SMELTER, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
   public static final RegistryObject<Item> MAX_ALLOY_SMELTER = ITEMS.register("max_alloy_smelter", () -> new IMBlockItem(IMBlocks.MAX_ALLOY_SMELTER, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
 
+  public static final RegistryObject<Item> LV_WIREMILL = ITEMS.register("lv_wiremill", () -> new IMBlockItem(IMBlocks.LV_WIREMILL, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> MV_WIREMILL = ITEMS.register("mv_wiremill", () -> new IMBlockItem(IMBlocks.MV_WIREMILL, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> HV_WIREMILL = ITEMS.register("hv_wiremill", () -> new IMBlockItem(IMBlocks.HV_WIREMILL, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> EV_WIREMILL = ITEMS.register("ev_wiremill", () -> new IMBlockItem(IMBlocks.EV_WIREMILL, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> IV_WIREMILL = ITEMS.register("iv_wiremill", () -> new IMBlockItem(IMBlocks.IV_WIREMILL, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> LUV_WIREMILL = ITEMS.register("luv_wiremill", () -> new IMBlockItem(IMBlocks.LUV_WIREMILL, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> ZPM_WIREMILL = ITEMS.register("zpm_wiremill", () -> new IMBlockItem(IMBlocks.ZPM_WIREMILL, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> UV_WIREMILL = ITEMS.register("uv_wiremill", () -> new IMBlockItem(IMBlocks.UV_WIREMILL, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> MAX_WIREMILL = ITEMS.register("max_wiremill", () -> new IMBlockItem(IMBlocks.MAX_WIREMILL, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+
+
   // Crafting Items
   public static final RegistryObject<Item> WOOD_PULP = ITEMS.register("wood_pulp", IMCraftingItem::new);
 }

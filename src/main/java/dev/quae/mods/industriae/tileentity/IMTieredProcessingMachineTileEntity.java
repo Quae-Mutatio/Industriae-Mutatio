@@ -6,9 +6,12 @@ import dev.quae.mods.industriae.recipe.IMCustomMachineRecipe;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import net.minecraft.block.BlockState;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
@@ -104,5 +107,19 @@ public abstract class IMTieredProcessingMachineTileEntity extends TileEntity {
       this.inventory.setStackInSlot(outputSlot, IMItemStackHelper.addToStack(stackInSlot, stack.getCount()));
       this.inventory.setStackInSlot(inputSlot, IMItemStackHelper.takeFromStack(inputStack, 1));
     }
+  }
+
+  @Override
+  public void read(BlockState state, CompoundNBT nbt) {
+    super.read(state, nbt);
+    this.processingTime = nbt.getInt("processingTime");
+    ItemStackHelper.loadAllItems(nbt, this.inventory.getStacks());
+  }
+
+  @Override
+  public CompoundNBT write(CompoundNBT compound) {
+    ItemStackHelper.saveAllItems(compound, this.inventory.getStacks());
+    compound.putInt("processingTime", this.processingTime);
+    return super.write(compound);
   }
 }
