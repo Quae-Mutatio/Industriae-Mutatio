@@ -30,8 +30,8 @@ public class UnPackagerTileEntity extends IMTieredProcessingMachineTileEntity im
     }
     consumeEnergy();
     if (hasFinishedProcess()) {
-      for (int i = 1; i <= results.size(); i++) {
-        this.setResultStack(results.get(i - 1), 0, i);
+      for (int i = 1; i < results.size(); i++) {
+        this.setResultStack(results.get(i), 0, i + this.getOutputStartIndex());
       }
     }
   }

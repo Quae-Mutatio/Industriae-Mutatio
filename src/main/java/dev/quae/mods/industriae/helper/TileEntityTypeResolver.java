@@ -1,6 +1,8 @@
 package dev.quae.mods.industriae.helper;
 
+import dev.quae.mods.industriae.data.recipe.IMCustomMachineRecipeBuilder;
 import dev.quae.mods.industriae.setup.IMTiles;
+import dev.quae.mods.industriae.tileentity.IMTieredProcessingMachineTileEntity;
 import dev.quae.mods.industriae.tileentity.SpeedTier;
 import net.minecraft.tileentity.TileEntityType;
 
@@ -142,5 +144,29 @@ public class TileEntityTypeResolver {
       default:
         return IMTiles.LV_PACKAGER.get();
     }
+  }
+
+  public static TileEntityType<?> resolveThermalCentrifuge(SpeedTier tier) {
+    switch (tier) {
+      case MV:
+        return IMTiles.MV_THERMAL_CENTRIFUGE.get();
+      case HV:
+        return IMTiles.HV_THERMAL_CENTRIFUGE.get();
+      case EV:
+        return IMTiles.EV_THERMAL_CENTRIFUGE.get();
+      case IV:
+        return IMTiles.IV_THERMAL_CENTRIFUGE.get();
+      case LUV:
+        return IMTiles.LUV_THERMAL_CENTRIFUGE.get();
+      case ZPM:
+        return IMTiles.ZPM_THERMAL_CENTRIFUGE.get();
+      case UV:
+        return IMTiles.UV_THERMAL_CENTRIFUGE.get();
+      case MAX:
+        return IMTiles.MAX_THERMAL_CENTRIFUGE.get();
+      default:
+        return IMTiles.LV_THERMAL_CENTRIFUGE.get();
+    }
+
   }
 }

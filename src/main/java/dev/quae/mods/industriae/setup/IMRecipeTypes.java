@@ -12,4 +12,5 @@ public class IMRecipeTypes {
   public static final IRecipeType<IMCustomMachineRecipe> WIREMILL = IRecipeType.register(new ResourceLocation(IndustriaeMutatio.ID, "wiremill").toString());
   public static final IRecipeType<IMCustomMachineRecipe> UNPACKAGER = IRecipeType.register(new ResourceLocation(IndustriaeMutatio.ID, "unpackager").toString());
   public static final IRecipeType<IMCustomMachineRecipe> PACKAGER =  IRecipeType.register(new ResourceLocation(IndustriaeMutatio.ID, "packager").toString());
+  public static final IRecipeType<IMCustomMachineRecipe> THERMAL_CENTRIFUGE =  IRecipeType.register(new ResourceLocation(IndustriaeMutatio.ID, "thermal_centrifuge").toString());
 }

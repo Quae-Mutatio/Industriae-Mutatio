@@ -18,7 +18,7 @@ public class IMMachineItemHandler extends ItemStackHandler {
   @NotNull
   @Override
   public ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
-    if (slot > outputStart) {
+    if (slot >= outputStart) {
       return stack;
     }
     return super.insertItem(slot, stack, simulate);

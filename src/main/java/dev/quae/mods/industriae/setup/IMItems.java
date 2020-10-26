@@ -73,6 +73,16 @@ public class IMItems {
   public static final RegistryObject<Item> UV_PACKAGER = ITEMS.register("uv_packager", () -> new IMBlockItem(IMBlocks.UV_PACKAGER, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
   public static final RegistryObject<Item> MAX_PACKAGER = ITEMS.register("max_packager", () -> new IMBlockItem(IMBlocks.MAX_PACKAGER, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
 
+  public static final RegistryObject<Item> LV_THERMAL_CENTRIFUGE = ITEMS.register("lv_thermal_centrifuge", () -> new IMBlockItem(IMBlocks.LV_THERMAL_CENTRIFUGE, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> MV_THERMAL_CENTRIFUGE = ITEMS.register("mv_thermal_centrifuge", () -> new IMBlockItem(IMBlocks.MV_THERMAL_CENTRIFUGE, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> HV_THERMAL_CENTRIFUGE = ITEMS.register("hv_thermal_centrifuge", () -> new IMBlockItem(IMBlocks.HV_THERMAL_CENTRIFUGE, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> EV_THERMAL_CENTRIFUGE = ITEMS.register("ev_thermal_centrifuge", () -> new IMBlockItem(IMBlocks.EV_THERMAL_CENTRIFUGE, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> IV_THERMAL_CENTRIFUGE = ITEMS.register("iv_thermal_centrifuge", () -> new IMBlockItem(IMBlocks.IV_THERMAL_CENTRIFUGE, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> LUV_THERMAL_CENTRIFUGE = ITEMS.register("luv_thermal_centrifuge", () -> new IMBlockItem(IMBlocks.LUV_THERMAL_CENTRIFUGE, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> ZPM_THERMAL_CENTRIFUGE = ITEMS.register("zpm_thermal_centrifuge", () -> new IMBlockItem(IMBlocks.ZPM_THERMAL_CENTRIFUGE, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> UV_THERMAL_CENTRIFUGE = ITEMS.register("uv_thermal_centrifuge", () -> new IMBlockItem(IMBlocks.UV_THERMAL_CENTRIFUGE, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> MAX_THERMAL_CENTRIFUGE = ITEMS.register("max_thermal_centrifuge", () -> new IMBlockItem(IMBlocks.MAX_THERMAL_CENTRIFUGE, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+
 
   // Crafting Items
   public static final RegistryObject<Item> WOOD_PULP = ITEMS.register("wood_pulp", IMCraftingItem::new);

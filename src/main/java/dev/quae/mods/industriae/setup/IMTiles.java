@@ -6,6 +6,7 @@ import dev.quae.mods.industriae.tileentity.ForgeHammerTileEntity;
 import dev.quae.mods.industriae.tileentity.MaceratorTileEntity;
 import dev.quae.mods.industriae.tileentity.PackagerTileEntity;
 import dev.quae.mods.industriae.tileentity.SpeedTier;
+import dev.quae.mods.industriae.tileentity.ThermalCentrifugeTileEntity;
 import dev.quae.mods.industriae.tileentity.UnPackagerTileEntity;
 import dev.quae.mods.industriae.tileentity.WireMillTileEntity;
 import net.minecraft.tileentity.TileEntityType;
@@ -77,5 +78,15 @@ public class IMTiles {
   public static final RegistryObject<TileEntityType<PackagerTileEntity>> ZPM_PACKAGER = TILES.register("zpm_packager", () -> TileEntityType.Builder.create(() -> new PackagerTileEntity(SpeedTier.ZPM), IMBlocks.ZPM_PACKAGER.get()).build(null));
   public static final RegistryObject<TileEntityType<PackagerTileEntity>> UV_PACKAGER = TILES.register("uv_packager", () -> TileEntityType.Builder.create(() -> new PackagerTileEntity(SpeedTier.UV), IMBlocks.UV_PACKAGER.get()).build(null));
   public static final RegistryObject<TileEntityType<PackagerTileEntity>> MAX_PACKAGER = TILES.register("max_packager", () -> TileEntityType.Builder.create(() -> new PackagerTileEntity(SpeedTier.MAX), IMBlocks.MAX_PACKAGER.get()).build(null));
+
+  public static final RegistryObject<TileEntityType<ThermalCentrifugeTileEntity>> LV_THERMAL_CENTRIFUGE = TILES.register("lv_thermal_centrifuge", () -> TileEntityType.Builder.create(() -> new ThermalCentrifugeTileEntity(SpeedTier.LV), IMBlocks.LV_THERMAL_CENTRIFUGE.get()).build(null));
+  public static final RegistryObject<TileEntityType<ThermalCentrifugeTileEntity>> MV_THERMAL_CENTRIFUGE = TILES.register("mv_thermal_centrifuge", () -> TileEntityType.Builder.create(() -> new ThermalCentrifugeTileEntity(SpeedTier.MV), IMBlocks.MV_THERMAL_CENTRIFUGE.get()).build(null));
+  public static final RegistryObject<TileEntityType<ThermalCentrifugeTileEntity>> HV_THERMAL_CENTRIFUGE = TILES.register("hv_thermal_centrifuge", () -> TileEntityType.Builder.create(() -> new ThermalCentrifugeTileEntity(SpeedTier.HV), IMBlocks.HV_THERMAL_CENTRIFUGE.get()).build(null));
+  public static final RegistryObject<TileEntityType<ThermalCentrifugeTileEntity>> EV_THERMAL_CENTRIFUGE = TILES.register("ev_thermal_centrifuge", () -> TileEntityType.Builder.create(() -> new ThermalCentrifugeTileEntity(SpeedTier.EV), IMBlocks.EV_THERMAL_CENTRIFUGE.get()).build(null));
+  public static final RegistryObject<TileEntityType<ThermalCentrifugeTileEntity>> IV_THERMAL_CENTRIFUGE = TILES.register("iv_thermal_centrifuge", () -> TileEntityType.Builder.create(() -> new ThermalCentrifugeTileEntity(SpeedTier.IV), IMBlocks.IV_THERMAL_CENTRIFUGE.get()).build(null));
+  public static final RegistryObject<TileEntityType<ThermalCentrifugeTileEntity>> LUV_THERMAL_CENTRIFUGE = TILES.register("luv_thermal_centrifuge", () -> TileEntityType.Builder.create(() -> new ThermalCentrifugeTileEntity(SpeedTier.LUV), IMBlocks.LUV_THERMAL_CENTRIFUGE.get()).build(null));
+  public static final RegistryObject<TileEntityType<ThermalCentrifugeTileEntity>> ZPM_THERMAL_CENTRIFUGE = TILES.register("zpm_thermal_centrifuge", () -> TileEntityType.Builder.create(() -> new ThermalCentrifugeTileEntity(SpeedTier.ZPM), IMBlocks.ZPM_THERMAL_CENTRIFUGE.get()).build(null));
+  public static final RegistryObject<TileEntityType<ThermalCentrifugeTileEntity>> UV_THERMAL_CENTRIFUGE = TILES.register("uv_thermal_centrifuge", () -> TileEntityType.Builder.create(() -> new ThermalCentrifugeTileEntity(SpeedTier.UV), IMBlocks.UV_THERMAL_CENTRIFUGE.get()).build(null));
+  public static final RegistryObject<TileEntityType<ThermalCentrifugeTileEntity>> MAX_THERMAL_CENTRIFUGE = TILES.register("max_thermal_centrifuge", () -> TileEntityType.Builder.create(() -> new ThermalCentrifugeTileEntity(SpeedTier.MAX), IMBlocks.MAX_THERMAL_CENTRIFUGE.get()).build(null));
 
 }

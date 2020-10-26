@@ -56,12 +56,12 @@ public class IMCustomMachineRecipe implements IMMachineRecipe {
     List<Predicate<ItemStack>> ingredientTests = new ArrayList<>();
     List<ItemStack> invContents = new ArrayList<>();
     for (final ItemStack stack : this.ingredients) {
-      ingredientTests.add((x) -> stack.getItem() == x.getItem() && stack.getCount() >= x.getCount());
+      ingredientTests.add((x) -> stack.getItem() == x.getItem() && stack.getCount() <= x.getCount());
     }
     for (int i = 0; i < inv.getSizeInventory(); i++) {
       invContents.add(inv.getStackInSlot(i));
     }
-    boolean match = true;
+    int matchCount = 0;
     for (final Predicate<ItemStack> ingredientTest : ingredientTests) {
       boolean foundIngredient = false;
       for (ItemStack invContent : invContents) {
@@ -69,9 +69,9 @@ public class IMCustomMachineRecipe implements IMMachineRecipe {
           foundIngredient = true;
         }
       }
-      match = foundIngredient;
+      matchCount += (foundIngredient ? 1 : 0);
     }
-    return match;
+    return matchCount >= this.ingredients.size();
   }
 
   @Override
@@ -86,7 +86,7 @@ public class IMCustomMachineRecipe implements IMMachineRecipe {
       if (output.isPrimary()) {
         continue;
       }
-      secondaries.add(output.resolveStack());
+      secondaries.add(output.resolveStack().copy());
     }
     return secondaries;
   }
