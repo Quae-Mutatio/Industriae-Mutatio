@@ -1,13 +1,19 @@
 {
-  "type": "industriaemutatio:autoclave",
+  "type": "industriaemutatio:mixer",
   "ticks": 100,
-  "machine": "industriaemutatio:autoclave",
+  "machine": "industriaemutatio:mixer",
   "results": [
     {
       "item": "minecraft:coal",
       "count": 1,
       "chance": 1.0,
       "primary": true
+    },
+    {
+      "item": "minecraft:black_wool",
+      "count": 1,
+      "chance": 1.0,
+      "primary": false
     }
   ],
   "inputs": [

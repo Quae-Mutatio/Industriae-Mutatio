@@ -90,7 +90,6 @@ public abstract class IMTieredProcessingMachineTileEntity extends TileEntity imp
     }
     for (int i = 0; i < this.getFluidOutputStartIndex(); i++) {
       craftingInv.setInventorySlotContents(i + offset, IMFluidStackHelper.getAsItemStack(this.fluidInventory.getFluidInTank(i)));
-      offset++;
     }
     currentRecipe = this.getWorld().getRecipeManager().getRecipe(recipeType, craftingInv, this.getWorld()).orElse(null);
     if (currentRecipe == null) {

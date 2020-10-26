@@ -10,6 +10,7 @@ import dev.quae.mods.industriae.tileentity.IMSpeedTier;
 import dev.quae.mods.industriae.tileentity.IMTieredProcessingMachineTileEntity;
 import dev.quae.mods.industriae.tileentity.InfiniteWaterSourceTileEntity;
 import dev.quae.mods.industriae.tileentity.MaceratorTileEntity;
+import dev.quae.mods.industriae.tileentity.MixerTileEntity;
 import dev.quae.mods.industriae.tileentity.OreWashingPlantTileEntity;
 import dev.quae.mods.industriae.tileentity.PackagerTileEntity;
 import dev.quae.mods.industriae.tileentity.PrecisionEngravingMachineTileEntity;
@@ -57,6 +58,8 @@ public class IMTiles {
   public static final Map<String, RegistryObject<TileEntityType<? extends IMTieredProcessingMachineTileEntity>>> SIFTER = registerTiers("sifter", tier -> () -> TileEntityType.Builder.create(() -> new SifterTileEntity(tier), IMTieredRegistryResolver.resolveBlock(tier, IMBlocks.SIFTER)).build(null));
 
   public static final Map<String, RegistryObject<TileEntityType<? extends IMTieredProcessingMachineTileEntity>>> AUTOCLAVE = registerTiers("autoclave", tier -> () -> TileEntityType.Builder.create(() -> new AutoclaveTileEntity(tier), IMTieredRegistryResolver.resolveBlock(tier, IMBlocks.AUTOCLAVE)).build(null));
+
+  public static final Map<String, RegistryObject<TileEntityType<? extends IMTieredProcessingMachineTileEntity>>> MIXER = registerTiers("mixer", tier -> () -> TileEntityType.Builder.create(() -> new MixerTileEntity(tier), IMTieredRegistryResolver.resolveBlock(tier, IMBlocks.MIXER)).build(null));
 
   private static Map<String, RegistryObject<TileEntityType<? extends IMTieredProcessingMachineTileEntity>>> registerTiers(String registrySuffix, Function<SpeedTier, Supplier<TileEntityType<? extends IMTieredProcessingMachineTileEntity>>> tileEntityTypeFunction) {
     LinkedHashMap<String, RegistryObject<TileEntityType<? extends IMTieredProcessingMachineTileEntity>>> map = new LinkedHashMap<>();

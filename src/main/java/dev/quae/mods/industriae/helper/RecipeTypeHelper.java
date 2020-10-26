@@ -32,6 +32,8 @@ public class RecipeTypeHelper {
       return IMRecipeTypes.SIFTER;
     } else if (rl.equals(IMRecipeConstants.AUTOCLAVE_RL)) {
       return IMRecipeTypes.AUTOCLAVE;
+    } else if (rl.equals(IMRecipeConstants.MIXER_RL)) {
+      return IMRecipeTypes.MIXER;
     }
     return null;
   }
@@ -59,6 +61,8 @@ public class RecipeTypeHelper {
       return new ResourceLocation(IMRecipeConstants.SIFTER_RL);
     } else if (recipeType.equals(IMRecipeTypes.AUTOCLAVE)) {
       return new ResourceLocation(IMRecipeConstants.AUTOCLAVE_RL);
+    } else if (recipeType.equals(IMRecipeTypes.MIXER)) {
+      return new ResourceLocation(IMRecipeConstants.MIXER_RL);
     }
     return new ResourceLocation("");
   }

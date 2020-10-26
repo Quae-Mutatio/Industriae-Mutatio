@@ -17,4 +17,5 @@ public class IMRecipeTypes {
   public static final IRecipeType<IMCustomMachineRecipe> PRECISION_ENGRAVING =  IRecipeType.register(new ResourceLocation(IndustriaeMutatio.ID, "precision_engraving").toString());
   public static final IRecipeType<IMCustomMachineRecipe> SIFTER =  IRecipeType.register(new ResourceLocation(IndustriaeMutatio.ID, "sifter").toString());
   public static final IRecipeType<IMCustomMachineRecipe> AUTOCLAVE =  IRecipeType.register(new ResourceLocation(IndustriaeMutatio.ID, "autoclave").toString());
+  public static final IRecipeType<IMCustomMachineRecipe> MIXER =  IRecipeType.register(new ResourceLocation(IndustriaeMutatio.ID, "mixer").toString());
 }

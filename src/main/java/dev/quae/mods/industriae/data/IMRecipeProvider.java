@@ -107,5 +107,15 @@ public class IMRecipeProvider extends RecipeProvider {
         .addPrimaryResult(Items.COAL, 1, 1)
         .addTickLength(100)
         .build(consumer);
+
+
+    // Mixer Recipes
+    IMCustomMachineRecipeBuilder.create(IMRecipeSerializers.MIXER.get(), IMRecipeTypes.MIXER)
+        .addIngredient(Items.GUNPOWDER, 1)
+        .addIngredient(new FluidStack(Fluids.WATER, 100))
+        .addPrimaryResult(Items.COAL, 1, 1)
+        .addSecondaryResult(Items.BLACK_WOOL, 1, 1.0)
+        .addTickLength(100)
+        .build(consumer);
   }
 }
