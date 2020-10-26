@@ -16,7 +16,6 @@ As a Team (Quae Mutatio) we want to capture the best parts of GregTech and creat
 - Full JEI support for machines (including multi-blocks and structures) to make for an uninterrupted play-through experience
 - An up to date set of textures (Yes we ain't gonna copy the original ones from Greg Tech "cause pls no")
 - Fully "Data Pack Supported" recipe systems to allow for the easy tweaks and changes for mod Pack development
-- 
 
 ## Disclaimer
 This is an unofficial GregTech mod, and is in no way connected to nor maintained by GregoriusT
