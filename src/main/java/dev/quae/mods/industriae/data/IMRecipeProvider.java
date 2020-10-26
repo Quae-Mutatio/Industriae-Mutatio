@@ -99,5 +99,13 @@ public class IMRecipeProvider extends RecipeProvider {
         .addSecondaryResult(Items.BLACK_WOOL, 1, 0.1)
         .addTickLength(100)
         .build(consumer);
+
+    // Autoclave Recipes
+    IMCustomMachineRecipeBuilder.create(IMRecipeSerializers.AUTOCLAVE.get(), IMRecipeTypes.AUTOCLAVE)
+        .addIngredient(Items.GUNPOWDER, 1)
+        .addIngredient(new FluidStack(Fluids.WATER, 100))
+        .addPrimaryResult(Items.COAL, 1, 1)
+        .addTickLength(100)
+        .build(consumer);
   }
 }

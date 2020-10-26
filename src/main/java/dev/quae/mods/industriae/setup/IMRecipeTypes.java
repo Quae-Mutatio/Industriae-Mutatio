@@ -16,4 +16,5 @@ public class IMRecipeTypes {
   public static final IRecipeType<IMCustomMachineRecipe> ORE_WASHING_PLANT =  IRecipeType.register(new ResourceLocation(IndustriaeMutatio.ID, "ore_washing_plant").toString());
   public static final IRecipeType<IMCustomMachineRecipe> PRECISION_ENGRAVING =  IRecipeType.register(new ResourceLocation(IndustriaeMutatio.ID, "precision_engraving").toString());
   public static final IRecipeType<IMCustomMachineRecipe> SIFTER =  IRecipeType.register(new ResourceLocation(IndustriaeMutatio.ID, "sifter").toString());
+  public static final IRecipeType<IMCustomMachineRecipe> AUTOCLAVE =  IRecipeType.register(new ResourceLocation(IndustriaeMutatio.ID, "autoclave").toString());
 }

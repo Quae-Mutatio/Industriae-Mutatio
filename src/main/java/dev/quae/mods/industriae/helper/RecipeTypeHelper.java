@@ -26,10 +26,12 @@ public class RecipeTypeHelper {
       return IMRecipeTypes.THERMAL_CENTRIFUGE;
     } else if (rl.equals(IMRecipeConstants.ORE_WASHING_RL)) {
       return IMRecipeTypes.ORE_WASHING_PLANT;
-    }  else if (rl.equals(IMRecipeConstants.PRECISION_ENGRAVING_RL)) {
+    } else if (rl.equals(IMRecipeConstants.PRECISION_ENGRAVING_RL)) {
       return IMRecipeTypes.PRECISION_ENGRAVING;
-    }  else if (rl.equals(IMRecipeConstants.SIFTER_RL)) {
+    } else if (rl.equals(IMRecipeConstants.SIFTER_RL)) {
       return IMRecipeTypes.SIFTER;
+    } else if (rl.equals(IMRecipeConstants.AUTOCLAVE_RL)) {
+      return IMRecipeTypes.AUTOCLAVE;
     }
     return null;
   }
@@ -53,8 +55,10 @@ public class RecipeTypeHelper {
       return new ResourceLocation(IMRecipeConstants.ORE_WASHING_RL);
     } else if (recipeType.equals(IMRecipeTypes.PRECISION_ENGRAVING)) {
       return new ResourceLocation(IMRecipeConstants.PRECISION_ENGRAVING_RL);
-    }  else if (recipeType.equals(IMRecipeTypes.SIFTER)) {
+    } else if (recipeType.equals(IMRecipeTypes.SIFTER)) {
       return new ResourceLocation(IMRecipeConstants.SIFTER_RL);
+    } else if (recipeType.equals(IMRecipeTypes.AUTOCLAVE)) {
+      return new ResourceLocation(IMRecipeConstants.AUTOCLAVE_RL);
     }
     return new ResourceLocation("");
   }

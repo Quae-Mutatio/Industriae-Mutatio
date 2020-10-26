@@ -2,6 +2,7 @@ package dev.quae.mods.industriae.setup;
 
 import dev.quae.mods.industriae.IndustriaeMutatio;
 import dev.quae.mods.industriae.block.AlloySmelterBlock;
+import dev.quae.mods.industriae.block.AutoclaveBlock;
 import dev.quae.mods.industriae.block.ForgeHammerBlock;
 import dev.quae.mods.industriae.block.InfiniteWaterSourceBlock;
 import dev.quae.mods.industriae.block.MaceratorBlock;
@@ -48,6 +49,8 @@ public class IMBlocks {
   public static final Map<String, RegistryObject<Block>> PRECISION_ENGRAVING_MACHINE = registerTiers("precision_engraving_machine", (tier) -> () -> new PrecisionEngraverMachineBlock(tier));
 
   public static final Map<String, RegistryObject<Block>> SIFTER = registerTiers("sifter", (tier) -> () -> new SifterBlock(tier));
+
+  public static final Map<String, RegistryObject<Block>> AUTOCLAVE = registerTiers("autoclave", (tier) -> () -> new AutoclaveBlock(tier));
 
   private static Map<String, RegistryObject<Block>> registerTiers(String registrySuffix, Function<SpeedTier, Supplier<Block>> tileEntityTypeFunction) {
     LinkedHashMap<String, RegistryObject<Block>> map = new LinkedHashMap<>();

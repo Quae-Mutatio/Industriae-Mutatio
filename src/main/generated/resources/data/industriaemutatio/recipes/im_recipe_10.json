@@ -1,0 +1,23 @@
+{
+  "type": "industriaemutatio:autoclave",
+  "ticks": 100,
+  "machine": "industriaemutatio:autoclave",
+  "results": [
+    {
+      "item": "minecraft:coal",
+      "count": 1,
+      "chance": 0.2,
+      "primary": true
+    }
+  ],
+  "inputs": [
+    {
+      "item": "minecraft:gunpowder",
+      "count": 1
+    },
+    {
+      "fluid": "minecraft:water",
+      "amount": 100
+    }
+  ]
+}

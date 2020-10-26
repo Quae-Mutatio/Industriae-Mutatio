@@ -20,5 +20,6 @@ public class IMRecipeSerializers {
   public static final RegistryObject<IMCustomMachineRecipe.Serializer> ORE_WASHING_PLANT = RECIPE_SERIALIZERS.register("ore_washing_plant", IMCustomMachineRecipe.Serializer::new);
   public static final RegistryObject<IMCustomMachineRecipe.Serializer> PRECISION_ENGRAVING = RECIPE_SERIALIZERS.register("precision_engraving", IMCustomMachineRecipe.Serializer::new);
   public static final RegistryObject<IMCustomMachineRecipe.Serializer> SIFTER = RECIPE_SERIALIZERS.register("sifter", IMCustomMachineRecipe.Serializer::new);
+  public static final RegistryObject<IMCustomMachineRecipe.Serializer> AUTOCLAVE = RECIPE_SERIALIZERS.register("autoclave", IMCustomMachineRecipe.Serializer::new);
 
 }

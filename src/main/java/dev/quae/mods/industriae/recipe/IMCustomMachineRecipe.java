@@ -88,7 +88,7 @@ public class IMCustomMachineRecipe implements IMMachineRecipe {
   public ItemStack getRecipeOutput() {
     for (IMMachineOutput output : this.result) {
       if (output.isPrimary()) {
-        return output.resolveItemStack();
+        return output.resolveItemStack().copy();
       }
     }
     return ItemStack.EMPTY;

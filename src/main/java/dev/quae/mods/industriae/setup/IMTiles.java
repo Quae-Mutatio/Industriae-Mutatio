@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableMap;
 import dev.quae.mods.industriae.IndustriaeMutatio;
 import dev.quae.mods.industriae.helper.IMTieredRegistryResolver;
 import dev.quae.mods.industriae.tileentity.AlloySmelterTileEntity;
+import dev.quae.mods.industriae.tileentity.AutoclaveTileEntity;
 import dev.quae.mods.industriae.tileentity.ForgeHammerTileEntity;
 import dev.quae.mods.industriae.tileentity.IMSpeedTier;
 import dev.quae.mods.industriae.tileentity.IMTieredProcessingMachineTileEntity;
@@ -54,6 +55,8 @@ public class IMTiles {
   public static final Map<String, RegistryObject<TileEntityType<? extends IMTieredProcessingMachineTileEntity>>> PRECISION_ENGRAVING_MACHINE = registerTiers("precision_engraving_machine", (tier) -> () -> TileEntityType.Builder.create(() -> new PrecisionEngravingMachineTileEntity(tier), IMTieredRegistryResolver.resolveBlock(tier, IMBlocks.PRECISION_ENGRAVING_MACHINE)).build(null));
 
   public static final Map<String, RegistryObject<TileEntityType<? extends IMTieredProcessingMachineTileEntity>>> SIFTER = registerTiers("sifter", tier -> () -> TileEntityType.Builder.create(() -> new SifterTileEntity(tier), IMTieredRegistryResolver.resolveBlock(tier, IMBlocks.SIFTER)).build(null));
+
+  public static final Map<String, RegistryObject<TileEntityType<? extends IMTieredProcessingMachineTileEntity>>> AUTOCLAVE = registerTiers("autoclave", tier -> () -> TileEntityType.Builder.create(() -> new AutoclaveTileEntity(tier), IMTieredRegistryResolver.resolveBlock(tier, IMBlocks.AUTOCLAVE)).build(null));
 
   private static Map<String, RegistryObject<TileEntityType<? extends IMTieredProcessingMachineTileEntity>>> registerTiers(String registrySuffix, Function<SpeedTier, Supplier<TileEntityType<? extends IMTieredProcessingMachineTileEntity>>> tileEntityTypeFunction) {
     LinkedHashMap<String, RegistryObject<TileEntityType<? extends IMTieredProcessingMachineTileEntity>>> map = new LinkedHashMap<>();

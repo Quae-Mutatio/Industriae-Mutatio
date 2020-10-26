@@ -13,5 +13,6 @@ public class IMRecipeConstants {
   public static final String ORE_WASHING_RL = IndustriaeMutatio.ID + ":ore_washing";
   public static final String PRECISION_ENGRAVING_RL = IndustriaeMutatio.ID + ":precision_engraving";
   public static final String SIFTER_RL = IndustriaeMutatio.ID + ":sifter";
+  public static final String AUTOCLAVE_RL = IndustriaeMutatio.ID + ":autoclave";
   public static final String ITEM_STACK_FLUID_KEY = "Fluid";
 }
