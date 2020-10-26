@@ -26,6 +26,8 @@ public class RecipeTypeHelper {
       return IMRecipeTypes.THERMAL_CENTRIFUGE;
     } else if (rl.equals(IMRecipeConstants.ORE_WASHING_RL)) {
       return IMRecipeTypes.ORE_WASHING_PLANT;
+    }  else if (rl.equals(IMRecipeConstants.PRECISION_ENGRAVING_RL)) {
+      return IMRecipeTypes.PRECISION_ENGRAVING;
     }
     return null;
   }
@@ -47,6 +49,8 @@ public class RecipeTypeHelper {
       return new ResourceLocation(IMRecipeConstants.THERMAL_CENTRIFUGE_RL);
     } else if (recipeType.equals(IMRecipeTypes.ORE_WASHING_PLANT)) {
       return new ResourceLocation(IMRecipeConstants.ORE_WASHING_RL);
+    } else if (recipeType.equals(IMRecipeTypes.PRECISION_ENGRAVING)) {
+      return new ResourceLocation(IMRecipeConstants.PRECISION_ENGRAVING_RL);
     }
     return new ResourceLocation("");
   }

@@ -73,12 +73,20 @@ public class IMRecipeProvider extends RecipeProvider {
         .addTickLength(100)
         .build(consumer);
 
-    // Thermal Centrifuge Recipes
+    // Ore Washing Plant Recipes
     IMCustomMachineRecipeBuilder.create(IMRecipeSerializers.ORE_WASHING_PLANT.get(), IMRecipeTypes.ORE_WASHING_PLANT)
         .addIngredient(Items.WHITE_WOOL, 1)
         .addIngredient(new FluidStack(Fluids.WATER, 100))
         .addPrimaryResult(Items.STRING, 4)
         .addSecondaryResult(Items.COAL, 1, 1)
+        .addTickLength(100)
+        .build(consumer);
+
+    // Precision Engraver Recipes
+    IMCustomMachineRecipeBuilder.create(IMRecipeSerializers.PRECISION_ENGRAVING.get(), IMRecipeTypes.PRECISION_ENGRAVING)
+        .addIngredient(Items.WHITE_WOOL, 1)
+        .addReusableIngredient(Items.GLASS, 1)
+        .addPrimaryResult(Items.COAL, 1, 1)
         .addTickLength(100)
         .build(consumer);
   }

@@ -7,6 +7,7 @@ import dev.quae.mods.industriae.block.InfiniteWaterSourceBlock;
 import dev.quae.mods.industriae.block.MaceratorBlock;
 import dev.quae.mods.industriae.block.OreWashingPlantBlock;
 import dev.quae.mods.industriae.block.PackagerBlock;
+import dev.quae.mods.industriae.block.PrecisionEngraverMachineBlock;
 import dev.quae.mods.industriae.block.ThermalCentrifugeBlock;
 import dev.quae.mods.industriae.block.UnPackagerBlock;
 import dev.quae.mods.industriae.block.WireMillBlock;
@@ -100,6 +101,16 @@ public class IMBlocks {
   public static final RegistryObject<Block> ZPM_ORE_WASHING_PLANT = BLOCKS.register("zpm_ore_washing_plant", () -> new OreWashingPlantBlock(SpeedTier.ZPM));
   public static final RegistryObject<Block> UV_ORE_WASHING_PLANT = BLOCKS.register("uv_ore_washing_plant", () -> new OreWashingPlantBlock(SpeedTier.UV));
   public static final RegistryObject<Block> MAX_ORE_WASHING_PLANT = BLOCKS.register("max_ore_washing_plant", () -> new OreWashingPlantBlock(SpeedTier.MAX));
+
+  public static final RegistryObject<Block> LV_PRECISION_ENGRAVING_MACHINE = BLOCKS.register("lv_precision_engraving_machine", () -> new PrecisionEngraverMachineBlock(SpeedTier.LV));
+  public static final RegistryObject<Block> MV_PRECISION_ENGRAVING_MACHINE = BLOCKS.register("mv_precision_engraving_machine", () -> new PrecisionEngraverMachineBlock(SpeedTier.MV));
+  public static final RegistryObject<Block> HV_PRECISION_ENGRAVING_MACHINE = BLOCKS.register("hv_precision_engraving_machine", () -> new PrecisionEngraverMachineBlock(SpeedTier.HV));
+  public static final RegistryObject<Block> EV_PRECISION_ENGRAVING_MACHINE = BLOCKS.register("ev_precision_engraving_machine", () -> new PrecisionEngraverMachineBlock(SpeedTier.EV));
+  public static final RegistryObject<Block> IV_PRECISION_ENGRAVING_MACHINE = BLOCKS.register("iv_precision_engraving_machine", () -> new PrecisionEngraverMachineBlock(SpeedTier.IV));
+  public static final RegistryObject<Block> LUV_PRECISION_ENGRAVING_MACHINE = BLOCKS.register("luv_precision_engraving_machine", () -> new PrecisionEngraverMachineBlock(SpeedTier.LUV));
+  public static final RegistryObject<Block> ZPM_PRECISION_ENGRAVING_MACHINE = BLOCKS.register("zpm_precision_engraving_machine", () -> new PrecisionEngraverMachineBlock(SpeedTier.ZPM));
+  public static final RegistryObject<Block> UV_PRECISION_ENGRAVING_MACHINE = BLOCKS.register("uv_precision_engraving_machine", () -> new PrecisionEngraverMachineBlock(SpeedTier.UV));
+  public static final RegistryObject<Block> MAX_PRECISION_ENGRAVING_MACHINE = BLOCKS.register("max_precision_engraving_machine", () -> new PrecisionEngraverMachineBlock(SpeedTier.MAX));
 
 
   public static final RegistryObject<Block> INFINITE_WATER_SOURCE = BLOCKS.register("infinite_water_source", InfiniteWaterSourceBlock::new);

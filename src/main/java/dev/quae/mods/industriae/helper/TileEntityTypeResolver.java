@@ -192,4 +192,28 @@ public class TileEntityTypeResolver {
         return IMTiles.LV_ORE_WASHING_PLANT.get();
     }
   }
+
+  public static TileEntityType<?> resolvePrecisionEngraver(SpeedTier tier) {
+    switch (tier) {
+      case MV:
+        return IMTiles.MV_PRECISION_ENGRAVING_MACHINE.get();
+      case HV:
+        return IMTiles.HV_PRECISION_ENGRAVING_MACHINE.get();
+      case EV:
+        return IMTiles.EV_PRECISION_ENGRAVING_MACHINE.get();
+      case IV:
+        return IMTiles.IV_PRECISION_ENGRAVING_MACHINE.get();
+      case LUV:
+        return IMTiles.LUV_PRECISION_ENGRAVING_MACHINE.get();
+      case ZPM:
+        return IMTiles.ZPM_PRECISION_ENGRAVING_MACHINE.get();
+      case UV:
+        return IMTiles.UV_PRECISION_ENGRAVING_MACHINE.get();
+      case MAX:
+        return IMTiles.MAX_PRECISION_ENGRAVING_MACHINE.get();
+      default:
+        return IMTiles.LV_PRECISION_ENGRAVING_MACHINE.get();
+    }
+
+  }
 }

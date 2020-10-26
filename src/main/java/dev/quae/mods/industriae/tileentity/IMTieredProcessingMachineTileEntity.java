@@ -2,34 +2,36 @@ package dev.quae.mods.industriae.tileentity;
 
 import dev.quae.mods.industriae.capability.IMMachineFluidHandler;
 import dev.quae.mods.industriae.capability.IMMachineItemHandler;
+import dev.quae.mods.industriae.data.recipe.IMMachineInput;
+import dev.quae.mods.industriae.data.recipe.IMMachineOutput;
 import dev.quae.mods.industriae.helper.IMFluidStackHelper;
 import dev.quae.mods.industriae.helper.IMItemStackHelper;
 import dev.quae.mods.industriae.recipe.IMCustomMachineRecipe;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import net.minecraft.block.BlockState;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStack;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class IMTieredProcessingMachineTileEntity extends TileEntity {
+public abstract class IMTieredProcessingMachineTileEntity extends TileEntity implements ITickableTileEntity {
 
   private static final int MACHINE_FLUID_TANK_CAPACITY = 64000;
 
@@ -40,10 +42,13 @@ public abstract class IMTieredProcessingMachineTileEntity extends TileEntity {
   protected int processingTime;
   protected int requiredProcessingTime;
   protected SpeedTier speedTier;
+  private IRecipeType<IMCustomMachineRecipe> recipeType;
+  IMCustomMachineRecipe currentRecipe = null;
 
-  public IMTieredProcessingMachineTileEntity(TileEntityType<?> tileEntityTypeIn, SpeedTier speedTier) {
+  public IMTieredProcessingMachineTileEntity(TileEntityType<?> tileEntityTypeIn, SpeedTier speedTier, IRecipeType<IMCustomMachineRecipe> recipeType) {
     super(tileEntityTypeIn);
     this.speedTier = speedTier;
+    this.recipeType = recipeType;
   }
 
   protected abstract int getInventorySize();
@@ -75,7 +80,8 @@ public abstract class IMTieredProcessingMachineTileEntity extends TileEntity {
     this.inventoryLO.invalidate();
   }
 
-  protected List<ItemStack> calculateOutput(IRecipeType<IMCustomMachineRecipe> recipeType) {
+  protected List<ItemStack> calculateOutput() {
+    currentRecipe = null;
     final Inventory craftingInv = new Inventory(getOutputStartIndex() + getFluidOutputStartIndex());
     int offset = 0;
     for (int i = 0; i < this.getOutputStartIndex(); i++) {
@@ -86,16 +92,16 @@ public abstract class IMTieredProcessingMachineTileEntity extends TileEntity {
       craftingInv.setInventorySlotContents(i + offset, IMFluidStackHelper.getAsItemStack(this.fluidInventory.getFluidInTank(i)));
       offset++;
     }
-    IMCustomMachineRecipe recipe = this.getWorld().getRecipeManager().getRecipe(recipeType, craftingInv, this.getWorld()).orElse(null);
-    if (recipe == null) {
+    currentRecipe = this.getWorld().getRecipeManager().getRecipe(recipeType, craftingInv, this.getWorld()).orElse(null);
+    if (currentRecipe == null) {
       return null;
     }
-    this.requiredProcessingTime = recipe.getTicks();
-    final ItemStack primaryResult = recipe.getCraftingResult(craftingInv);
-    final NonNullList<ItemStack> secondaryResults = recipe.getRemainingItems(craftingInv);
+    this.requiredProcessingTime = currentRecipe.getTicks();
+    final ItemStack primaryResult = currentRecipe.getCraftingResult(craftingInv);
+    final NonNullList<ItemStack> secondaryResults = currentRecipe.getRemainingItems(craftingInv);
     List<ItemStack> results = new ArrayList<>();
-    results.add(primaryResult);
-    results.addAll(secondaryResults);
+    results.add(primaryResult.copy());
+    results.addAll(secondaryResults.stream().map(ItemStack::copy).collect(Collectors.toList()));
     for (ItemStack result : results) {
       if (this.inventory.getStackInSlot(1).getCount() + result.getCount() > 64) {
         return null;
@@ -117,22 +123,68 @@ public abstract class IMTieredProcessingMachineTileEntity extends TileEntity {
     // TODO add voltaic RF usage
   }
 
-  protected void setResultStack(ItemStack stack, int inputSlot, int outputSlot) {
-    if (stack.isEmpty() && !IMFluidStackHelper.isFluidContainer(stack)) {
+  protected void setResultStacks() {
+    this.removeInputs();
+    int index = 0;
+    for (IMMachineOutput output : this.currentRecipe.getAllOutputs()) {
+      int offsetIndex = index + this.getOutputStartIndex();
+      ItemStack stack = output.resolveItemStack().copy();
+      if (stack.isEmpty() && !IMFluidStackHelper.isFluidContainer(stack)) {
+        return;
+      }
+      if (IMFluidStackHelper.isFluidContainer(stack)) {
+        this.fluidInventory.internalFill(offsetIndex, IMFluidStackHelper.getAsFluidStack(stack));
+      }
+      ItemStack stackInSlot = this.inventory.getStackInSlot(offsetIndex);
+      if (stackInSlot.isEmpty()) {
+        this.inventory.setStackInSlot(offsetIndex, stack);
+      } else if (stackInSlot.isItemEqual(stack)) {
+        this.inventory.setStackInSlot(offsetIndex, IMItemStackHelper.addToStack(stackInSlot, stack.getCount()));
+      }
+      index++;
+    }
+
+  }
+
+  private void removeInputs(){
+
+    int fluidInputIndex = 0;
+    for (IMMachineInput fluidInput : this.currentRecipe.getFluidInputs()) {
+      if (fluidInput.getDontConsume()) {
+        continue;
+      }
+      for (int i = 0; i < this.getFluidOutputStartIndex(); i++) {
+        if (!fluidInventory.getFluidInTank(i).isFluidEqual(fluidInput.getFluidStack())) {
+          continue;
+        }
+        this.fluidInventory.internalDrain(fluidInputIndex, fluidInput.getFluidStack().copy());
+        fluidInputIndex++;
+      }
+    }
+
+    int inputIndex = 0;
+    for (IMMachineInput itemInput : this.currentRecipe.getInputs()) {
+      if ((itemInput.getDontConsume())) {
+        continue;
+      }
+      for (int i = 0; i < this.getOutputStartIndex(); i++) {
+        if (!inventory.getStackInSlot(i).isItemEqual(itemInput.getItem())) {
+          continue;
+        }
+        this.inventory.setStackInSlot(inputIndex, IMItemStackHelper.takeFromStack(this.inventory.getStackInSlot(i), itemInput.getItem().getCount()));
+        inputIndex++;
+      }
+    }
+  }
+
+  private void processInput() {
+    List<ItemStack> results = this.calculateOutput();
+    if (results == null) {
       return;
     }
-    if (IMFluidStackHelper.isFluidContainer(stack)) {
-      this.fluidInventory.internalFill(outputSlot, IMFluidStackHelper.getAsFluidStack(stack));
-      this.fluidInventory.internalDrain(inputSlot, IMFluidStackHelper.getAsFluidStack(stack));
-    }
-    ItemStack inputStack = this.inventory.getStackInSlot(inputSlot);
-    ItemStack stackInSlot = this.inventory.getStackInSlot(outputSlot);
-    if (stackInSlot.isEmpty()) {
-      this.inventory.setStackInSlot(outputSlot, stack);
-      this.inventory.setStackInSlot(inputSlot, IMItemStackHelper.takeFromStack(inputStack, 1));
-    } else if (stackInSlot.isItemEqual(stack)) {
-      this.inventory.setStackInSlot(outputSlot, IMItemStackHelper.addToStack(stackInSlot, stack.getCount()));
-      this.inventory.setStackInSlot(inputSlot, IMItemStackHelper.takeFromStack(inputStack, 1));
+    consumeEnergy();
+    if (hasFinishedProcess()) {
+      this.setResultStacks();
     }
   }
 
@@ -148,5 +200,10 @@ public abstract class IMTieredProcessingMachineTileEntity extends TileEntity {
     ItemStackHelper.saveAllItems(compound, this.inventory.getStacks());
     compound.putInt("processingTime", this.processingTime);
     return super.write(compound);
+  }
+
+  @Override
+  public void tick() {
+    processInput();
   }
 }

@@ -6,21 +6,10 @@ import java.util.List;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.ITickableTileEntity;
 
-public class WireMillTileEntity extends IMTieredProcessingMachineTileEntity implements ITickableTileEntity {
+public class WireMillTileEntity extends IMTieredProcessingMachineTileEntity {
 
   public WireMillTileEntity(SpeedTier speedTier) {
-    super(TileEntityTypeResolver.resolveWireMill(speedTier), speedTier);
-  }
-
-  private void processInput() {
-    List<ItemStack> results = this.calculateOutput(IMRecipeTypes.WIREMILL);
-    if (results == null) {
-      return;
-    }
-    consumeEnergy();
-    if (hasFinishedProcess()) {
-      this.setResultStack(results.get(0), 0, 1);
-    }
+    super(TileEntityTypeResolver.resolveWireMill(speedTier), speedTier, IMRecipeTypes.WIREMILL);
   }
 
   @Override
@@ -41,10 +30,5 @@ public class WireMillTileEntity extends IMTieredProcessingMachineTileEntity impl
   @Override
   protected int getFluidOutputStartIndex() {
     return 0;
-  }
-
-  @Override
-  public void tick() {
-    processInput();
   }
 }

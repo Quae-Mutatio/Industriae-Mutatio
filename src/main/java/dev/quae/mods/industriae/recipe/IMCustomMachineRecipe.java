@@ -3,6 +3,7 @@ package dev.quae.mods.industriae.recipe;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import dev.quae.mods.industriae.data.recipe.IMMachineInput;
 import dev.quae.mods.industriae.data.recipe.IMMachineOutput;
 import dev.quae.mods.industriae.data.recipe.IMStackType;
 import dev.quae.mods.industriae.helper.IMFluidStackHelper;
@@ -29,16 +30,16 @@ public class IMCustomMachineRecipe implements IMMachineRecipe {
 
   protected final List<IMMachineOutput> result;
   protected final ResourceLocation id;
-  protected final List<ItemStack> ingredients;
-  protected final List<FluidStack> fluidIngredients;
+  protected final List<IMMachineInput> ingredients;
+  protected final List<IMMachineInput> fluidIngredients;
   protected final int ticks;
   private IRecipeSerializer<?> serializer;
   private IRecipeType<IMCustomMachineRecipe> recipeType;
 
   public IMCustomMachineRecipe(List<IMMachineOutput> result,
       ResourceLocation id,
-      List<ItemStack> ingredients,
-      List<FluidStack> fluidIngredients,
+      List<IMMachineInput> ingredients,
+      List<IMMachineInput> fluidIngredients,
       int ticks,
       IRecipeSerializer<?> serializer,
       IRecipeType<IMCustomMachineRecipe> recipeType) {
@@ -93,6 +94,17 @@ public class IMCustomMachineRecipe implements IMMachineRecipe {
     return ItemStack.EMPTY;
   }
 
+  public List<IMMachineInput> getInputs(){
+    return this.ingredients;
+  }
+  public List<IMMachineInput> getFluidInputs(){
+    return this.fluidIngredients;
+  }
+
+  public List<IMMachineOutput> getAllOutputs() {
+    return this.result;
+  }
+
   @Override
   public ResourceLocation getId() {
     return id;
@@ -114,7 +126,8 @@ public class IMCustomMachineRecipe implements IMMachineRecipe {
     }
     List<Predicate<ItemStack>> ingredientTests = new ArrayList<>();
     List<ItemStack> invContents = new ArrayList<>();
-    for (final ItemStack stack : this.ingredients) {
+    for (final IMMachineInput input : this.ingredients) {
+      final ItemStack stack = input.resolveItemStack();
       ingredientTests.add((x) -> stack.getItem() == x.getItem() && stack.getCount() <= x.getCount());
     }
     for (int i = 0; i < inv.getSizeInventory(); i++) {
@@ -142,7 +155,8 @@ public class IMCustomMachineRecipe implements IMMachineRecipe {
     }
     List<Predicate<FluidStack>> ingredientTests = new ArrayList<>();
     List<FluidStack> invContents = new ArrayList<>();
-    for (final FluidStack stack : this.fluidIngredients) {
+    for (final IMMachineInput input : this.fluidIngredients) {
+      FluidStack stack = input.getFluidStack();
       ingredientTests.add((x) -> stack.getFluid().isEquivalentTo(x.getFluid()) && stack.getAmount() <= x.getAmount());
     }
     for (int i = 0; i < inv.getSizeInventory(); i++) {
@@ -173,15 +187,15 @@ public class IMCustomMachineRecipe implements IMMachineRecipe {
       for (JsonElement jsonElement : resultsJson) {
         results.add(IMMachineOutput.from(jsonElement.getAsJsonObject()));
       }
-      NonNullList<ItemStack> inputs = NonNullList.create();
-      NonNullList<FluidStack> fluids = NonNullList.create();
+      NonNullList<IMMachineInput> inputs = NonNullList.create();
+      NonNullList<IMMachineInput> fluids = NonNullList.create();
       final JsonArray ingredientsJson = JSONUtils.getJsonArray(json, "inputs");
       for (JsonElement jsonElement : ingredientsJson) {
         JsonObject elemObject = jsonElement.getAsJsonObject();
         if (elemObject.has("item")) {
-          inputs.add(new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(elemObject.get("item").getAsString())), elemObject.get("count").getAsInt()));
+          inputs.add(new IMMachineInput(new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(elemObject.get("item").getAsString())), elemObject.get("count").getAsInt()), elemObject.has("dontConsume") && elemObject.get("dontConsume").getAsBoolean()));
         } else if (elemObject.has("fluid")) {
-          fluids.add(new FluidStack(ForgeRegistries.FLUIDS.getValue(new ResourceLocation(elemObject.get("fluid").getAsString())), elemObject.get("amount").getAsInt()));
+          fluids.add(new IMMachineInput(new FluidStack(ForgeRegistries.FLUIDS.getValue(new ResourceLocation(elemObject.get("fluid").getAsString())), elemObject.get("amount").getAsInt()), elemObject.has("dontConsume") && elemObject.get("dontConsume").getAsBoolean()));
         }
       }
       int ticks = json.get("ticks").getAsInt();
@@ -196,14 +210,14 @@ public class IMCustomMachineRecipe implements IMMachineRecipe {
       int outputCount = buffer.readInt();
       String typeRl = buffer.readString();
       int ticks = buffer.readInt();
-      NonNullList<ItemStack> inputs = NonNullList.create();
-      NonNullList<FluidStack> fluids = NonNullList.create();
+      NonNullList<IMMachineInput> inputs = NonNullList.create();
+      NonNullList<IMMachineInput> fluids = NonNullList.create();
       NonNullList<IMMachineOutput> outputs = NonNullList.create();
       for (int i = 0; i < inputCount; i++) {
-        inputs.add(buffer.readItemStack());
+        inputs.add(IMMachineInput.read(buffer));
       }
       for (int i = 0; i < fluidCount; i++) {
-        fluids.add(buffer.readFluidStack());
+        fluids.add(IMMachineInput.read(buffer));
       }
       for (int i = 0; i < outputCount; i++) {
         outputs.add(IMMachineOutput.read(buffer));
@@ -218,11 +232,11 @@ public class IMCustomMachineRecipe implements IMMachineRecipe {
       buffer.writeInt(recipe.fluidIngredients.size());
       buffer.writeInt(recipe.result.size());
       buffer.writeString(RecipeTypeHelper.getRl(recipe.getType()).toString());
-      for (ItemStack ingredient : recipe.ingredients) {
-        buffer.writeItemStack(ingredient);
+      for (IMMachineInput ingredient : recipe.ingredients) {
+        ingredient.write(buffer);
       }
-      for (FluidStack fluid : recipe.fluidIngredients) {
-        buffer.writeFluidStack(fluid);
+      for (IMMachineInput fluid : recipe.fluidIngredients) {
+        fluid.write(buffer);
       }
       for (IMMachineOutput output : recipe.result) {
         output.write(buffer);

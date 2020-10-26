@@ -7,22 +7,12 @@ import java.util.List;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.ITickableTileEntity;
 
-public class ForgeHammerTileEntity extends IMTieredProcessingMachineTileEntity implements ITickableTileEntity {
+public class ForgeHammerTileEntity extends IMTieredProcessingMachineTileEntity {
 
   public ForgeHammerTileEntity(SpeedTier speedTier) {
-    super(TileEntityTypeResolver.resolveForgeHammer(speedTier), speedTier);
+    super(TileEntityTypeResolver.resolveForgeHammer(speedTier), speedTier, IMRecipeTypes.FORGE_HAMMER);
   }
 
-  private void processInput() {
-    List<ItemStack> results = this.calculateOutput(IMRecipeTypes.FORGE_HAMMER);
-    if (results == null) {
-      return;
-    }
-    consumeEnergy();
-    if (hasFinishedProcess()) {
-      this.setResultStack(results.get(0), 0, 1);
-    }
-  }
 
   @Override
   protected int getInventorySize() {
@@ -42,10 +32,5 @@ public class ForgeHammerTileEntity extends IMTieredProcessingMachineTileEntity i
   @Override
   protected int getFluidOutputStartIndex() {
     return 0;
-  }
-
-  @Override
-  public void tick() {
-    processInput();
   }
 }

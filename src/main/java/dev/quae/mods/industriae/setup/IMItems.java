@@ -93,6 +93,16 @@ public class IMItems {
   public static final RegistryObject<Item> UV_ORE_WASHING_PLANT = ITEMS.register("uv_ore_washing_plant", () -> new IMBlockItem(IMBlocks.UV_ORE_WASHING_PLANT, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
   public static final RegistryObject<Item> MAX_ORE_WASHING_PLANT = ITEMS.register("max_ore_washing_plant", () -> new IMBlockItem(IMBlocks.MAX_THERMAL_CENTRIFUGE, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
 
+  public static final RegistryObject<Item> LV_PRECISION_ENGRAVING_MACHINE = ITEMS.register("lv_precision_engraving_machine", () -> new IMBlockItem(IMBlocks.LV_PRECISION_ENGRAVING_MACHINE, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> MV_PRECISION_ENGRAVING_MACHINE = ITEMS.register("mv_precision_engraving_machine", () -> new IMBlockItem(IMBlocks.MV_PRECISION_ENGRAVING_MACHINE, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> HV_PRECISION_ENGRAVING_MACHINE = ITEMS.register("hv_precision_engraving_machine", () -> new IMBlockItem(IMBlocks.HV_PRECISION_ENGRAVING_MACHINE, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> EV_PRECISION_ENGRAVING_MACHINE = ITEMS.register("ev_precision_engraving_machine", () -> new IMBlockItem(IMBlocks.EV_PRECISION_ENGRAVING_MACHINE, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> IV_PRECISION_ENGRAVING_MACHINE = ITEMS.register("iv_precision_engraving_machine", () -> new IMBlockItem(IMBlocks.IV_PRECISION_ENGRAVING_MACHINE, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> LUV_PRECISION_ENGRAVING_MACHINE = ITEMS.register("luv_precision_engraving_machine", () -> new IMBlockItem(IMBlocks.LUV_PRECISION_ENGRAVING_MACHINE, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> ZPM_PRECISION_ENGRAVING_MACHINE = ITEMS.register("zpm_precision_engraving_machine", () -> new IMBlockItem(IMBlocks.ZPM_PRECISION_ENGRAVING_MACHINE, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> UV_PRECISION_ENGRAVING_MACHINE = ITEMS.register("uv_precision_engraving_machine", () -> new IMBlockItem(IMBlocks.UV_PRECISION_ENGRAVING_MACHINE, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> MAX_PRECISION_ENGRAVING_MACHINE = ITEMS.register("max_precision_engraving_machine", () -> new IMBlockItem(IMBlocks.MAX_THERMAL_CENTRIFUGE, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+
 
   // Crafting Items
   public static final RegistryObject<Item> WOOD_PULP = ITEMS.register("wood_pulp", IMCraftingItem::new);

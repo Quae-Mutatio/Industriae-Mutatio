@@ -1,0 +1,24 @@
+{
+  "type": "industriaemutatio:precision_engraving",
+  "ticks": 100,
+  "machine": "industriaemutatio:precision_engraving",
+  "results": [
+    {
+      "item": "minecraft:coal",
+      "count": 1,
+      "chance": 1.0,
+      "primary": true
+    }
+  ],
+  "inputs": [
+    {
+      "item": "minecraft:white_wool",
+      "count": 1
+    },
+    {
+      "item": "minecraft:glass",
+      "count": 1,
+      "dontConsume": true
+    }
+  ]
+}

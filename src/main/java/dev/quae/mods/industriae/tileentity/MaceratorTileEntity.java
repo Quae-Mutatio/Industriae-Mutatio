@@ -7,11 +7,11 @@ import java.util.List;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.ITickableTileEntity;
 
-public class MaceratorTileEntity extends IMTieredProcessingMachineTileEntity implements ITickableTileEntity {
+public class MaceratorTileEntity extends IMTieredProcessingMachineTileEntity {
 
 
   public MaceratorTileEntity(SpeedTier speedTier) {
-    super(TileEntityTypeResolver.resolveMacerator(speedTier), speedTier);
+    super(TileEntityTypeResolver.resolveMacerator(speedTier), speedTier, IMRecipeTypes.MACERATOR);
   }
 
   @Override
@@ -34,21 +34,4 @@ public class MaceratorTileEntity extends IMTieredProcessingMachineTileEntity imp
     return 0;
   }
 
-  private void processInput() {
-    List<ItemStack> results = this.calculateOutput(IMRecipeTypes.MACERATOR);
-    if (results == null) {
-      return;
-    }
-    consumeEnergy();
-    if (hasFinishedProcess()) {
-      for (int i = 0; i < results.size(); i++) {
-        this.setResultStack(results.get(i), 0, i + this.getOutputStartIndex());
-      }
-    }
-  }
-
-  @Override
-  public void tick() {
-    processInput();
-  }
 }

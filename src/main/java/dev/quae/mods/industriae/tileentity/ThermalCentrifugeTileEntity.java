@@ -6,11 +6,11 @@ import java.util.List;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.ITickableTileEntity;
 
-public class ThermalCentrifugeTileEntity extends IMTieredProcessingMachineTileEntity implements ITickableTileEntity {
+public class ThermalCentrifugeTileEntity extends IMTieredProcessingMachineTileEntity {
 
 
   public ThermalCentrifugeTileEntity(SpeedTier speedTier) {
-    super(TileEntityTypeResolver.resolveThermalCentrifuge(speedTier), speedTier);
+    super(TileEntityTypeResolver.resolveThermalCentrifuge(speedTier), speedTier, IMRecipeTypes.THERMAL_CENTRIFUGE);
   }
 
   @Override
@@ -31,23 +31,5 @@ public class ThermalCentrifugeTileEntity extends IMTieredProcessingMachineTileEn
   @Override
   protected int getFluidOutputStartIndex() {
     return 0;
-  }
-
-  private void processInput() {
-    List<ItemStack> results = this.calculateOutput(IMRecipeTypes.THERMAL_CENTRIFUGE);
-    if (results == null) {
-      return;
-    }
-    consumeEnergy();
-    if (hasFinishedProcess()) {
-      for (int i = 0; i < results.size(); i++) {
-        this.setResultStack(results.get(i), 0, i + 1);
-      }
-    }
-  }
-
-  @Override
-  public void tick() {
-    processInput();
   }
 }
