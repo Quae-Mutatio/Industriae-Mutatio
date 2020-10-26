@@ -23,6 +23,16 @@ public class ThermalCentrifugeTileEntity extends IMTieredProcessingMachineTileEn
     return 1;
   }
 
+  @Override
+  protected int getFluidInventorySize() {
+    return 0;
+  }
+
+  @Override
+  protected int getFluidOutputStartIndex() {
+    return 0;
+  }
+
   private void processInput() {
     List<ItemStack> results = this.calculateOutput(IMRecipeTypes.THERMAL_CENTRIFUGE);
     if (results == null) {

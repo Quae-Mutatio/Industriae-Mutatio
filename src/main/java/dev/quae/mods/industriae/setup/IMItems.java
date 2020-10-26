@@ -83,7 +83,20 @@ public class IMItems {
   public static final RegistryObject<Item> UV_THERMAL_CENTRIFUGE = ITEMS.register("uv_thermal_centrifuge", () -> new IMBlockItem(IMBlocks.UV_THERMAL_CENTRIFUGE, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
   public static final RegistryObject<Item> MAX_THERMAL_CENTRIFUGE = ITEMS.register("max_thermal_centrifuge", () -> new IMBlockItem(IMBlocks.MAX_THERMAL_CENTRIFUGE, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
 
+  public static final RegistryObject<Item> LV_ORE_WASHING_PLANT = ITEMS.register("lv_ore_washing_plant", () -> new IMBlockItem(IMBlocks.LV_ORE_WASHING_PLANT, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> MV_ORE_WASHING_PLANT = ITEMS.register("mv_ore_washing_plant", () -> new IMBlockItem(IMBlocks.MV_ORE_WASHING_PLANT, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> HV_ORE_WASHING_PLANT = ITEMS.register("hv_ore_washing_plant", () -> new IMBlockItem(IMBlocks.HV_ORE_WASHING_PLANT, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> EV_ORE_WASHING_PLANT = ITEMS.register("ev_ore_washing_plant", () -> new IMBlockItem(IMBlocks.EV_ORE_WASHING_PLANT, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> IV_ORE_WASHING_PLANT = ITEMS.register("iv_ore_washing_plant", () -> new IMBlockItem(IMBlocks.IV_ORE_WASHING_PLANT, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> LUV_ORE_WASHING_PLANT = ITEMS.register("luv_ore_washing_plant", () -> new IMBlockItem(IMBlocks.LUV_ORE_WASHING_PLANT, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> ZPM_ORE_WASHING_PLANT = ITEMS.register("zpm_ore_washing_plant", () -> new IMBlockItem(IMBlocks.ZPM_ORE_WASHING_PLANT, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> UV_ORE_WASHING_PLANT = ITEMS.register("uv_ore_washing_plant", () -> new IMBlockItem(IMBlocks.UV_ORE_WASHING_PLANT, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+  public static final RegistryObject<Item> MAX_ORE_WASHING_PLANT = ITEMS.register("max_ore_washing_plant", () -> new IMBlockItem(IMBlocks.MAX_THERMAL_CENTRIFUGE, new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+
 
   // Crafting Items
   public static final RegistryObject<Item> WOOD_PULP = ITEMS.register("wood_pulp", IMCraftingItem::new);
+
+  // Misc Block Items
+  public static final RegistryObject<Item> INFINITE_WATER_SOURCE = ITEMS.register("infinite_water_source", () -> new IMBlockItem(IMBlocks.INFINITE_WATER_SOURCE, new Item.Properties().group(IndustriaeMutatio.CRAFTING_ITEMS_TAB)));
 }

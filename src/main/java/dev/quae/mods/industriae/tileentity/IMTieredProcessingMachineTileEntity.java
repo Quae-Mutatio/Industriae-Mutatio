@@ -1,6 +1,8 @@
 package dev.quae.mods.industriae.tileentity;
 
+import dev.quae.mods.industriae.capability.IMMachineFluidHandler;
 import dev.quae.mods.industriae.capability.IMMachineItemHandler;
+import dev.quae.mods.industriae.helper.IMFluidStackHelper;
 import dev.quae.mods.industriae.helper.IMItemStackHelper;
 import dev.quae.mods.industriae.recipe.IMCustomMachineRecipe;
 import java.util.ArrayList;
@@ -18,6 +20,10 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStack;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import org.jetbrains.annotations.NotNull;
@@ -25,8 +31,12 @@ import org.jetbrains.annotations.Nullable;
 
 public abstract class IMTieredProcessingMachineTileEntity extends TileEntity {
 
+  private static final int MACHINE_FLUID_TANK_CAPACITY = 64000;
+
   protected final IMMachineItemHandler inventory = new IMMachineItemHandler(getInventorySize(), getOutputStartIndex());
   protected final LazyOptional<IItemHandler> inventoryLO = LazyOptional.of(this::getInventory);
+  protected final IMMachineFluidHandler fluidInventory = new IMMachineFluidHandler(getFluidInventorySize(), getFluidOutputStartIndex(), MACHINE_FLUID_TANK_CAPACITY);
+  protected final LazyOptional<IFluidHandler> fluidInventoryLO = LazyOptional.of(() -> fluidInventory);
   protected int processingTime;
   protected int requiredProcessingTime;
   protected SpeedTier speedTier;
@@ -37,7 +47,12 @@ public abstract class IMTieredProcessingMachineTileEntity extends TileEntity {
   }
 
   protected abstract int getInventorySize();
+
   protected abstract int getOutputStartIndex();
+
+  protected abstract int getFluidInventorySize();
+
+  protected abstract int getFluidOutputStartIndex();
 
   @NotNull
   protected IItemHandler getInventory() {
@@ -49,6 +64,8 @@ public abstract class IMTieredProcessingMachineTileEntity extends TileEntity {
   public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
     if (Objects.equals(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, cap)) {
       return this.inventoryLO.cast();
+    } else if (Objects.equals(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, cap)) {
+      return this.fluidInventoryLO.cast();
     }
     return super.getCapability(cap);
   }
@@ -59,9 +76,15 @@ public abstract class IMTieredProcessingMachineTileEntity extends TileEntity {
   }
 
   protected List<ItemStack> calculateOutput(IRecipeType<IMCustomMachineRecipe> recipeType) {
-    final Inventory craftingInv = new Inventory(getOutputStartIndex());
+    final Inventory craftingInv = new Inventory(getOutputStartIndex() + getFluidOutputStartIndex());
+    int offset = 0;
     for (int i = 0; i < this.getOutputStartIndex(); i++) {
       craftingInv.setInventorySlotContents(i, this.inventory.getStackInSlot(i));
+      offset++;
+    }
+    for (int i = 0; i < this.getFluidOutputStartIndex(); i++) {
+      craftingInv.setInventorySlotContents(i + offset, IMFluidStackHelper.getAsItemStack(this.fluidInventory.getFluidInTank(i)));
+      offset++;
     }
     IMCustomMachineRecipe recipe = this.getWorld().getRecipeManager().getRecipe(recipeType, craftingInv, this.getWorld()).orElse(null);
     if (recipe == null) {
@@ -95,8 +118,12 @@ public abstract class IMTieredProcessingMachineTileEntity extends TileEntity {
   }
 
   protected void setResultStack(ItemStack stack, int inputSlot, int outputSlot) {
-    if (stack.isEmpty()) {
+    if (stack.isEmpty() && !IMFluidStackHelper.isFluidContainer(stack)) {
       return;
+    }
+    if (IMFluidStackHelper.isFluidContainer(stack)) {
+      this.fluidInventory.internalFill(outputSlot, IMFluidStackHelper.getAsFluidStack(stack));
+      this.fluidInventory.internalDrain(inputSlot, IMFluidStackHelper.getAsFluidStack(stack));
     }
     ItemStack inputStack = this.inventory.getStackInSlot(inputSlot);
     ItemStack stackInSlot = this.inventory.getStackInSlot(outputSlot);

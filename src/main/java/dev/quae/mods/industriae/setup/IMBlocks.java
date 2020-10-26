@@ -3,7 +3,9 @@ package dev.quae.mods.industriae.setup;
 import dev.quae.mods.industriae.IndustriaeMutatio;
 import dev.quae.mods.industriae.block.AlloySmelterBlock;
 import dev.quae.mods.industriae.block.ForgeHammerBlock;
+import dev.quae.mods.industriae.block.InfiniteWaterSourceBlock;
 import dev.quae.mods.industriae.block.MaceratorBlock;
+import dev.quae.mods.industriae.block.OreWashingPlantBlock;
 import dev.quae.mods.industriae.block.PackagerBlock;
 import dev.quae.mods.industriae.block.ThermalCentrifugeBlock;
 import dev.quae.mods.industriae.block.UnPackagerBlock;
@@ -88,5 +90,18 @@ public class IMBlocks {
   public static final RegistryObject<Block> ZPM_THERMAL_CENTRIFUGE = BLOCKS.register("zpm_thermal_centrifuge", () -> new ThermalCentrifugeBlock(SpeedTier.ZPM));
   public static final RegistryObject<Block> UV_THERMAL_CENTRIFUGE = BLOCKS.register("uv_thermal_centrifuge", () -> new ThermalCentrifugeBlock(SpeedTier.UV));
   public static final RegistryObject<Block> MAX_THERMAL_CENTRIFUGE = BLOCKS.register("max_thermal_centrifuge", () -> new ThermalCentrifugeBlock(SpeedTier.MAX));
+
+  public static final RegistryObject<Block> LV_ORE_WASHING_PLANT = BLOCKS.register("lv_ore_washing_plant", () -> new OreWashingPlantBlock(SpeedTier.LV));
+  public static final RegistryObject<Block> MV_ORE_WASHING_PLANT = BLOCKS.register("mv_ore_washing_plant", () -> new OreWashingPlantBlock(SpeedTier.MV));
+  public static final RegistryObject<Block> HV_ORE_WASHING_PLANT = BLOCKS.register("hv_ore_washing_plant", () -> new OreWashingPlantBlock(SpeedTier.HV));
+  public static final RegistryObject<Block> EV_ORE_WASHING_PLANT = BLOCKS.register("ev_ore_washing_plant", () -> new OreWashingPlantBlock(SpeedTier.EV));
+  public static final RegistryObject<Block> IV_ORE_WASHING_PLANT = BLOCKS.register("iv_ore_washing_plant", () -> new OreWashingPlantBlock(SpeedTier.IV));
+  public static final RegistryObject<Block> LUV_ORE_WASHING_PLANT = BLOCKS.register("luv_ore_washing_plant", () -> new OreWashingPlantBlock(SpeedTier.LUV));
+  public static final RegistryObject<Block> ZPM_ORE_WASHING_PLANT = BLOCKS.register("zpm_ore_washing_plant", () -> new OreWashingPlantBlock(SpeedTier.ZPM));
+  public static final RegistryObject<Block> UV_ORE_WASHING_PLANT = BLOCKS.register("uv_ore_washing_plant", () -> new OreWashingPlantBlock(SpeedTier.UV));
+  public static final RegistryObject<Block> MAX_ORE_WASHING_PLANT = BLOCKS.register("max_ore_washing_plant", () -> new OreWashingPlantBlock(SpeedTier.MAX));
+
+
+  public static final RegistryObject<Block> INFINITE_WATER_SOURCE = BLOCKS.register("infinite_water_source", InfiniteWaterSourceBlock::new);
 
 }

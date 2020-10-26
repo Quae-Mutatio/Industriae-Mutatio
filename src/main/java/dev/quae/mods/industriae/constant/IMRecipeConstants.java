@@ -10,4 +10,7 @@ public class IMRecipeConstants {
   public static final String UNPACKAGER_RL = IndustriaeMutatio.ID + ":unpackager";
   public static final String PACKAGER_RL = IndustriaeMutatio.ID + ":packager";
   public static final String THERMAL_CENTRIFUGE_RL = IndustriaeMutatio.ID + ":thermal_centrifuge";
+  public static final String ORE_WASHING_RL = IndustriaeMutatio.ID + ":ore_washing";
+
+  public static final String ITEM_STACK_FLUID_KEY = "Fluid";
 }
