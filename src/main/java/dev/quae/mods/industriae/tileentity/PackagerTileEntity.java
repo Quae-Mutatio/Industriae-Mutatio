@@ -1,16 +1,14 @@
 package dev.quae.mods.industriae.tileentity;
 
-import dev.quae.mods.industriae.helper.TileEntityTypeResolver;
+import dev.quae.mods.industriae.helper.IMTieredRegistryResolver;
 import dev.quae.mods.industriae.setup.IMRecipeTypes;
-import java.util.List;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.ITickableTileEntity;
+import dev.quae.mods.industriae.setup.IMTiles;
 
 public class PackagerTileEntity extends IMTieredProcessingMachineTileEntity {
 
 
   public PackagerTileEntity(SpeedTier speedTier) {
-    super(TileEntityTypeResolver.resolvePackager(speedTier), speedTier, IMRecipeTypes.PACKAGER);
+    super(IMTieredRegistryResolver.resolveTile(speedTier, IMTiles.PACKAGER), speedTier, IMRecipeTypes.PACKAGER);
   }
 
   @Override

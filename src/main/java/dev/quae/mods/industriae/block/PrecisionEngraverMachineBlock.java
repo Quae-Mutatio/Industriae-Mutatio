@@ -1,6 +1,7 @@
 package dev.quae.mods.industriae.block;
 
-import dev.quae.mods.industriae.helper.TileEntityTypeResolver;
+import dev.quae.mods.industriae.helper.IMTieredRegistryResolver;
+import dev.quae.mods.industriae.setup.IMTiles;
 import dev.quae.mods.industriae.tileentity.SpeedTier;
 import net.minecraft.block.BlockState;
 import net.minecraft.tileentity.TileEntity;
@@ -21,6 +22,6 @@ public class PrecisionEngraverMachineBlock extends IMTieredMachineBlock {
   @Nullable
   @Override
   public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-    return TileEntityTypeResolver.resolvePrecisionEngraver(speedTier).create();
+    return IMTieredRegistryResolver.resolveTile(speedTier, IMTiles.PRECISION_ENGRAVING_MACHINE).create();
   }
 }

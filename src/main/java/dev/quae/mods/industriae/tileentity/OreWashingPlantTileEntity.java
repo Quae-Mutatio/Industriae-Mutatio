@@ -1,16 +1,14 @@
 package dev.quae.mods.industriae.tileentity;
 
-import dev.quae.mods.industriae.helper.TileEntityTypeResolver;
+import dev.quae.mods.industriae.helper.IMTieredRegistryResolver;
 import dev.quae.mods.industriae.setup.IMRecipeTypes;
-import java.util.List;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.ITickableTileEntity;
+import dev.quae.mods.industriae.setup.IMTiles;
 
 public class OreWashingPlantTileEntity extends IMTieredProcessingMachineTileEntity {
 
 
   public OreWashingPlantTileEntity(SpeedTier speedTier) {
-    super(TileEntityTypeResolver.resolveOreWasher(speedTier), speedTier, IMRecipeTypes.ORE_WASHING_PLANT);
+    super(IMTieredRegistryResolver.resolveTile(speedTier, IMTiles.ORE_WASHING_PLANT), speedTier, IMRecipeTypes.ORE_WASHING_PLANT);
   }
 
   @Override

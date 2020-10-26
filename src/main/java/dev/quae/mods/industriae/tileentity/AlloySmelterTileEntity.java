@@ -1,18 +1,13 @@
 package dev.quae.mods.industriae.tileentity;
 
-import dev.quae.mods.industriae.helper.TileEntityTypeResolver;
-import dev.quae.mods.industriae.recipe.IMCustomMachineRecipe;
+import dev.quae.mods.industriae.helper.IMTieredRegistryResolver;
 import dev.quae.mods.industriae.setup.IMRecipeTypes;
-import java.util.List;
-import net.minecraft.client.renderer.texture.ITickable;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntityType;
+import dev.quae.mods.industriae.setup.IMTiles;
 
 public class AlloySmelterTileEntity extends IMTieredProcessingMachineTileEntity {
 
   public AlloySmelterTileEntity(SpeedTier speedTier) {
-    super(TileEntityTypeResolver.resolveAlloySmelter(speedTier), speedTier, IMRecipeTypes.ALLOY_FURNACE);
+    super(IMTieredRegistryResolver.resolveTile(speedTier, IMTiles.ALLOY_SMELTER), speedTier, IMRecipeTypes.ALLOY_FURNACE);
   }
 
   @Override

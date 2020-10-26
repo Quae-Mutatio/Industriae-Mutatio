@@ -1,12 +1,13 @@
 package dev.quae.mods.industriae.tileentity;
 
-import dev.quae.mods.industriae.helper.TileEntityTypeResolver;
+import dev.quae.mods.industriae.helper.IMTieredRegistryResolver;
 import dev.quae.mods.industriae.setup.IMRecipeTypes;
+import dev.quae.mods.industriae.setup.IMTiles;
 
 public class PrecisionEngravingMachineTileEntity extends IMTieredProcessingMachineTileEntity {
 
   public PrecisionEngravingMachineTileEntity(SpeedTier speedTier) {
-    super(TileEntityTypeResolver.resolvePrecisionEngraver(speedTier), speedTier, IMRecipeTypes.PRECISION_ENGRAVING);
+    super(IMTieredRegistryResolver.resolveTile(speedTier, IMTiles.PRECISION_ENGRAVING_MACHINE), speedTier, IMRecipeTypes.PRECISION_ENGRAVING);
   }
 
 

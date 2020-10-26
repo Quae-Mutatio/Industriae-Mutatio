@@ -1,15 +1,13 @@
 package dev.quae.mods.industriae.tileentity;
 
-import dev.quae.mods.industriae.helper.TileEntityTypeResolver;
+import dev.quae.mods.industriae.helper.IMTieredRegistryResolver;
 import dev.quae.mods.industriae.setup.IMRecipeTypes;
-import java.util.List;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.ITickableTileEntity;
+import dev.quae.mods.industriae.setup.IMTiles;
 
 public class WireMillTileEntity extends IMTieredProcessingMachineTileEntity {
 
   public WireMillTileEntity(SpeedTier speedTier) {
-    super(TileEntityTypeResolver.resolveWireMill(speedTier), speedTier, IMRecipeTypes.WIREMILL);
+    super(IMTieredRegistryResolver.resolveTile(speedTier, IMTiles.WIREMILL), speedTier, IMRecipeTypes.WIREMILL);
   }
 
   @Override

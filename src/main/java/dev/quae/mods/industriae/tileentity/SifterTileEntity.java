@@ -4,16 +4,16 @@ import dev.quae.mods.industriae.helper.IMTieredRegistryResolver;
 import dev.quae.mods.industriae.setup.IMRecipeTypes;
 import dev.quae.mods.industriae.setup.IMTiles;
 
-public class MaceratorTileEntity extends IMTieredProcessingMachineTileEntity {
+public class SifterTileEntity extends IMTieredProcessingMachineTileEntity {
 
-
-  public MaceratorTileEntity(SpeedTier speedTier) {
-    super(IMTieredRegistryResolver.resolveTile(speedTier, IMTiles.MACERATOR), speedTier, IMRecipeTypes.MACERATOR);
+  public SifterTileEntity(SpeedTier speedTier) {
+    super(IMTieredRegistryResolver.resolveTile(speedTier, IMTiles.PRECISION_ENGRAVING_MACHINE), speedTier, IMRecipeTypes.FORGE_HAMMER);
   }
+
 
   @Override
   protected int getInventorySize() {
-    return 4;
+    return 2;
   }
 
   @Override
@@ -30,5 +30,4 @@ public class MaceratorTileEntity extends IMTieredProcessingMachineTileEntity {
   protected int getFluidOutputStartIndex() {
     return 0;
   }
-
 }

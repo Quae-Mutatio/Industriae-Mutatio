@@ -1,16 +1,13 @@
 package dev.quae.mods.industriae.tileentity;
 
-import dev.quae.mods.industriae.helper.TileEntityTypeResolver;
-import dev.quae.mods.industriae.recipe.IMCustomMachineRecipe;
+import dev.quae.mods.industriae.helper.IMTieredRegistryResolver;
 import dev.quae.mods.industriae.setup.IMRecipeTypes;
-import java.util.List;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.ITickableTileEntity;
+import dev.quae.mods.industriae.setup.IMTiles;
 
 public class ForgeHammerTileEntity extends IMTieredProcessingMachineTileEntity {
 
   public ForgeHammerTileEntity(SpeedTier speedTier) {
-    super(TileEntityTypeResolver.resolveForgeHammer(speedTier), speedTier, IMRecipeTypes.FORGE_HAMMER);
+    super(IMTieredRegistryResolver.resolveTile(speedTier, IMTiles.FORGE_HAMMER), speedTier, IMRecipeTypes.FORGE_HAMMER);
   }
 
 
