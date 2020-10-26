@@ -2,25 +2,22 @@ package dev.quae.mods.industriae.tileentity;
 
 import dev.quae.mods.industriae.helper.TileEntityTypeResolver;
 import dev.quae.mods.industriae.setup.IMRecipeTypes;
-import java.util.List;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.ITickableTileEntity;
 
-public class UnPackagerTileEntity extends IMTieredProcessingMachineTileEntity {
+public class PrecisionEngravingMachineTileEntity extends IMTieredProcessingMachineTileEntity {
 
-
-  public UnPackagerTileEntity(SpeedTier speedTier) {
-    super(TileEntityTypeResolver.resolveUnPackager(speedTier), speedTier, IMRecipeTypes.UNPACKAGER);
+  public PrecisionEngravingMachineTileEntity(SpeedTier speedTier) {
+    super(TileEntityTypeResolver.resolvePrecisionEngraver(speedTier), speedTier, IMRecipeTypes.PRECISION_ENGRAVING);
   }
+
 
   @Override
   protected int getInventorySize() {
-    return 4;
+    return 3;
   }
 
   @Override
   protected int getOutputStartIndex() {
-    return 1;
+    return 2;
   }
 
   @Override

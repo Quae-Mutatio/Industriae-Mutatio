@@ -28,8 +28,8 @@ import org.jetbrains.annotations.Nullable;
 public class IMCustomMachineRecipeBuilder {
   private static int counter = 0;
   protected final List<IMMachineOutput> result = Lists.newArrayList();
-  protected final List<ItemStack> ingredients;
-  protected final List<FluidStack> fluidIngredients;
+  protected final List<IMMachineInput> ingredients;
+  protected final List<IMMachineInput> fluidIngredients;
   private IRecipeSerializer<?> serializer;
   protected int ticks = 0;
   private IRecipeType<IMCustomMachineRecipe> type;
@@ -81,12 +81,22 @@ public class IMCustomMachineRecipeBuilder {
   }
 
   public IMCustomMachineRecipeBuilder addIngredient(IItemProvider itemProvider, final int count) {
-    this.ingredients.add(new ItemStack(itemProvider.asItem(), count));
+    this.ingredients.add(new IMMachineInput(new ItemStack(itemProvider.asItem(), count), false));
     return this;
   }
 
   public IMCustomMachineRecipeBuilder addIngredient(FluidStack fluidStack) {
-    this.fluidIngredients.add(fluidStack.copy());
+    this.fluidIngredients.add(new IMMachineInput(fluidStack.copy(), false));
+    return this;
+  }
+
+  public IMCustomMachineRecipeBuilder addReusableIngredient(FluidStack stack) {
+    this.fluidIngredients.add(new IMMachineInput(stack.copy(), true));
+    return this;
+  }
+
+  public IMCustomMachineRecipeBuilder addReusableIngredient(IItemProvider itemProvider, int count) {
+    this.fluidIngredients.add(new IMMachineInput(new ItemStack(itemProvider.asItem(), count), true));
     return this;
   }
 
@@ -98,14 +108,14 @@ public class IMCustomMachineRecipeBuilder {
   public static final class Result implements IFinishedRecipe {
 
     private final ResourceLocation id;
-    private List<FluidStack> fluidIngredients;
+    private List<IMMachineInput> fluidIngredients;
     private final List<IMMachineOutput> result;
     private int ticks;
     private IRecipeSerializer<?> serializer;
     private IRecipeType<IMCustomMachineRecipe> type;
-    private final List<ItemStack> ingredients;
+    private final List<IMMachineInput> ingredients;
 
-    public Result(ResourceLocation id, List<ItemStack> ingredients, List<FluidStack> fluidIngredients, List<IMMachineOutput> result, int ticks, IRecipeSerializer<?> serializer, IRecipeType<IMCustomMachineRecipe> type) {
+    public Result(ResourceLocation id, List<IMMachineInput> ingredients, List<IMMachineInput> fluidIngredients, List<IMMachineOutput> result, int ticks, IRecipeSerializer<?> serializer, IRecipeType<IMCustomMachineRecipe> type) {
       this.id = id;
       this.ingredients = ingredients;
       this.fluidIngredients = fluidIngredients;
@@ -122,11 +132,11 @@ public class IMCustomMachineRecipeBuilder {
         results.add(output.serialize());
       }
       final JsonArray inputs = new JsonArray();
-      for (ItemStack ingredient : this.ingredients) {
-        inputs.add(IMItemStackHelper.serializeStack(ingredient));
+      for (IMMachineInput ingredient : this.ingredients) {
+        inputs.add(ingredient.serialize());
       }
-      for (FluidStack ingredient : this.fluidIngredients) {
-        inputs.add(IMFluidStackHelper.serializeStack(ingredient));
+      for (IMMachineInput ingredient : this.fluidIngredients) {
+        inputs.add(ingredient.serialize());
       }
       json.addProperty("ticks", ticks);
       json.addProperty("machine", RecipeTypeHelper.getRl(type).toString());

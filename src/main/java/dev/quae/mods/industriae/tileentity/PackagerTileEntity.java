@@ -6,11 +6,11 @@ import java.util.List;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.ITickableTileEntity;
 
-public class PackagerTileEntity extends IMTieredProcessingMachineTileEntity implements ITickableTileEntity {
+public class PackagerTileEntity extends IMTieredProcessingMachineTileEntity {
 
 
   public PackagerTileEntity(SpeedTier speedTier) {
-    super(TileEntityTypeResolver.resolvePackager(speedTier), speedTier);
+    super(TileEntityTypeResolver.resolvePackager(speedTier), speedTier, IMRecipeTypes.PACKAGER);
   }
 
   @Override
@@ -31,21 +31,5 @@ public class PackagerTileEntity extends IMTieredProcessingMachineTileEntity impl
   @Override
   protected int getFluidOutputStartIndex() {
     return 0;
-  }
-
-  private void processInput() {
-    List<ItemStack> results = this.calculateOutput(IMRecipeTypes.PACKAGER);
-    if (results == null) {
-      return;
-    }
-    consumeEnergy();
-    if (hasFinishedProcess()) {
-        this.setResultStack(results.get(0), 0, 3);
-    }
-  }
-
-  @Override
-  public void tick() {
-    processInput();
   }
 }

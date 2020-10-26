@@ -7,6 +7,7 @@ import dev.quae.mods.industriae.tileentity.InfiniteWaterSourceTileEntity;
 import dev.quae.mods.industriae.tileentity.MaceratorTileEntity;
 import dev.quae.mods.industriae.tileentity.OreWashingPlantTileEntity;
 import dev.quae.mods.industriae.tileentity.PackagerTileEntity;
+import dev.quae.mods.industriae.tileentity.PrecisionEngravingMachineTileEntity;
 import dev.quae.mods.industriae.tileentity.SpeedTier;
 import dev.quae.mods.industriae.tileentity.ThermalCentrifugeTileEntity;
 import dev.quae.mods.industriae.tileentity.UnPackagerTileEntity;
@@ -101,6 +102,16 @@ public class IMTiles {
   public static final RegistryObject<TileEntityType<OreWashingPlantTileEntity>> ZPM_ORE_WASHING_PLANT = TILES.register("zpm_ore_washing_plant", () -> TileEntityType.Builder.create(() -> new OreWashingPlantTileEntity(SpeedTier.ZPM), IMBlocks.ZPM_ORE_WASHING_PLANT.get()).build(null));
   public static final RegistryObject<TileEntityType<OreWashingPlantTileEntity>> UV_ORE_WASHING_PLANT = TILES.register("uv_ore_washing_plant", () -> TileEntityType.Builder.create(() -> new OreWashingPlantTileEntity(SpeedTier.UV), IMBlocks.UV_ORE_WASHING_PLANT.get()).build(null));
   public static final RegistryObject<TileEntityType<OreWashingPlantTileEntity>> MAX_ORE_WASHING_PLANT = TILES.register("max_ore_washing_plant", () -> TileEntityType.Builder.create(() -> new OreWashingPlantTileEntity(SpeedTier.MAX), IMBlocks.MAX_ORE_WASHING_PLANT.get()).build(null));
+
+  public static final RegistryObject<TileEntityType<PrecisionEngravingMachineTileEntity>> LV_PRECISION_ENGRAVING_MACHINE = TILES.register("lv_precision_engraving_machine", () -> TileEntityType.Builder.create(() -> new PrecisionEngravingMachineTileEntity(SpeedTier.LV), IMBlocks.LV_PRECISION_ENGRAVING_MACHINE.get()).build(null));
+  public static final RegistryObject<TileEntityType<PrecisionEngravingMachineTileEntity>> MV_PRECISION_ENGRAVING_MACHINE = TILES.register("mv_precision_engraving_machine", () -> TileEntityType.Builder.create(() -> new PrecisionEngravingMachineTileEntity(SpeedTier.MV), IMBlocks.MV_PRECISION_ENGRAVING_MACHINE.get()).build(null));
+  public static final RegistryObject<TileEntityType<PrecisionEngravingMachineTileEntity>> HV_PRECISION_ENGRAVING_MACHINE = TILES.register("hv_precision_engraving_machine", () -> TileEntityType.Builder.create(() -> new PrecisionEngravingMachineTileEntity(SpeedTier.HV), IMBlocks.HV_PRECISION_ENGRAVING_MACHINE.get()).build(null));
+  public static final RegistryObject<TileEntityType<PrecisionEngravingMachineTileEntity>> EV_PRECISION_ENGRAVING_MACHINE = TILES.register("ev_precision_engraving_machine", () -> TileEntityType.Builder.create(() -> new PrecisionEngravingMachineTileEntity(SpeedTier.EV), IMBlocks.EV_PRECISION_ENGRAVING_MACHINE.get()).build(null));
+  public static final RegistryObject<TileEntityType<PrecisionEngravingMachineTileEntity>> IV_PRECISION_ENGRAVING_MACHINE = TILES.register("iv_precision_engraving_machine", () -> TileEntityType.Builder.create(() -> new PrecisionEngravingMachineTileEntity(SpeedTier.IV), IMBlocks.IV_PRECISION_ENGRAVING_MACHINE.get()).build(null));
+  public static final RegistryObject<TileEntityType<PrecisionEngravingMachineTileEntity>> LUV_PRECISION_ENGRAVING_MACHINE = TILES.register("luv_precision_engraving_machine", () -> TileEntityType.Builder.create(() -> new PrecisionEngravingMachineTileEntity(SpeedTier.LUV), IMBlocks.LUV_PRECISION_ENGRAVING_MACHINE.get()).build(null));
+  public static final RegistryObject<TileEntityType<PrecisionEngravingMachineTileEntity>> ZPM_PRECISION_ENGRAVING_MACHINE = TILES.register("zpm_precision_engraving_machine", () -> TileEntityType.Builder.create(() -> new PrecisionEngravingMachineTileEntity(SpeedTier.ZPM), IMBlocks.ZPM_PRECISION_ENGRAVING_MACHINE.get()).build(null));
+  public static final RegistryObject<TileEntityType<PrecisionEngravingMachineTileEntity>> UV_PRECISION_ENGRAVING_MACHINE = TILES.register("uv_precision_engraving_machine", () -> TileEntityType.Builder.create(() -> new PrecisionEngravingMachineTileEntity(SpeedTier.UV), IMBlocks.UV_PRECISION_ENGRAVING_MACHINE.get()).build(null));
+  public static final RegistryObject<TileEntityType<PrecisionEngravingMachineTileEntity>> MAX_PRECISION_ENGRAVING_MACHINE = TILES.register("max_precision_engraving_machine", () -> TileEntityType.Builder.create(() -> new PrecisionEngravingMachineTileEntity(SpeedTier.MAX), IMBlocks.MAX_PRECISION_ENGRAVING_MACHINE.get()).build(null));
 
 
   public static final RegistryObject<TileEntityType<InfiniteWaterSourceTileEntity>> INFINITE_WATER_SOURCE = TILES.register("infinite_water_source", () -> Builder.create(InfiniteWaterSourceTileEntity::new, IMBlocks.INFINITE_WATER_SOURCE.get()).build(null));

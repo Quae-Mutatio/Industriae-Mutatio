@@ -9,10 +9,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 
-public class AlloySmelterTileEntity extends IMTieredProcessingMachineTileEntity implements ITickableTileEntity {
+public class AlloySmelterTileEntity extends IMTieredProcessingMachineTileEntity {
 
   public AlloySmelterTileEntity(SpeedTier speedTier) {
-    super(TileEntityTypeResolver.resolveAlloySmelter(speedTier), speedTier);
+    super(TileEntityTypeResolver.resolveAlloySmelter(speedTier), speedTier, IMRecipeTypes.ALLOY_FURNACE);
   }
 
   @Override
@@ -35,20 +35,4 @@ public class AlloySmelterTileEntity extends IMTieredProcessingMachineTileEntity 
     return 0;
   }
 
-  private void processInput() {
-    List<ItemStack> results = this.calculateOutput(IMRecipeTypes.ALLOY_FURNACE);
-    if (results == null) {
-      return;
-    }
-    consumeEnergy();
-    if (hasFinishedProcess()) {
-      this.setResultStack(results.get(0), 0, 2);
-    }
-  }
-
-
-  @Override
-  public void tick() {
-    processInput();
-  }
 }
