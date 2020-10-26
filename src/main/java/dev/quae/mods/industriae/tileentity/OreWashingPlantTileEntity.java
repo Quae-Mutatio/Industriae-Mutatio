@@ -6,11 +6,11 @@ import java.util.List;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.ITickableTileEntity;
 
-public class PackagerTileEntity extends IMTieredProcessingMachineTileEntity implements ITickableTileEntity {
+public class OreWashingPlantTileEntity extends IMTieredProcessingMachineTileEntity implements ITickableTileEntity {
 
 
-  public PackagerTileEntity(SpeedTier speedTier) {
-    super(TileEntityTypeResolver.resolvePackager(speedTier), speedTier);
+  public OreWashingPlantTileEntity(SpeedTier speedTier) {
+    super(TileEntityTypeResolver.resolveOreWasher(speedTier), speedTier);
   }
 
   @Override
@@ -20,27 +20,29 @@ public class PackagerTileEntity extends IMTieredProcessingMachineTileEntity impl
 
   @Override
   protected int getOutputStartIndex() {
-    return 3;
+    return 1;
   }
 
   @Override
   protected int getFluidInventorySize() {
-    return 0;
+    return 1;
   }
 
   @Override
   protected int getFluidOutputStartIndex() {
-    return 0;
+    return 1;
   }
 
   private void processInput() {
-    List<ItemStack> results = this.calculateOutput(IMRecipeTypes.PACKAGER);
+    List<ItemStack> results = this.calculateOutput(IMRecipeTypes.ORE_WASHING_PLANT);
     if (results == null) {
       return;
     }
     consumeEnergy();
     if (hasFinishedProcess()) {
-        this.setResultStack(results.get(0), 0, 3);
+      for (int i = 0; i < results.size(); i++) {
+        this.setResultStack(results.get(i), 0, i + this.getOutputStartIndex());
+      }
     }
   }
 

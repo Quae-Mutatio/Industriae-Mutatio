@@ -3,13 +3,16 @@ package dev.quae.mods.industriae.setup;
 import dev.quae.mods.industriae.IndustriaeMutatio;
 import dev.quae.mods.industriae.tileentity.AlloySmelterTileEntity;
 import dev.quae.mods.industriae.tileentity.ForgeHammerTileEntity;
+import dev.quae.mods.industriae.tileentity.InfiniteWaterSourceTileEntity;
 import dev.quae.mods.industriae.tileentity.MaceratorTileEntity;
+import dev.quae.mods.industriae.tileentity.OreWashingPlantTileEntity;
 import dev.quae.mods.industriae.tileentity.PackagerTileEntity;
 import dev.quae.mods.industriae.tileentity.SpeedTier;
 import dev.quae.mods.industriae.tileentity.ThermalCentrifugeTileEntity;
 import dev.quae.mods.industriae.tileentity.UnPackagerTileEntity;
 import dev.quae.mods.industriae.tileentity.WireMillTileEntity;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.tileentity.TileEntityType.Builder;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -88,5 +91,20 @@ public class IMTiles {
   public static final RegistryObject<TileEntityType<ThermalCentrifugeTileEntity>> ZPM_THERMAL_CENTRIFUGE = TILES.register("zpm_thermal_centrifuge", () -> TileEntityType.Builder.create(() -> new ThermalCentrifugeTileEntity(SpeedTier.ZPM), IMBlocks.ZPM_THERMAL_CENTRIFUGE.get()).build(null));
   public static final RegistryObject<TileEntityType<ThermalCentrifugeTileEntity>> UV_THERMAL_CENTRIFUGE = TILES.register("uv_thermal_centrifuge", () -> TileEntityType.Builder.create(() -> new ThermalCentrifugeTileEntity(SpeedTier.UV), IMBlocks.UV_THERMAL_CENTRIFUGE.get()).build(null));
   public static final RegistryObject<TileEntityType<ThermalCentrifugeTileEntity>> MAX_THERMAL_CENTRIFUGE = TILES.register("max_thermal_centrifuge", () -> TileEntityType.Builder.create(() -> new ThermalCentrifugeTileEntity(SpeedTier.MAX), IMBlocks.MAX_THERMAL_CENTRIFUGE.get()).build(null));
+
+  public static final RegistryObject<TileEntityType<OreWashingPlantTileEntity>> LV_ORE_WASHING_PLANT = TILES.register("lv_ore_washing_plant", () -> TileEntityType.Builder.create(() -> new OreWashingPlantTileEntity(SpeedTier.LV), IMBlocks.LV_ORE_WASHING_PLANT.get()).build(null));
+  public static final RegistryObject<TileEntityType<OreWashingPlantTileEntity>> MV_ORE_WASHING_PLANT = TILES.register("mv_ore_washing_plant", () -> TileEntityType.Builder.create(() -> new OreWashingPlantTileEntity(SpeedTier.MV), IMBlocks.MV_ORE_WASHING_PLANT.get()).build(null));
+  public static final RegistryObject<TileEntityType<OreWashingPlantTileEntity>> HV_ORE_WASHING_PLANT = TILES.register("hv_ore_washing_plant", () -> TileEntityType.Builder.create(() -> new OreWashingPlantTileEntity(SpeedTier.HV), IMBlocks.HV_ORE_WASHING_PLANT.get()).build(null));
+  public static final RegistryObject<TileEntityType<OreWashingPlantTileEntity>> EV_ORE_WASHING_PLANT = TILES.register("ev_ore_washing_plant", () -> TileEntityType.Builder.create(() -> new OreWashingPlantTileEntity(SpeedTier.EV), IMBlocks.EV_ORE_WASHING_PLANT.get()).build(null));
+  public static final RegistryObject<TileEntityType<OreWashingPlantTileEntity>> IV_ORE_WASHING_PLANT = TILES.register("iv_ore_washing_plant", () -> TileEntityType.Builder.create(() -> new OreWashingPlantTileEntity(SpeedTier.IV), IMBlocks.IV_ORE_WASHING_PLANT.get()).build(null));
+  public static final RegistryObject<TileEntityType<OreWashingPlantTileEntity>> LUV_ORE_WASHING_PLANT = TILES.register("luv_ore_washing_plant", () -> TileEntityType.Builder.create(() -> new OreWashingPlantTileEntity(SpeedTier.LUV), IMBlocks.LUV_ORE_WASHING_PLANT.get()).build(null));
+  public static final RegistryObject<TileEntityType<OreWashingPlantTileEntity>> ZPM_ORE_WASHING_PLANT = TILES.register("zpm_ore_washing_plant", () -> TileEntityType.Builder.create(() -> new OreWashingPlantTileEntity(SpeedTier.ZPM), IMBlocks.ZPM_ORE_WASHING_PLANT.get()).build(null));
+  public static final RegistryObject<TileEntityType<OreWashingPlantTileEntity>> UV_ORE_WASHING_PLANT = TILES.register("uv_ore_washing_plant", () -> TileEntityType.Builder.create(() -> new OreWashingPlantTileEntity(SpeedTier.UV), IMBlocks.UV_ORE_WASHING_PLANT.get()).build(null));
+  public static final RegistryObject<TileEntityType<OreWashingPlantTileEntity>> MAX_ORE_WASHING_PLANT = TILES.register("max_ore_washing_plant", () -> TileEntityType.Builder.create(() -> new OreWashingPlantTileEntity(SpeedTier.MAX), IMBlocks.MAX_ORE_WASHING_PLANT.get()).build(null));
+
+
+  public static final RegistryObject<TileEntityType<InfiniteWaterSourceTileEntity>> INFINITE_WATER_SOURCE = TILES.register("infinite_water_source", () -> Builder.create(InfiniteWaterSourceTileEntity::new, IMBlocks.INFINITE_WATER_SOURCE.get()).build(null));
+
+
 
 }

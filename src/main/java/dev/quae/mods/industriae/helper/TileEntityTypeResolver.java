@@ -169,4 +169,27 @@ public class TileEntityTypeResolver {
     }
 
   }
+
+  public static TileEntityType<?> resolveOreWasher(SpeedTier tier) {
+    switch (tier) {
+      case MV:
+        return IMTiles.MV_ORE_WASHING_PLANT.get();
+      case HV:
+        return IMTiles.HV_ORE_WASHING_PLANT.get();
+      case EV:
+        return IMTiles.EV_ORE_WASHING_PLANT.get();
+      case IV:
+        return IMTiles.IV_ORE_WASHING_PLANT.get();
+      case LUV:
+        return IMTiles.LUV_ORE_WASHING_PLANT.get();
+      case ZPM:
+        return IMTiles.ZPM_ORE_WASHING_PLANT.get();
+      case UV:
+        return IMTiles.UV_ORE_WASHING_PLANT.get();
+      case MAX:
+        return IMTiles.MAX_ORE_WASHING_PLANT.get();
+      default:
+        return IMTiles.LV_ORE_WASHING_PLANT.get();
+    }
+  }
 }

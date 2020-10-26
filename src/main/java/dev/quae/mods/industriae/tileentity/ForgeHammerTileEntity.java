@@ -35,6 +35,16 @@ public class ForgeHammerTileEntity extends IMTieredProcessingMachineTileEntity i
   }
 
   @Override
+  protected int getFluidInventorySize() {
+    return 0;
+  }
+
+  @Override
+  protected int getFluidOutputStartIndex() {
+    return 0;
+  }
+
+  @Override
   public void tick() {
     processInput();
   }

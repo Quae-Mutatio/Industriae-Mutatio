@@ -8,7 +8,9 @@ import java.util.function.Consumer;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.RecipeProvider;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Items;
+import net.minecraftforge.fluids.FluidStack;
 
 public class IMRecipeProvider extends RecipeProvider {
 
@@ -68,6 +70,15 @@ public class IMRecipeProvider extends RecipeProvider {
     IMCustomMachineRecipeBuilder.create(IMRecipeSerializers.THERMAL_CENTRIFUGE.get(), IMRecipeTypes.THERMAL_CENTRIFUGE)
         .addIngredient(Items.WHITE_WOOL, 1)
         .addPrimaryResult(Items.STRING, 4)
+        .addTickLength(100)
+        .build(consumer);
+
+    // Thermal Centrifuge Recipes
+    IMCustomMachineRecipeBuilder.create(IMRecipeSerializers.ORE_WASHING_PLANT.get(), IMRecipeTypes.ORE_WASHING_PLANT)
+        .addIngredient(Items.WHITE_WOOL, 1)
+        .addIngredient(new FluidStack(Fluids.WATER, 100))
+        .addPrimaryResult(Items.STRING, 4)
+        .addSecondaryResult(Items.COAL, 1, 1)
         .addTickLength(100)
         .build(consumer);
   }

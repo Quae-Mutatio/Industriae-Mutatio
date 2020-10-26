@@ -25,6 +25,16 @@ public class AlloySmelterTileEntity extends IMTieredProcessingMachineTileEntity 
     return 2;
   }
 
+  @Override
+  protected int getFluidInventorySize() {
+    return 0;
+  }
+
+  @Override
+  protected int getFluidOutputStartIndex() {
+    return 0;
+  }
+
   private void processInput() {
     List<ItemStack> results = this.calculateOutput(IMRecipeTypes.ALLOY_FURNACE);
     if (results == null) {
