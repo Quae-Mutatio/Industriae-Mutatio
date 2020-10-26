@@ -8,6 +8,7 @@ import dev.quae.mods.industriae.block.MaceratorBlock;
 import dev.quae.mods.industriae.block.OreWashingPlantBlock;
 import dev.quae.mods.industriae.block.PackagerBlock;
 import dev.quae.mods.industriae.block.PrecisionEngraverMachineBlock;
+import dev.quae.mods.industriae.block.SifterBlock;
 import dev.quae.mods.industriae.block.ThermalCentrifugeBlock;
 import dev.quae.mods.industriae.block.UnPackagerBlock;
 import dev.quae.mods.industriae.block.WireMillBlock;
@@ -45,6 +46,8 @@ public class IMBlocks {
   public static final Map<String, RegistryObject<Block>> ORE_WASHING_PLANT = registerTiers("ore_washing_plant", (tier) -> () -> new OreWashingPlantBlock(tier));
 
   public static final Map<String, RegistryObject<Block>> PRECISION_ENGRAVING_MACHINE = registerTiers("precision_engraving_machine", (tier) -> () -> new PrecisionEngraverMachineBlock(tier));
+
+  public static final Map<String, RegistryObject<Block>> SIFTER = registerTiers("sifter", (tier) -> () -> new SifterBlock(tier));
 
   private static Map<String, RegistryObject<Block>> registerTiers(String registrySuffix, Function<SpeedTier, Supplier<Block>> tileEntityTypeFunction) {
     LinkedHashMap<String, RegistryObject<Block>> map = new LinkedHashMap<>();

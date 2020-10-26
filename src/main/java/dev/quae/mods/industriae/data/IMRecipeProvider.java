@@ -89,5 +89,15 @@ public class IMRecipeProvider extends RecipeProvider {
         .addPrimaryResult(Items.COAL, 1, 1)
         .addTickLength(100)
         .build(consumer);
+
+    // Sifter Recipes
+    IMCustomMachineRecipeBuilder.create(IMRecipeSerializers.SIFTER.get(), IMRecipeTypes.SIFTER)
+        .addIngredient(Items.WHITE_WOOL, 1)
+        .addPrimaryResult(Items.COAL, 1, 0.2)
+        .addSecondaryResult(Items.CHARCOAL, 1, 0.4)
+        .addSecondaryResult(Items.STRING, 1, 0.6)
+        .addSecondaryResult(Items.BLACK_WOOL, 1, 0.1)
+        .addTickLength(100)
+        .build(consumer);
   }
 }

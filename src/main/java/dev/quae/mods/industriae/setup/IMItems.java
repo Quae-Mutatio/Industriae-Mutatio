@@ -39,6 +39,8 @@ public class IMItems {
 
   public static final Map<String, RegistryObject<Item>> PRECISION_ENGRAVING_MACHINE = registerTiers("precision_engraving_machine", tier -> () -> new BlockItem(IMTieredRegistryResolver.resolveBlock(tier, IMBlocks.PRECISION_ENGRAVING_MACHINE), new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
 
+  public static final Map<String, RegistryObject<Item>> SIFTER = registerTiers("sifter", tier -> () -> new BlockItem(IMTieredRegistryResolver.resolveBlock(tier, IMBlocks.SIFTER), new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB)));
+
   private static Map<String, RegistryObject<Item>> registerTiers(String registrySuffix, Function<SpeedTier, Supplier<Item>> itemFunction) {
     LinkedHashMap<String, RegistryObject<Item>> map = new LinkedHashMap<>();
     for (SpeedTier speedTier : SpeedTier.getAll()) {

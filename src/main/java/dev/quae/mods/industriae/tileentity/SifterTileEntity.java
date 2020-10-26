@@ -7,13 +7,13 @@ import dev.quae.mods.industriae.setup.IMTiles;
 public class SifterTileEntity extends IMTieredProcessingMachineTileEntity {
 
   public SifterTileEntity(SpeedTier speedTier) {
-    super(IMTieredRegistryResolver.resolveTile(speedTier, IMTiles.PRECISION_ENGRAVING_MACHINE), speedTier, IMRecipeTypes.FORGE_HAMMER);
+    super(IMTieredRegistryResolver.resolveTile(speedTier, IMTiles.SIFTER), speedTier, IMRecipeTypes.SIFTER);
   }
 
 
   @Override
   protected int getInventorySize() {
-    return 2;
+    return 7;
   }
 
   @Override

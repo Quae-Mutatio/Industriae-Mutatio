@@ -12,6 +12,7 @@ import dev.quae.mods.industriae.tileentity.MaceratorTileEntity;
 import dev.quae.mods.industriae.tileentity.OreWashingPlantTileEntity;
 import dev.quae.mods.industriae.tileentity.PackagerTileEntity;
 import dev.quae.mods.industriae.tileentity.PrecisionEngravingMachineTileEntity;
+import dev.quae.mods.industriae.tileentity.SifterTileEntity;
 import dev.quae.mods.industriae.tileentity.SpeedTier;
 import dev.quae.mods.industriae.tileentity.ThermalCentrifugeTileEntity;
 import dev.quae.mods.industriae.tileentity.UnPackagerTileEntity;
@@ -51,6 +52,8 @@ public class IMTiles {
   public static final Map<String, RegistryObject<TileEntityType<? extends IMTieredProcessingMachineTileEntity>>> ORE_WASHING_PLANT = registerTiers("ore_washing_plant", (tier) -> () -> TileEntityType.Builder.create(() -> new OreWashingPlantTileEntity(tier), IMTieredRegistryResolver.resolveBlock(tier, IMBlocks.ORE_WASHING_PLANT)).build(null));
 
   public static final Map<String, RegistryObject<TileEntityType<? extends IMTieredProcessingMachineTileEntity>>> PRECISION_ENGRAVING_MACHINE = registerTiers("precision_engraving_machine", (tier) -> () -> TileEntityType.Builder.create(() -> new PrecisionEngravingMachineTileEntity(tier), IMTieredRegistryResolver.resolveBlock(tier, IMBlocks.PRECISION_ENGRAVING_MACHINE)).build(null));
+
+  public static final Map<String, RegistryObject<TileEntityType<? extends IMTieredProcessingMachineTileEntity>>> SIFTER = registerTiers("sifter", tier -> () -> TileEntityType.Builder.create(() -> new SifterTileEntity(tier), IMTieredRegistryResolver.resolveBlock(tier, IMBlocks.SIFTER)).build(null));
 
   private static Map<String, RegistryObject<TileEntityType<? extends IMTieredProcessingMachineTileEntity>>> registerTiers(String registrySuffix, Function<SpeedTier, Supplier<TileEntityType<? extends IMTieredProcessingMachineTileEntity>>> tileEntityTypeFunction) {
     LinkedHashMap<String, RegistryObject<TileEntityType<? extends IMTieredProcessingMachineTileEntity>>> map = new LinkedHashMap<>();
