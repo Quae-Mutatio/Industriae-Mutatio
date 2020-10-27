@@ -2,13 +2,11 @@ package dev.quae.mods.industriae.material;
 
 public interface IMaterialType {
 
-  String getName();
-
-  default String getOreName() {
-    return getName() + "_ore";
+  default String getName() {
+    return getMaterialName() + "_" + getTypeName();
   }
 
-  default boolean hasOre() {
-    return true;
-  }
+  String getMaterialName();
+
+  String getTypeName();
 }

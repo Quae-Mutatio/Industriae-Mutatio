@@ -2,7 +2,7 @@ package dev.quae.mods.industriae.worldgen.feature.config;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import dev.quae.mods.industriae.material.Material;
+import dev.quae.mods.industriae.material.Ore;
 import dev.quae.mods.industriae.worldgen.feature.OreGenerationManager;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMap.Entry;
@@ -69,7 +69,7 @@ public class MultiChunkOreFeatureConfig implements IFeatureConfig {
       this.totalWeight = IntStream.of(weights.values().toIntArray()).sum();
     }
 
-    public OreDefinition(Object2IntMap<Material> weights) {
+    public OreDefinition(Object2IntMap<Ore> weights) {
       this(new Object2IntOpenHashMap<>(weights.keySet().stream().map(mat -> mat.getOreBlock().get().getDefaultState()).toArray(BlockState[]::new), weights.values().toIntArray()));
     }
   }

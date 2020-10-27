@@ -4,9 +4,6 @@ import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.DynamicOps;
-import dev.quae.mods.industriae.block.OreBlock;
-import net.minecraft.item.BlockItem;
-import net.minecraftforge.fml.RegistryObject;
 
 public enum Material implements IMaterialType {
   ALMANDINE("almandine"),
@@ -96,8 +93,6 @@ public enum Material implements IMaterialType {
   ;
 
   private final String name;
-  private RegistryObject<OreBlock> oreBlock;
-  private RegistryObject<BlockItem> oreItem;
 
   Material(String name) {
     this.name = name;
@@ -108,20 +103,14 @@ public enum Material implements IMaterialType {
     return name;
   }
 
-  public void setOreBlock(RegistryObject<OreBlock> oreBlock) {
-    this.oreBlock = oreBlock;
+  @Override
+  public String getMaterialName() {
+    return name;
   }
 
-  public RegistryObject<OreBlock> getOreBlock() {
-    return oreBlock;
-  }
-
-  public void setOreItem(RegistryObject<BlockItem> oreItem) {
-    this.oreItem = oreItem;
-  }
-
-  public RegistryObject<BlockItem> getOreItem() {
-    return oreItem;
+  @Override
+  public String getTypeName() {
+    return "";
   }
 
   public static Codec<Material> CODEC = new Codec<Material>() {
