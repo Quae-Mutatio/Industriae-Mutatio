@@ -4,16 +4,11 @@ import com.google.common.collect.Lists;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import dev.quae.mods.industriae.IndustriaeMutatio;
-import dev.quae.mods.industriae.helper.IMFluidStackHelper;
-import dev.quae.mods.industriae.helper.IMItemStackHelper;
-import dev.quae.mods.industriae.helper.RecipeTypeHelper;
 import dev.quae.mods.industriae.recipe.IMCustomMachineRecipe;
-import dev.quae.mods.industriae.setup.IMRecipeSerializers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
-import javax.annotation.Resource;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
@@ -22,7 +17,6 @@ import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.IFluidTank;
 import org.jetbrains.annotations.Nullable;
 
 public class IMCustomMachineRecipeBuilder {
@@ -139,7 +133,6 @@ public class IMCustomMachineRecipeBuilder {
         inputs.add(ingredient.serialize());
       }
       json.addProperty("ticks", ticks);
-      json.addProperty("machine", RecipeTypeHelper.getRl(type).toString());
       json.add("results", results);
       json.add("inputs", inputs);
     }

@@ -1,7 +1,6 @@
 {
   "type": "industriaemutatio:unpackager",
   "ticks": 100,
-  "machine": "industriaemutatio:unpackager",
   "results": [
     {
       "item": "minecraft:gold_ingot",

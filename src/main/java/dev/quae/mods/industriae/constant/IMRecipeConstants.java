@@ -16,4 +16,5 @@ public class IMRecipeConstants {
   public static final String AUTOCLAVE_RL = IndustriaeMutatio.ID + ":autoclave";
   public static final String ITEM_STACK_FLUID_KEY = "Fluid";
   public static final String MIXER_RL = IndustriaeMutatio.ID + ":mixer";
+  public static final String POLARIZER_ID = IndustriaeMutatio.ID + ":polarizer";
 }

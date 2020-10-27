@@ -1,7 +1,6 @@
-package dev.quae.mods.industriae.tileentity;
+package dev.quae.mods.industriae.machine;
 
 import com.google.common.collect.ImmutableList;
-import java.util.ArrayList;
 
 public enum SpeedTier implements IMSpeedTier {
   ULV(0.5, "ulv"),
@@ -35,7 +34,4 @@ public enum SpeedTier implements IMSpeedTier {
     return name;
   }
 
-  public static ImmutableList<SpeedTier> getAll() {
-    return ImmutableList.of(ULV, LV, MV, HV, EV, IV, LUV, ZPM, UV, MAX);
-  }
 }

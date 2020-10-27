@@ -1,7 +1,6 @@
 {
   "type": "industriaemutatio:alloy_furnace",
   "ticks": 100,
-  "machine": "industriaemutatio:alloy_furnace",
   "results": [
     {
       "item": "minecraft:gold_ingot",

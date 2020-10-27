@@ -5,14 +5,10 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import dev.quae.mods.industriae.data.recipe.IMMachineInput;
 import dev.quae.mods.industriae.data.recipe.IMMachineOutput;
-import dev.quae.mods.industriae.data.recipe.IMStackType;
 import dev.quae.mods.industriae.helper.IMFluidStackHelper;
-import dev.quae.mods.industriae.helper.RecipeTypeHelper;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
-import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -21,6 +17,7 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -199,8 +196,8 @@ public class IMCustomMachineRecipe implements IMMachineRecipe {
         }
       }
       int ticks = json.get("ticks").getAsInt();
-      String typeRl = json.get("machine").getAsString();
-      return new IMCustomMachineRecipe(results, recipeId, inputs, fluids, ticks, this, RecipeTypeHelper.getType(typeRl));
+      String typeRl = json.get("type").getAsString();
+      return new IMCustomMachineRecipe(results, recipeId, inputs, fluids, ticks, this, (IRecipeType<IMCustomMachineRecipe>) Registry.RECIPE_TYPE.getOrDefault(new ResourceLocation(typeRl)));
     }
 
     @Override
@@ -223,7 +220,7 @@ public class IMCustomMachineRecipe implements IMMachineRecipe {
         outputs.add(IMMachineOutput.read(buffer));
       }
 
-      return new IMCustomMachineRecipe(outputs, recipeId, inputs, fluids, ticks, this, RecipeTypeHelper.getType(typeRl));
+      return new IMCustomMachineRecipe(outputs, recipeId, inputs, fluids, ticks, this, (IRecipeType<IMCustomMachineRecipe>) Registry.RECIPE_TYPE.getOrDefault(new ResourceLocation(typeRl)));
     }
 
     @Override
@@ -231,7 +228,7 @@ public class IMCustomMachineRecipe implements IMMachineRecipe {
       buffer.writeInt(recipe.ingredients.size());
       buffer.writeInt(recipe.fluidIngredients.size());
       buffer.writeInt(recipe.result.size());
-      buffer.writeString(RecipeTypeHelper.getRl(recipe.getType()).toString());
+      buffer.writeString(Registry.RECIPE_TYPE.getKey(recipe.recipeType).toString());
       for (IMMachineInput ingredient : recipe.ingredients) {
         ingredient.write(buffer);
       }

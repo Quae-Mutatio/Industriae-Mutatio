@@ -6,6 +6,8 @@ import dev.quae.mods.industriae.data.recipe.IMMachineInput;
 import dev.quae.mods.industriae.data.recipe.IMMachineOutput;
 import dev.quae.mods.industriae.helper.IMFluidStackHelper;
 import dev.quae.mods.industriae.helper.IMItemStackHelper;
+import dev.quae.mods.industriae.machine.MachineType;
+import dev.quae.mods.industriae.machine.SpeedTier;
 import dev.quae.mods.industriae.recipe.IMCustomMachineRecipe;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,37 +33,37 @@ import net.minecraftforge.items.IItemHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class IMTieredProcessingMachineTileEntity extends TileEntity implements ITickableTileEntity {
+public class IMTieredProcessingMachineTileEntity extends TileEntity implements ITickableTileEntity {
 
   private static final int MACHINE_FLUID_TANK_CAPACITY = 64000;
 
-  protected final IMMachineItemHandler inventory = new IMMachineItemHandler(getInventorySize(), getOutputStartIndex());
+  protected final IMMachineItemHandler inventory;
   protected final LazyOptional<IItemHandler> inventoryLO = LazyOptional.of(this::getInventory);
-  protected final IMMachineFluidHandler fluidInventory = new IMMachineFluidHandler(getFluidInventorySize(), getFluidOutputStartIndex(), MACHINE_FLUID_TANK_CAPACITY);
-  protected final LazyOptional<IFluidHandler> fluidInventoryLO = LazyOptional.of(() -> fluidInventory);
+  protected final IMMachineFluidHandler fluidInventory;
+  protected final LazyOptional<IFluidHandler> fluidInventoryLO = LazyOptional.of(this::getTank);
+
   protected int processingTime;
   protected int requiredProcessingTime;
   protected SpeedTier speedTier;
+  private MachineType machineType;
   private IRecipeType<IMCustomMachineRecipe> recipeType;
   IMCustomMachineRecipe currentRecipe = null;
 
-  public IMTieredProcessingMachineTileEntity(TileEntityType<?> tileEntityTypeIn, SpeedTier speedTier, IRecipeType<IMCustomMachineRecipe> recipeType) {
+  public IMTieredProcessingMachineTileEntity(TileEntityType<?> tileEntityTypeIn, SpeedTier speedTier, MachineType machineType) {
     super(tileEntityTypeIn);
+    this.inventory  = new IMMachineItemHandler(machineType.getInputInventorySize() + machineType.getOutputInventorySize(), machineType.getInputInventorySize());
+    this.fluidInventory  = new IMMachineFluidHandler(machineType.getInputTankCount() + machineType.getOutputTankCount(), machineType.getInputTankCount(), MACHINE_FLUID_TANK_CAPACITY);
     this.speedTier = speedTier;
-    this.recipeType = recipeType;
+    this.machineType = machineType;
+    this.recipeType = machineType.getRecipeType();
   }
-
-  protected abstract int getInventorySize();
-
-  protected abstract int getOutputStartIndex();
-
-  protected abstract int getFluidInventorySize();
-
-  protected abstract int getFluidOutputStartIndex();
 
   @NotNull
   protected IItemHandler getInventory() {
     return this.inventory;
+  }
+  private IFluidHandler getTank() {
+    return this.fluidInventory;
   }
 
   @NotNull
@@ -82,13 +84,13 @@ public abstract class IMTieredProcessingMachineTileEntity extends TileEntity imp
 
   protected List<ItemStack> calculateOutput() {
     currentRecipe = null;
-    final Inventory craftingInv = new Inventory(getOutputStartIndex() + getFluidOutputStartIndex());
+    final Inventory craftingInv = new Inventory(this.machineType.getInputInventorySize() + this.machineType.getInputTankCount());
     int offset = 0;
-    for (int i = 0; i < this.getOutputStartIndex(); i++) {
+    for (int i = 0; i < this.machineType.getInputInventorySize(); i++) {
       craftingInv.setInventorySlotContents(i, this.inventory.getStackInSlot(i));
       offset++;
     }
-    for (int i = 0; i < this.getFluidOutputStartIndex(); i++) {
+    for (int i = 0; i < this.machineType.getInputTankCount(); i++) {
       craftingInv.setInventorySlotContents(i + offset, IMFluidStackHelper.getAsItemStack(this.fluidInventory.getFluidInTank(i)));
     }
     currentRecipe = this.getWorld().getRecipeManager().getRecipe(recipeType, craftingInv, this.getWorld()).orElse(null);
@@ -126,7 +128,7 @@ public abstract class IMTieredProcessingMachineTileEntity extends TileEntity imp
     this.removeInputs();
     int index = 0;
     for (IMMachineOutput output : this.currentRecipe.getAllOutputs()) {
-      int offsetIndex = index + this.getOutputStartIndex();
+      int offsetIndex = index + this.machineType.getInputInventorySize();
       ItemStack stack = output.resolveItemStack().copy();
       if (stack.isEmpty() && !IMFluidStackHelper.isFluidContainer(stack)) {
         return;
@@ -152,7 +154,7 @@ public abstract class IMTieredProcessingMachineTileEntity extends TileEntity imp
       if (fluidInput.getDontConsume()) {
         continue;
       }
-      for (int i = 0; i < this.getFluidOutputStartIndex(); i++) {
+      for (int i = 0; i < this.machineType.getInputTankCount(); i++) {
         if (!fluidInventory.getFluidInTank(i).isFluidEqual(fluidInput.getFluidStack())) {
           continue;
         }
@@ -166,7 +168,7 @@ public abstract class IMTieredProcessingMachineTileEntity extends TileEntity imp
       if ((itemInput.getDontConsume())) {
         continue;
       }
-      for (int i = 0; i < this.getOutputStartIndex(); i++) {
+      for (int i = 0; i < this.machineType.getInputInventorySize(); i++) {
         if (!inventory.getStackInSlot(i).isItemEqual(itemInput.getItem())) {
           continue;
         }

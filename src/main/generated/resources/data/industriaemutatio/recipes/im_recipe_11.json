@@ -1,7 +1,6 @@
 {
   "type": "industriaemutatio:mixer",
   "ticks": 100,
-  "machine": "industriaemutatio:mixer",
   "results": [
     {
       "item": "minecraft:coal",

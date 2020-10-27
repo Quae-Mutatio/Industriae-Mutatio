@@ -1,9 +1,9 @@
 {
-  "type": "industriaemutatio:forge_hammer",
+  "type": "industriaemutatio:polarizer",
   "ticks": 100,
   "results": [
     {
-      "item": "minecraft:gravel",
+      "item": "minecraft:fire_charge",
       "count": 1,
       "chance": 1.0,
       "primary": true
@@ -11,7 +11,7 @@
   ],
   "inputs": [
     {
-      "item": "minecraft:cobblestone",
+      "item": "minecraft:gunpowder",
       "count": 1
     }
   ]

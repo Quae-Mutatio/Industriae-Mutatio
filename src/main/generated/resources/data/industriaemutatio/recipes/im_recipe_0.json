@@ -1,7 +1,6 @@
 {
   "type": "industriaemutatio:macerator",
   "ticks": 100,
-  "machine": "industriaemutatio:macerator",
   "results": [
     {
       "item": "industriaemutatio:wood_pulp",

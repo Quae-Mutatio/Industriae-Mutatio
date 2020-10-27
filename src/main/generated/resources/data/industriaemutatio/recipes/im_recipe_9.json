@@ -1,7 +1,6 @@
 {
   "type": "industriaemutatio:sifter",
   "ticks": 100,
-  "machine": "industriaemutatio:sifter",
   "results": [
     {
       "item": "minecraft:coal",

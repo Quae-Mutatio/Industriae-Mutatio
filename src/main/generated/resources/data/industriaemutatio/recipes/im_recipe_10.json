@@ -1,7 +1,6 @@
 {
   "type": "industriaemutatio:autoclave",
   "ticks": 100,
-  "machine": "industriaemutatio:autoclave",
   "results": [
     {
       "item": "minecraft:coal",

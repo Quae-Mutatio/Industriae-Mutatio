@@ -1,7 +1,6 @@
 {
   "type": "industriaemutatio:precision_engraving",
   "ticks": 100,
-  "machine": "industriaemutatio:precision_engraving",
   "results": [
     {
       "item": "minecraft:coal",

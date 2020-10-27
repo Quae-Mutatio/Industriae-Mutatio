@@ -22,5 +22,7 @@ public class IMRecipeSerializers {
   public static final RegistryObject<IMCustomMachineRecipe.Serializer> SIFTER = RECIPE_SERIALIZERS.register("sifter", IMCustomMachineRecipe.Serializer::new);
   public static final RegistryObject<IMCustomMachineRecipe.Serializer> AUTOCLAVE = RECIPE_SERIALIZERS.register("autoclave", IMCustomMachineRecipe.Serializer::new);
   public static final RegistryObject<IMCustomMachineRecipe.Serializer> MIXER = RECIPE_SERIALIZERS.register("mixer", IMCustomMachineRecipe.Serializer::new);
+  public static final RegistryObject<IMCustomMachineRecipe.Serializer> POLARIZER = RECIPE_SERIALIZERS.register("polarizer", IMCustomMachineRecipe.Serializer::new);
+  public static final RegistryObject<IMCustomMachineRecipe.Serializer> LATHE = RECIPE_SERIALIZERS.register("lathe", IMCustomMachineRecipe.Serializer::new);
 
 }

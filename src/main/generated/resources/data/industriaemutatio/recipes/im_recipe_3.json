@@ -1,7 +1,6 @@
 {
   "type": "industriaemutatio:wiremill",
   "ticks": 100,
-  "machine": "industriaemutatio:wiremill",
   "results": [
     {
       "item": "minecraft:gold_ingot",

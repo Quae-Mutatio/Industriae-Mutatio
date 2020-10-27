@@ -1,7 +1,6 @@
 {
   "type": "industriaemutatio:ore_washing_plant",
   "ticks": 100,
-  "machine": "industriaemutatio:ore_washing",
   "results": [
     {
       "item": "minecraft:string",

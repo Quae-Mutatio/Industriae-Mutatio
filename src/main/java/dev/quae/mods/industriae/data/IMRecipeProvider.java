@@ -36,7 +36,7 @@ public class IMRecipeProvider extends RecipeProvider {
         .build(consumer);
 
     // Alloy Furnace Recipes
-    IMCustomMachineRecipeBuilder.create(IMRecipeSerializers.ALLOY_FURNACE.get(), IMRecipeTypes.ALLOY_FURNACE)
+    IMCustomMachineRecipeBuilder.create(IMRecipeSerializers.ALLOY_FURNACE.get(), IMRecipeTypes.ALLOY_SMELTER)
         .addIngredient(Items.COAL, 2)
         .addIngredient(Items.IRON_INGOT, 1)
         .addPrimaryResult(Items.GOLD_INGOT, 1)
@@ -115,6 +115,20 @@ public class IMRecipeProvider extends RecipeProvider {
         .addIngredient(new FluidStack(Fluids.WATER, 100))
         .addPrimaryResult(Items.COAL, 1, 1)
         .addSecondaryResult(Items.BLACK_WOOL, 1, 1.0)
+        .addTickLength(100)
+        .build(consumer);
+
+    // Polarizer Recipes
+    IMCustomMachineRecipeBuilder.create(IMRecipeSerializers.POLARIZER.get(), IMRecipeTypes.POLARIZER)
+        .addIngredient(Items.GUNPOWDER, 1)
+        .addPrimaryResult(Items.FIRE_CHARGE, 1, 1)
+        .addTickLength(100)
+        .build(consumer);
+
+    // Lathe Recipes
+    IMCustomMachineRecipeBuilder.create(IMRecipeSerializers.LATHE.get(), IMRecipeTypes.LATHE)
+        .addIngredient(Items.IRON_BLOCK, 1)
+        .addPrimaryResult(Items.IRON_INGOT, 9, 1)
         .addTickLength(100)
         .build(consumer);
   }
