@@ -1,9 +1,8 @@
 package dev.quae.mods.industriae.data;
 
 import dev.quae.mods.industriae.data.recipe.IMCustomMachineRecipeBuilder;
+import dev.quae.mods.industriae.machine.MachineType;
 import dev.quae.mods.industriae.setup.IMItems;
-import dev.quae.mods.industriae.setup.IMRecipeSerializers;
-import dev.quae.mods.industriae.setup.IMRecipeTypes;
 import java.util.function.Consumer;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
@@ -21,7 +20,7 @@ public class IMRecipeProvider extends RecipeProvider {
   @Override
   protected void registerRecipes(Consumer<IFinishedRecipe> consumer) {
     // Macerator Recipes
-    IMCustomMachineRecipeBuilder.create(IMRecipeSerializers.MACERATOR.get(), IMRecipeTypes.MACERATOR)
+    IMCustomMachineRecipeBuilder.create(MachineType.MACERATOR.getSerializer(), MachineType.MACERATOR.getRecipeType())
         .addIngredient(Items.OAK_LOG, 1)
         .addPrimaryResult(IMItems.WOOD_PULP.get(), 4)
         .addSecondaryResult(IMItems.WOOD_PULP.get(), 0.15)
@@ -29,14 +28,14 @@ public class IMRecipeProvider extends RecipeProvider {
         .build(consumer);
 
     // Forge Hammer Recipes
-    IMCustomMachineRecipeBuilder.create(IMRecipeSerializers.FORGE_HAMMER.get(), IMRecipeTypes.FORGE_HAMMER)
+    IMCustomMachineRecipeBuilder.create(MachineType.FORGE_HAMMER.getSerializer(), MachineType.FORGE_HAMMER.getRecipeType())
         .addIngredient(Items.COBBLESTONE, 1)
         .addPrimaryResult(Items.GRAVEL, 1)
         .addTickLength(100)
         .build(consumer);
 
     // Alloy Furnace Recipes
-    IMCustomMachineRecipeBuilder.create(IMRecipeSerializers.ALLOY_FURNACE.get(), IMRecipeTypes.ALLOY_SMELTER)
+    IMCustomMachineRecipeBuilder.create(MachineType.ALLOY_SMELTER.getSerializer(), MachineType.ALLOY_SMELTER.getRecipeType())
         .addIngredient(Items.COAL, 2)
         .addIngredient(Items.IRON_INGOT, 1)
         .addPrimaryResult(Items.GOLD_INGOT, 1)
@@ -44,14 +43,14 @@ public class IMRecipeProvider extends RecipeProvider {
         .build(consumer);
 
     // Wire Mill Recipes
-    IMCustomMachineRecipeBuilder.create(IMRecipeSerializers.WIREMILL.get(), IMRecipeTypes.WIREMILL)
+    IMCustomMachineRecipeBuilder.create(MachineType.WIREMILL.getSerializer(), MachineType.WIREMILL.getRecipeType())
         .addIngredient(Items.IRON_INGOT, 1)
         .addPrimaryResult(Items.GOLD_INGOT, 1)
         .addTickLength(100)
         .build(consumer);
 
   // UnPackager Recipes
-    IMCustomMachineRecipeBuilder.create(IMRecipeSerializers.UNPACKAGER.get(), IMRecipeTypes.UNPACKAGER)
+    IMCustomMachineRecipeBuilder.create(MachineType.UNPACKAGER.getSerializer(), MachineType.UNPACKAGER.getRecipeType())
         .addIngredient(Items.GOLD_BLOCK, 1)
         .addPrimaryResult(Items.GOLD_INGOT, 4)
         .addSecondaryResult(Items.GOLD_NUGGET, 1, 1.0)
@@ -59,7 +58,7 @@ public class IMRecipeProvider extends RecipeProvider {
         .build(consumer);
 
     // Packager Recipes
-    IMCustomMachineRecipeBuilder.create(IMRecipeSerializers.PACKAGER.get(), IMRecipeTypes.PACKAGER)
+    IMCustomMachineRecipeBuilder.create(MachineType.PACKAGER.getSerializer(), MachineType.PACKAGER.getRecipeType())
         .addIngredient(Items.GOLD_BLOCK, 1)
         .addIngredient(Items.WHITE_WOOL, 1)
         .addPrimaryResult(Items.GOLD_INGOT, 4)
@@ -67,14 +66,14 @@ public class IMRecipeProvider extends RecipeProvider {
         .build(consumer);
 
     // Thermal Centrifuge Recipes
-    IMCustomMachineRecipeBuilder.create(IMRecipeSerializers.THERMAL_CENTRIFUGE.get(), IMRecipeTypes.THERMAL_CENTRIFUGE)
+    IMCustomMachineRecipeBuilder.create(MachineType.THERMAL_CENTRIFUGE.getSerializer(), MachineType.THERMAL_CENTRIFUGE.getRecipeType())
         .addIngredient(Items.WHITE_WOOL, 1)
         .addPrimaryResult(Items.STRING, 4)
         .addTickLength(100)
         .build(consumer);
 
     // Ore Washing Plant Recipes
-    IMCustomMachineRecipeBuilder.create(IMRecipeSerializers.ORE_WASHING_PLANT.get(), IMRecipeTypes.ORE_WASHING_PLANT)
+    IMCustomMachineRecipeBuilder.create(MachineType.ORE_WASHING_PLANT.getSerializer(), MachineType.ORE_WASHING_PLANT.getRecipeType())
         .addIngredient(Items.WHITE_WOOL, 1)
         .addIngredient(new FluidStack(Fluids.WATER, 100))
         .addPrimaryResult(Items.STRING, 4)
@@ -83,7 +82,7 @@ public class IMRecipeProvider extends RecipeProvider {
         .build(consumer);
 
     // Precision Engraver Recipes
-    IMCustomMachineRecipeBuilder.create(IMRecipeSerializers.PRECISION_ENGRAVING.get(), IMRecipeTypes.PRECISION_ENGRAVING)
+    IMCustomMachineRecipeBuilder.create(MachineType.PRECISION_ENGRAVING_MACHINE.getSerializer(), MachineType.PRECISION_ENGRAVING_MACHINE.getRecipeType())
         .addIngredient(Items.WHITE_WOOL, 1)
         .addReusableIngredient(Items.GLASS, 1)
         .addPrimaryResult(Items.COAL, 1, 1)
@@ -91,7 +90,7 @@ public class IMRecipeProvider extends RecipeProvider {
         .build(consumer);
 
     // Sifter Recipes
-    IMCustomMachineRecipeBuilder.create(IMRecipeSerializers.SIFTER.get(), IMRecipeTypes.SIFTER)
+    IMCustomMachineRecipeBuilder.create(MachineType.SIFTER.getSerializer(), MachineType.SIFTER.getRecipeType())
         .addIngredient(Items.WHITE_WOOL, 1)
         .addPrimaryResult(Items.COAL, 1, 0.2)
         .addSecondaryResult(Items.CHARCOAL, 1, 0.4)
@@ -101,7 +100,7 @@ public class IMRecipeProvider extends RecipeProvider {
         .build(consumer);
 
     // Autoclave Recipes
-    IMCustomMachineRecipeBuilder.create(IMRecipeSerializers.AUTOCLAVE.get(), IMRecipeTypes.AUTOCLAVE)
+    IMCustomMachineRecipeBuilder.create(MachineType.AUTOCLAVE.getSerializer(), MachineType.AUTOCLAVE.getRecipeType())
         .addIngredient(Items.GUNPOWDER, 1)
         .addIngredient(new FluidStack(Fluids.WATER, 100))
         .addPrimaryResult(Items.COAL, 1, 1)
@@ -110,7 +109,7 @@ public class IMRecipeProvider extends RecipeProvider {
 
 
     // Mixer Recipes
-    IMCustomMachineRecipeBuilder.create(IMRecipeSerializers.MIXER.get(), IMRecipeTypes.MIXER)
+    IMCustomMachineRecipeBuilder.create(MachineType.MIXER.getSerializer(), MachineType.MIXER.getRecipeType())
         .addIngredient(Items.GUNPOWDER, 1)
         .addIngredient(new FluidStack(Fluids.WATER, 100))
         .addPrimaryResult(Items.COAL, 1, 1)
@@ -119,15 +118,74 @@ public class IMRecipeProvider extends RecipeProvider {
         .build(consumer);
 
     // Polarizer Recipes
-    IMCustomMachineRecipeBuilder.create(IMRecipeSerializers.POLARIZER.get(), IMRecipeTypes.POLARIZER)
+    IMCustomMachineRecipeBuilder.create(MachineType.POLARISER.getSerializer(), MachineType.POLARISER.getRecipeType())
         .addIngredient(Items.GUNPOWDER, 1)
         .addPrimaryResult(Items.FIRE_CHARGE, 1, 1)
         .addTickLength(100)
         .build(consumer);
 
     // Lathe Recipes
-    IMCustomMachineRecipeBuilder.create(IMRecipeSerializers.LATHE.get(), IMRecipeTypes.LATHE)
+    IMCustomMachineRecipeBuilder.create(MachineType.LATHE.getSerializer(), MachineType.LATHE.getRecipeType())
         .addIngredient(Items.IRON_BLOCK, 1)
+        .addPrimaryResult(Items.IRON_INGOT, 9, 1)
+        .addTickLength(100)
+        .build(consumer);
+
+    // Replicator Recipes
+    IMCustomMachineRecipeBuilder.create(MachineType.REPLICATOR.getSerializer(), MachineType.REPLICATOR.getRecipeType())
+        .addIngredient(Items.IRON_BLOCK, 1)
+        .addPrimaryResult(Items.IRON_BLOCK, 9, 1)
+        .addTickLength(100)
+        .build(consumer);
+
+    // Recycler Recipes
+    IMCustomMachineRecipeBuilder.create(MachineType.RECYCLER.getSerializer(), MachineType.RECYCLER.getRecipeType())
+        .addIngredient(Items.IRON_BLOCK, 1)
+        .addPrimaryResult(() -> Fluids.LAVA, 10)
+        .addSecondaryResult(() -> Fluids.WATER, 10)
+        .addTickLength(100)
+        .build(consumer);
+
+    // Plasma Arc Furnace Recipes
+    IMCustomMachineRecipeBuilder.create(MachineType.PLASMA_ARC_FURNACE.getSerializer(), MachineType.PLASMA_ARC_FURNACE.getRecipeType())
+        .addIngredient(new FluidStack(Fluids.WATER, 10))
+        .addIngredient(Items.IRON_BLOCK, 1)
+        .addPrimaryResult(Items.IRON_INGOT, 9)
+        .addTickLength(100)
+        .build(consumer);
+
+    // Microwave Recipes
+    IMCustomMachineRecipeBuilder.create(MachineType.MICROWAVE.getSerializer(), MachineType.MICROWAVE.getRecipeType())
+        .addIngredient(Items.PUFFERFISH, 1)
+        .addPrimaryResult(Items.COOKED_SALMON, 1, 1)
+        .addTickLength(100)
+        .build(consumer);
+
+    // Mass Fabricator Recipes
+    IMCustomMachineRecipeBuilder.create(MachineType.MASS_FABRICATOR.getSerializer(), MachineType.MASS_FABRICATOR.getRecipeType())
+        .addIngredient(Items.IRON_BLOCK, 1)
+        .addPrimaryResult(Items.IRON_INGOT, 9, 1)
+        .addTickLength(100)
+        .build(consumer);
+
+    // Furnace Recipes
+    IMCustomMachineRecipeBuilder.create(MachineType.FURNACE.getSerializer(), MachineType.FURNACE.getRecipeType())
+        .addIngredient(Items.IRON_BLOCK, 1)
+        .addPrimaryResult(Items.IRON_INGOT, 9, 1)
+        .addTickLength(100)
+        .build(consumer);
+
+    // Forming Recipes
+    IMCustomMachineRecipeBuilder.create(MachineType.FORMING_PRESS.getSerializer(), MachineType.FORMING_PRESS.getRecipeType())
+        .addIngredient(Items.IRON_BLOCK, 1)
+        .addIngredient(Items.IRON_INGOT, 1)
+        .addPrimaryResult(Items.IRON_INGOT, 9, 1)
+        .addTickLength(100)
+        .build(consumer);
+
+    // Fluid Solidifier Recipes
+    IMCustomMachineRecipeBuilder.create(MachineType.FLUID_SOLIDIFIER.getSerializer(), MachineType.FLUID_SOLIDIFIER.getRecipeType())
+        .addIngredient(new FluidStack(Fluids.EMPTY, 10))
         .addPrimaryResult(Items.IRON_INGOT, 9, 1)
         .addTickLength(100)
         .build(consumer);

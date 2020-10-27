@@ -229,6 +229,7 @@ public class IMCustomMachineRecipe implements IMMachineRecipe {
       buffer.writeInt(recipe.fluidIngredients.size());
       buffer.writeInt(recipe.result.size());
       buffer.writeString(Registry.RECIPE_TYPE.getKey(recipe.recipeType).toString());
+      buffer.writeInt(recipe.ticks);
       for (IMMachineInput ingredient : recipe.ingredients) {
         ingredient.write(buffer);
       }

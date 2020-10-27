@@ -1,7 +1,7 @@
 package dev.quae.mods.industriae.helper;
 
 import com.google.gson.JsonObject;
-import dev.quae.mods.industriae.constant.IMRecipeConstants;
+import dev.quae.mods.industriae.constant.IMConstants;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
@@ -14,10 +14,10 @@ public class IMFluidStackHelper {
     fluidStack.writeToNBT(fluidTag);
     CompoundNBT nbt = result.getTag();
     if (nbt != null){
-      nbt.put(IMRecipeConstants.ITEM_STACK_FLUID_KEY, fluidTag);
+      nbt.put(IMConstants.ITEM_STACK_FLUID_KEY, fluidTag);
     } else  {
       CompoundNBT parentNbt = new CompoundNBT();
-      parentNbt.put(IMRecipeConstants.ITEM_STACK_FLUID_KEY, fluidTag);
+      parentNbt.put(IMConstants.ITEM_STACK_FLUID_KEY, fluidTag);
       result.setTag(parentNbt);
     }
     return result;
@@ -25,16 +25,16 @@ public class IMFluidStackHelper {
 
   public static FluidStack getAsFluidStack(ItemStack itemStack) {
     CompoundNBT tagCompound = itemStack.getTag();
-    if (tagCompound == null || !tagCompound.contains(IMRecipeConstants.ITEM_STACK_FLUID_KEY))
+    if (tagCompound == null || !tagCompound.contains(IMConstants.ITEM_STACK_FLUID_KEY))
     {
       return FluidStack.EMPTY;
     }
-    return FluidStack.loadFluidStackFromNBT(tagCompound.getCompound(IMRecipeConstants.ITEM_STACK_FLUID_KEY));
+    return FluidStack.loadFluidStackFromNBT(tagCompound.getCompound(IMConstants.ITEM_STACK_FLUID_KEY));
   }
 
   public static boolean isFluidContainer(ItemStack stack) {
     CompoundNBT tagCompound = stack.getTag();
-    if (tagCompound == null || !tagCompound.contains(IMRecipeConstants.ITEM_STACK_FLUID_KEY))
+    if (tagCompound == null || !tagCompound.contains(IMConstants.ITEM_STACK_FLUID_KEY))
     {
       return false;
     }
