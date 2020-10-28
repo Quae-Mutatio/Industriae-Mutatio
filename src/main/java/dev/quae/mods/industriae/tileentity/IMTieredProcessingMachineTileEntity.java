@@ -2,26 +2,36 @@ package dev.quae.mods.industriae.tileentity;
 
 import dev.quae.mods.industriae.capability.IMMachineFluidHandler;
 import dev.quae.mods.industriae.capability.IMMachineItemHandler;
+import dev.quae.mods.industriae.container.IMTieredMachineContainer;
 import dev.quae.mods.industriae.data.recipe.IMMachineInput;
 import dev.quae.mods.industriae.data.recipe.IMMachineOutput;
 import dev.quae.mods.industriae.helper.IMFluidStackHelper;
 import dev.quae.mods.industriae.helper.IMItemStackHelper;
+import dev.quae.mods.industriae.machine.MachineType;
+import dev.quae.mods.industriae.machine.SpeedTier;
 import dev.quae.mods.industriae.recipe.IMCustomMachineRecipe;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.ItemStackHelper;
+import net.minecraft.inventory.container.Container;
+import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
+import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
@@ -31,37 +41,38 @@ import net.minecraftforge.items.IItemHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class IMTieredProcessingMachineTileEntity extends TileEntity implements ITickableTileEntity {
+public class IMTieredProcessingMachineTileEntity extends LockableLootTileEntity implements ITickableTileEntity {
 
   private static final int MACHINE_FLUID_TANK_CAPACITY = 64000;
 
-  protected final IMMachineItemHandler inventory = new IMMachineItemHandler(getInventorySize(), getOutputStartIndex());
+  protected final IMMachineItemHandler inventory;
   protected final LazyOptional<IItemHandler> inventoryLO = LazyOptional.of(this::getInventory);
-  protected final IMMachineFluidHandler fluidInventory = new IMMachineFluidHandler(getFluidInventorySize(), getFluidOutputStartIndex(), MACHINE_FLUID_TANK_CAPACITY);
-  protected final LazyOptional<IFluidHandler> fluidInventoryLO = LazyOptional.of(() -> fluidInventory);
+  protected final IMMachineFluidHandler fluidInventory;
+  protected final LazyOptional<IFluidHandler> fluidInventoryLO = LazyOptional.of(this::getTank);
+
   protected int processingTime;
   protected int requiredProcessingTime;
   protected SpeedTier speedTier;
+  private MachineType machineType;
   private IRecipeType<IMCustomMachineRecipe> recipeType;
   IMCustomMachineRecipe currentRecipe = null;
 
-  public IMTieredProcessingMachineTileEntity(TileEntityType<?> tileEntityTypeIn, SpeedTier speedTier, IRecipeType<IMCustomMachineRecipe> recipeType) {
+  public IMTieredProcessingMachineTileEntity(TileEntityType<?> tileEntityTypeIn, SpeedTier speedTier, MachineType machineType) {
     super(tileEntityTypeIn);
+    this.inventory = new IMMachineItemHandler(machineType.getInputInventorySize() + machineType.getOutputInventorySize(), machineType.getInputInventorySize());
+    this.fluidInventory = new IMMachineFluidHandler(machineType.getInputTankCount() + machineType.getOutputTankCount(), machineType.getInputTankCount(), MACHINE_FLUID_TANK_CAPACITY);
     this.speedTier = speedTier;
-    this.recipeType = recipeType;
+    this.machineType = machineType;
+    this.recipeType = machineType.getRecipeType();
   }
-
-  protected abstract int getInventorySize();
-
-  protected abstract int getOutputStartIndex();
-
-  protected abstract int getFluidInventorySize();
-
-  protected abstract int getFluidOutputStartIndex();
 
   @NotNull
   protected IItemHandler getInventory() {
     return this.inventory;
+  }
+
+  private IFluidHandler getTank() {
+    return this.fluidInventory;
   }
 
   @NotNull
@@ -82,15 +93,14 @@ public abstract class IMTieredProcessingMachineTileEntity extends TileEntity imp
 
   protected List<ItemStack> calculateOutput() {
     currentRecipe = null;
-    final Inventory craftingInv = new Inventory(getOutputStartIndex() + getFluidOutputStartIndex());
+    final Inventory craftingInv = new Inventory(this.machineType.getInputInventorySize() + this.machineType.getInputTankCount());
     int offset = 0;
-    for (int i = 0; i < this.getOutputStartIndex(); i++) {
+    for (int i = 0; i < this.machineType.getInputInventorySize(); i++) {
       craftingInv.setInventorySlotContents(i, this.inventory.getStackInSlot(i));
       offset++;
     }
-    for (int i = 0; i < this.getFluidOutputStartIndex(); i++) {
+    for (int i = 0; i < this.machineType.getInputTankCount(); i++) {
       craftingInv.setInventorySlotContents(i + offset, IMFluidStackHelper.getAsItemStack(this.fluidInventory.getFluidInTank(i)));
-      offset++;
     }
     currentRecipe = this.getWorld().getRecipeManager().getRecipe(recipeType, craftingInv, this.getWorld()).orElse(null);
     if (currentRecipe == null) {
@@ -127,7 +137,7 @@ public abstract class IMTieredProcessingMachineTileEntity extends TileEntity imp
     this.removeInputs();
     int index = 0;
     for (IMMachineOutput output : this.currentRecipe.getAllOutputs()) {
-      int offsetIndex = index + this.getOutputStartIndex();
+      int offsetIndex = index + this.machineType.getInputInventorySize();
       ItemStack stack = output.resolveItemStack().copy();
       if (stack.isEmpty() && !IMFluidStackHelper.isFluidContainer(stack)) {
         return;
@@ -146,14 +156,14 @@ public abstract class IMTieredProcessingMachineTileEntity extends TileEntity imp
 
   }
 
-  private void removeInputs(){
+  private void removeInputs() {
 
     int fluidInputIndex = 0;
     for (IMMachineInput fluidInput : this.currentRecipe.getFluidInputs()) {
       if (fluidInput.getDontConsume()) {
         continue;
       }
-      for (int i = 0; i < this.getFluidOutputStartIndex(); i++) {
+      for (int i = 0; i < this.machineType.getInputTankCount(); i++) {
         if (!fluidInventory.getFluidInTank(i).isFluidEqual(fluidInput.getFluidStack())) {
           continue;
         }
@@ -167,7 +177,7 @@ public abstract class IMTieredProcessingMachineTileEntity extends TileEntity imp
       if ((itemInput.getDontConsume())) {
         continue;
       }
-      for (int i = 0; i < this.getOutputStartIndex(); i++) {
+      for (int i = 0; i < this.machineType.getInputInventorySize(); i++) {
         if (!inventory.getStackInSlot(i).isItemEqual(itemInput.getItem())) {
           continue;
         }
@@ -205,5 +215,44 @@ public abstract class IMTieredProcessingMachineTileEntity extends TileEntity imp
   @Override
   public void tick() {
     processInput();
+  }
+
+  @Override
+  public ITextComponent getDefaultName() {
+    return new TranslationTextComponent("container.industriaemutatio." + machineType.getRegistryName(speedTier));
+  }
+
+  @Override
+  protected NonNullList<ItemStack> getItems() {
+    return this.inventory.getStacks();
+  }
+
+  @Override
+  protected void setItems(NonNullList<ItemStack> itemsIn) {
+    for (int i = 0; i < itemsIn.size(); i++) {
+      this.inventory.setStackInSlot(i, itemsIn.get(i));
+    }
+  }
+
+  @Override
+  protected Container createMenu(int id, PlayerInventory player) {
+    return new IMTieredMachineContainer(id, player, this, this.machineType, this.speedTier);
+  }
+
+  public int getFluidInventorySize() {
+    return this.fluidInventory.getTanks();
+  }
+
+  @Override
+  public int getSizeInventory() {
+    return this.inventory.getSlots();
+  }
+
+  public MachineType getMachineType() {
+    return machineType;
+  }
+
+  public IMMachineFluidHandler getFluidHandler(){
+    return fluidInventory;
   }
 }

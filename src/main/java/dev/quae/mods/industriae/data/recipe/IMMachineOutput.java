@@ -109,6 +109,9 @@ public class IMMachineOutput {
   public ItemStack getItem() {
     return item;
   }
+  public FluidStack getFluid() {
+    return fluid;
+  }
 
   public double getChance() {
     return chance;

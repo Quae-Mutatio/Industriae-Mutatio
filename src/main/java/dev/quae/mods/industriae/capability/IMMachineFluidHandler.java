@@ -1,15 +1,9 @@
 package dev.quae.mods.industriae.capability;
 
-import dev.quae.mods.industriae.constant.IMRecipeConstants;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 public class IMMachineFluidHandler implements IFluidHandler {
@@ -135,6 +129,27 @@ public class IMMachineFluidHandler implements IFluidHandler {
       return;
     }
     this.stacks.get(tank).setAmount(stack.getAmount() + this.stacks.get(tank).getAmount());
+  }
+
+  public int internalFill(FluidStack stack) {
+    for (int tank = 0; tank < this.getTanks() - this.outputStartIndex; tank++) {
+      if (tank >= this.size) {
+        continue;
+      }
+      if (this.stacks.get(tank).isEmpty()) {
+        this.stacks.set(tank, stack.copy());
+        return 0;
+      }
+      if (this.stacks.get(tank).getAmount() + stack.getAmount() > tankCapacity) {
+        int excessiveAmount =this.stacks.get(tank).getAmount() + stack.getAmount()  + stack.getAmount();
+        int remainder = tankCapacity - excessiveAmount;
+        this.stacks.get(tank).setAmount(tankCapacity);
+        return remainder;
+      } else {
+        this.stacks.get(tank).setAmount(stack.getAmount() + this.stacks.get(tank).getAmount());
+      }
+    }
+    return stack.getAmount();
   }
 
   public void internalDrain(int tank, FluidStack stack) {
