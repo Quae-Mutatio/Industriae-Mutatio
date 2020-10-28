@@ -38,7 +38,7 @@ public class IMMachineOutput {
     final JsonObject result = new JsonObject();
     if (stackType == IMStackType.FLUID_STACK) {
       result.addProperty("fluid", fluid.getRawFluid().getRegistryName().toString());
-      result.addProperty("amount", item.getCount());
+      result.addProperty("amount", fluid.getAmount());
     } else if (stackType == IMStackType.ITEM_STACK) {
       result.addProperty("item", item.getItem().getRegistryName().toString());
       result.addProperty("count", item.getCount());

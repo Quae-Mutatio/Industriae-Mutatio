@@ -3,8 +3,10 @@ package dev.quae.mods.industriae.item;
 import dev.quae.mods.industriae.IndustriaeMutatio;
 import dev.quae.mods.industriae.helper.IMFluidStackHelper;
 import dev.quae.mods.industriae.helper.KeyboardHelper;
+import dev.quae.mods.industriae.storage.FluidTankType;
 import java.util.List;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.BucketItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -15,10 +17,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 import org.jetbrains.annotations.Nullable;
 
-public class FluidTankItem extends Item {
+public class FluidTankItem extends BlockItem {
 
-  public FluidTankItem() {
-    super(new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB));
+  public FluidTankItem(FluidTankType type) {
+    super(type.getBlock(), new Item.Properties().group(IndustriaeMutatio.MACHINES_TAB));
   }
 
   @Override

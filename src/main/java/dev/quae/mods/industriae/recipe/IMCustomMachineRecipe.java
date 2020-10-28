@@ -5,10 +5,12 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import dev.quae.mods.industriae.data.recipe.IMMachineInput;
 import dev.quae.mods.industriae.data.recipe.IMMachineOutput;
+import dev.quae.mods.industriae.data.recipe.IMStackType;
 import dev.quae.mods.industriae.helper.IMFluidStackHelper;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -96,6 +98,12 @@ public class IMCustomMachineRecipe implements IMMachineRecipe {
   }
   public List<IMMachineInput> getFluidInputs(){
     return this.fluidIngredients;
+  }
+  public List<ItemStack> getResults(){
+    return this.result.stream().filter(x -> x.getStackType() == IMStackType.ITEM_STACK).map(x -> x.getItem().copy()).collect(Collectors.toList());
+  }
+  public List<FluidStack> getFluidsResults(){
+    return this.result.stream().filter(x -> x.getStackType() == IMStackType.FLUID_STACK).map(x -> x.getFluid().copy()).collect(Collectors.toList());
   }
 
   public List<IMMachineOutput> getAllOutputs() {

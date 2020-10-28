@@ -44,7 +44,7 @@ public enum FluidTankType implements IMFluidTankType {
   }
 
   public void createItem() {
-      item = IMItems.ITEMS.register(getRegistryName(), FluidTankItem::new);
+      item = IMItems.ITEMS.register(getRegistryName(), () -> new FluidTankItem(this));
   }
 
   public String getRegistryName() {
@@ -57,5 +57,9 @@ public enum FluidTankType implements IMFluidTankType {
 
   public void createTileEntity() {
     tile = IMTiles.TILES.register(getRegistryName(), () -> TileEntityType.Builder.create(() -> new IMFluidTankTileEntity(tile.get(), this)).build(null));
+  }
+
+  public Block getBlock() {
+    return block.get();
   }
 }

@@ -21,6 +21,7 @@ public class IMTieredMachineContainer extends Container {
   private SpeedTier tier;
   public int playerInvY;
   public int titleY;
+
   public IMTieredMachineContainer(int id, PlayerInventory playerInventory, IMTieredProcessingMachineTileEntity tile, MachineType machine, SpeedTier tier) {
     super(machine.getContainerType(tier), id);
     canInteractWithCallable = IWorldPosCallable.of(tile.getWorld(), tile.getPos());
@@ -29,20 +30,44 @@ public class IMTieredMachineContainer extends Container {
     int startX = 8;
     int startY = 17;
     titleY = startY;
-    int lastIndex = 0;
-    int tileRow = 0;
-    for (int i = 0; i < tile.getMachineType().getInputInventorySize(); i++) {
-      if (i % 3 == 0){
-        tileRow ++;
+    {
+      int lastIndex = 0;
+      int tileRow = 0;
+      for (int i = 0; i < tile.getMachineType().getInputInventorySize(); i++) {
+        if (i % 3 == 0) {
+          tileRow++;
+        }
+        this.addSlot(new Slot(tile, i, startX + ((i % 3) * 18), startY + (tileRow * 18)));
         lastIndex = i;
       }
-      this.addSlot(new Slot(tile, i, startX + ((i % 3) * 18), startY + (tileRow * 18)));
-    }
-    for (int i = 0; i < tile.getMachineType().getInputTankCount(); i++) {
-      if (i % 3 == 0){
-        tileRow ++;
+      lastIndex++;
+      for (int i = 0; i < tile.getMachineType().getInputTankCount(); i++) {
+        int posIndex = i + lastIndex;
+        if (posIndex % 3 == 0) {
+          tileRow++;
+        }
+        this.addSlot(new FluidSlot(tile, i, startX + (((posIndex) % 3) * 18), startY + (tileRow * 18)));
       }
-      this.addSlot(new Slot(tile, i + lastIndex, startX + ((i % 3) * 18), startY + (tileRow * 18)));
+    }
+    {
+      int outputStartX = 175 - (startX + (18 * 3));
+      int lastIndex = 0;
+      int tileRow = 0;
+      for (int i = 0; i < tile.getMachineType().getOutputInventorySize(); i++) {
+        if (i % 3 == 0) {
+          tileRow++;
+        }
+        this.addSlot(new Slot(tile, i + tile.getMachineType().getInputInventorySize(), outputStartX + ((i % 3) * 18), startY + (tileRow * 18)));
+        lastIndex = i;
+      }
+      lastIndex++;
+      for (int i = 0; i < tile.getMachineType().getOutputTankCount(); i++) {
+        int posIndex = i + lastIndex;
+        if (posIndex % 3 == 0) {
+          tileRow++;
+        }
+        this.addSlot(new FluidSlot(tile, i + tile.getMachineType().getInputTankCount(), outputStartX + (((posIndex) % 3) * 18), startY + (tileRow * 18)));
+      }
     }
     // Main Player Inventory
     int slotSizePlus2 = 18;
@@ -91,7 +116,7 @@ public class IMTieredMachineContainer extends Container {
     return isWithinUsableDistance(canInteractWithCallable, playerIn, machine.getBlock(tier));
   }
 
-  public IMTieredMachineContainer(int windowId, PlayerInventory playerInv, PacketBuffer buf, MachineType machine, SpeedTier tier){
+  public IMTieredMachineContainer(int windowId, PlayerInventory playerInv, PacketBuffer buf, MachineType machine, SpeedTier tier) {
     this(windowId, playerInv, (IMTieredProcessingMachineTileEntity) playerInv.player.world.getTileEntity(buf.readBlockPos()), machine, tier);
   }
 }
