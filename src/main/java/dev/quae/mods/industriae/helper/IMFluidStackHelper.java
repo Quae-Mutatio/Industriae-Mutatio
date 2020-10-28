@@ -8,14 +8,15 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.fluids.FluidStack;
 
 public class IMFluidStackHelper {
+
   public static ItemStack getAsItemStack(FluidStack fluidStack) {
     ItemStack result = new ItemStack(Items.BARRIER, 1);
     CompoundNBT fluidTag = new CompoundNBT();
     fluidStack.writeToNBT(fluidTag);
     CompoundNBT nbt = result.getTag();
-    if (nbt != null){
+    if (nbt != null) {
       nbt.put(IMConstants.ITEM_STACK_FLUID_KEY, fluidTag);
-    } else  {
+    } else {
       CompoundNBT parentNbt = new CompoundNBT();
       parentNbt.put(IMConstants.ITEM_STACK_FLUID_KEY, fluidTag);
       result.setTag(parentNbt);
@@ -25,8 +26,7 @@ public class IMFluidStackHelper {
 
   public static FluidStack getAsFluidStack(ItemStack itemStack) {
     CompoundNBT tagCompound = itemStack.getTag();
-    if (tagCompound == null || !tagCompound.contains(IMConstants.ITEM_STACK_FLUID_KEY))
-    {
+    if (tagCompound == null || !tagCompound.contains(IMConstants.ITEM_STACK_FLUID_KEY)) {
       return FluidStack.EMPTY;
     }
     return FluidStack.loadFluidStackFromNBT(tagCompound.getCompound(IMConstants.ITEM_STACK_FLUID_KEY));
@@ -34,8 +34,7 @@ public class IMFluidStackHelper {
 
   public static boolean isFluidContainer(ItemStack stack) {
     CompoundNBT tagCompound = stack.getTag();
-    if (tagCompound == null || !tagCompound.contains(IMConstants.ITEM_STACK_FLUID_KEY))
-    {
+    if (tagCompound == null || !tagCompound.contains(IMConstants.ITEM_STACK_FLUID_KEY)) {
       return false;
     }
     return true;
@@ -50,12 +49,16 @@ public class IMFluidStackHelper {
 
   public static void drainFluidAmount(ItemStack stack, int amount) {
     CompoundNBT nbt = stack.getTag();
-    if (nbt != null) {
-      FluidStack fluidStack = FluidStack.loadFluidStackFromNBT(nbt);
-      fluidStack.setAmount(fluidStack.getAmount() - amount);
-      CompoundNBT stackNbt = new CompoundNBT();
-      fluidStack.writeToNBT(stackNbt);
-      nbt.put(IMConstants.ITEM_STACK_FLUID_KEY, stackNbt);
+    if (nbt == null) {
+      return;
     }
+    FluidStack fluidStack = FluidStack.loadFluidStackFromNBT(nbt);
+    CompoundNBT stackNbt = new CompoundNBT();
+    if (fluidStack.isEmpty()) {
+      return;
+    }
+    fluidStack.setAmount(fluidStack.getAmount() - amount);
+    fluidStack.writeToNBT(stackNbt);
+    nbt.put(IMConstants.ITEM_STACK_FLUID_KEY, stackNbt);
   }
 }

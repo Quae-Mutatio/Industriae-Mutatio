@@ -120,33 +120,30 @@ public class IMMachineFluidHandler implements IFluidHandler {
     return FluidStack.EMPTY;
   }
 
-  public void internalFill(int tank, FluidStack stack) {
+  public int internalFill(int tank, FluidStack stack) {
     if (tank >= this.size) {
-      return;
+      return stack.getAmount();
     }
     if (this.stacks.get(tank).isEmpty()) {
       this.stacks.set(tank, stack.copy());
-      return;
+      return 0;
     }
-    this.stacks.get(tank).setAmount(stack.getAmount() + this.stacks.get(tank).getAmount());
+    if (this.stacks.get(tank).getAmount() + stack.getAmount() > tankCapacity) {
+      int excessiveAmount = this.stacks.get(tank).getAmount() + stack.getAmount() + stack.getAmount();
+      int remainder = tankCapacity - excessiveAmount;
+      this.stacks.get(tank).setAmount(tankCapacity);
+      return remainder;
+    } else {
+      this.stacks.get(tank).setAmount(stack.getAmount() + this.stacks.get(tank).getAmount());
+    }
+    return stack.getAmount();
   }
 
   public int internalFill(FluidStack stack) {
     for (int tank = 0; tank < this.getTanks() - this.outputStartIndex; tank++) {
-      if (tank >= this.size) {
-        continue;
-      }
-      if (this.stacks.get(tank).isEmpty()) {
-        this.stacks.set(tank, stack.copy());
-        return 0;
-      }
-      if (this.stacks.get(tank).getAmount() + stack.getAmount() > tankCapacity) {
-        int excessiveAmount =this.stacks.get(tank).getAmount() + stack.getAmount()  + stack.getAmount();
-        int remainder = tankCapacity - excessiveAmount;
-        this.stacks.get(tank).setAmount(tankCapacity);
+      int remainder = this.internalFill(tank, stack);
+      if (remainder < stack.getAmount()) {
         return remainder;
-      } else {
-        this.stacks.get(tank).setAmount(stack.getAmount() + this.stacks.get(tank).getAmount());
       }
     }
     return stack.getAmount();

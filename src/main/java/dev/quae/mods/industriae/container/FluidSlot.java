@@ -17,16 +17,27 @@ public class FluidSlot extends Slot {
 
   @Override
   public void putStack(ItemStack stack) {
-    int inputCount = machineTile.getMachineType().getInputTankCount();
-    int outputTanks = (machineTile.getFluidHandler().getTanks() - inputCount);
-    for (int i = 0; i < outputTanks; i++) {
-      IMFluidStackHelper.drainFluidAmount(stack, machineTile.getFluidHandler().internalFill(IMFluidStackHelper.getAsFluidStack(stack)));
 
+    if (machineTile.getFluidHandler().getTanks() <= getSlotIndex()) {
+      return;
     }
+    FluidStack fluidStack = IMFluidStackHelper.getAsFluidStack(stack);
+    int startAmount = fluidStack.getAmount();
+    int remainder = machineTile.getFluidHandler().internalFill(getSlotIndex(), fluidStack);
+    IMFluidStackHelper.drainFluidAmount(stack, startAmount - remainder);
+  }
+
+  public FluidStack getFluidStack() {
+    return machineTile.getFluidHandler().getFluidInTank(getSlotIndex());
   }
 
   @Override
   public boolean isItemValid(ItemStack stack) {
     return IMFluidStackHelper.isFluidContainer(stack);
+  }
+
+  @Override
+  public ItemStack getStack() {
+    return ItemStack.EMPTY;
   }
 }

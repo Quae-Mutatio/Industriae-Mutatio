@@ -185,8 +185,17 @@ public class IMRecipeProvider extends RecipeProvider {
 
     // Fluid Solidifier Recipes
     IMCustomMachineRecipeBuilder.create(MachineType.FLUID_SOLIDIFIER.getSerializer(), MachineType.FLUID_SOLIDIFIER.getRecipeType())
-        .addIngredient(new FluidStack(Fluids.EMPTY, 10))
+        .addIngredient(new FluidStack(Fluids.WATER, 10))
         .addPrimaryResult(Items.IRON_INGOT, 9, 1)
+        .addTickLength(100)
+        .build(consumer);
+
+    // Chemical Reactor Recipes
+    IMCustomMachineRecipeBuilder.create(MachineType.CHEMICAL_REACTOR.getSerializer(), MachineType.CHEMICAL_REACTOR.getRecipeType())
+        .addIngredient(new FluidStack(Fluids.WATER, 10))
+        .addIngredient(Items.IRON_INGOT, 1)
+        .addPrimaryResult(Items.GOLD_NUGGET, 1, 1)
+        .addSecondaryResult(() -> Fluids.LAVA, 100)
         .addTickLength(100)
         .build(consumer);
   }

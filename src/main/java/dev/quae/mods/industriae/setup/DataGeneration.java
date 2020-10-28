@@ -19,10 +19,10 @@ public class DataGeneration {
     final ExistingFileHelper efh = event.getExistingFileHelper();
     if (event.includeServer()) {
       gen.addProvider(new IMRecipeProvider(gen));
-      gen.addProvider(new IMItemModelProvider(gen, efh));
-      gen.addProvider(new IMBlockStateProvider(gen, efh));
     }
     if (event.includeClient()){
+      gen.addProvider(new IMItemModelProvider(gen, efh));
+      gen.addProvider(new IMBlockStateProvider(gen, efh));
       gen.addProvider(new IMLanguageProvider(gen, "en_us"));
     }
   }

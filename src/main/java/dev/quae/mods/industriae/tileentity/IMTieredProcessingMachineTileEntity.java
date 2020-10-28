@@ -34,6 +34,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -136,25 +137,23 @@ public class IMTieredProcessingMachineTileEntity extends LockableLootTileEntity 
   protected void setResultStacks() {
     this.removeInputs();
     int index = 0;
-    for (IMMachineOutput output : this.currentRecipe.getAllOutputs()) {
+    for (FluidStack output : this.currentRecipe.getFluidsResults()) {
       int offsetIndex = index + this.machineType.getInputInventorySize();
-      ItemStack stack = output.resolveItemStack().copy();
-      if (stack.isEmpty() && !IMFluidStackHelper.isFluidContainer(stack)) {
-        return;
-      }
-      if (IMFluidStackHelper.isFluidContainer(stack)) {
-        this.fluidInventory.internalFill(offsetIndex, IMFluidStackHelper.getAsFluidStack(stack));
-      }
-      ItemStack stackInSlot = this.inventory.getStackInSlot(offsetIndex);
-      if (stackInSlot.isEmpty()) {
-        this.inventory.setStackInSlot(offsetIndex, stack);
-      } else if (stackInSlot.isItemEqual(stack)) {
-        this.inventory.setStackInSlot(offsetIndex, IMItemStackHelper.addToStack(stackInSlot, stack.getCount()));
-      }
-      index++;
+      this.fluidInventory.internalFill(offsetIndex, output);
     }
 
+    for (ItemStack result : this.currentRecipe.getResults()) {
+      int offsetIndex = index + this.machineType.getInputInventorySize();
+      ItemStack stackInSlot = this.inventory.getStackInSlot(offsetIndex);
+      if (stackInSlot.isEmpty()) {
+        this.inventory.setStackInSlot(offsetIndex, result);
+      } else if (stackInSlot.isItemEqual(result)) {
+        this.inventory.setStackInSlot(offsetIndex, IMItemStackHelper.addToStack(stackInSlot, result.getCount()));
+      }
+
+    }
   }
+
 
   private void removeInputs() {
 
@@ -252,7 +251,7 @@ public class IMTieredProcessingMachineTileEntity extends LockableLootTileEntity 
     return machineType;
   }
 
-  public IMMachineFluidHandler getFluidHandler(){
+  public IMMachineFluidHandler getFluidHandler() {
     return fluidInventory;
   }
 }
