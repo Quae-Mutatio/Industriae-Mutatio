@@ -1,6 +1,9 @@
 package dev.quae.mods.industriae.setup;
 
 import dev.quae.mods.industriae.IndustriaeMutatio;
+import dev.quae.mods.industriae.data.IMBlockStateProvider;
+import dev.quae.mods.industriae.data.IMItemModelProvider;
+import dev.quae.mods.industriae.data.IMLanguageProvider;
 import dev.quae.mods.industriae.data.IMRecipeProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -16,6 +19,11 @@ public class DataGeneration {
     final ExistingFileHelper efh = event.getExistingFileHelper();
     if (event.includeServer()) {
       gen.addProvider(new IMRecipeProvider(gen));
+      gen.addProvider(new IMItemModelProvider(gen, efh));
+      gen.addProvider(new IMBlockStateProvider(gen, efh));
+    }
+    if (event.includeClient()){
+      gen.addProvider(new IMLanguageProvider(gen, "en_us"));
     }
   }
 }

@@ -4,6 +4,7 @@ import dev.quae.mods.industriae.IndustriaeMutatio;
 import dev.quae.mods.industriae.item.IMBlockItem;
 import dev.quae.mods.industriae.item.IMCraftingItem;
 import dev.quae.mods.industriae.machine.MachineType;
+import dev.quae.mods.industriae.storage.FluidTankType;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -16,6 +17,10 @@ public class IMItems {
   static {
     for (MachineType value : MachineType.values()) {
       value.createItems();
+    }
+
+    for (FluidTankType value : FluidTankType.values()) {
+      value.createItem();
     }
   }
 

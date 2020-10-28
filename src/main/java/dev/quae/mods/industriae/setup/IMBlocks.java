@@ -4,6 +4,7 @@ import dev.quae.mods.industriae.IndustriaeMutatio;
 import dev.quae.mods.industriae.block.InfiniteWaterSourceBlock;
 import dev.quae.mods.industriae.machine.MachineType;
 import dev.quae.mods.industriae.machine.SpeedTier;
+import dev.quae.mods.industriae.storage.FluidTankType;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Function;
@@ -20,6 +21,10 @@ public class IMBlocks {
   static {
     for (MachineType value : MachineType.values()) {
       value.createBlocks();
+    }
+
+    for (FluidTankType value : FluidTankType.values()) {
+      value.createBlock();
     }
   }
 

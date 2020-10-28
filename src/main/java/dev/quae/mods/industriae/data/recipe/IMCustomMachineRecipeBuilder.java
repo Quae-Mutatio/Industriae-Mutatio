@@ -11,6 +11,7 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.fluid.Fluid;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
@@ -95,12 +96,34 @@ public class IMCustomMachineRecipeBuilder {
   }
 
   public void build(Consumer<IFinishedRecipe> consumer) {
-    ResourceLocation id = new ResourceLocation(IndustriaeMutatio.ID, "im_recipe_" + counter++);
+    ResourceLocation id = new ResourceLocation(IndustriaeMutatio.ID, createRecipeId());
     consumer.accept(new Result(id, this.ingredients, this.fluidIngredients, this.result, this.ticks, this.serializer, this.type));
   }
 
-  public static final class Result implements IFinishedRecipe {
+  private String createRecipeId() {
+    String result = this.serializer.getRegistryName().getPath() + "_";
+    for (IMMachineInput ingredient : this.ingredients) {
+      result += ingredient.getItem().getCount() + "_";
+      result += ingredient.getItem().getItem().getRegistryName().getPath().replace('/', '_') + "_";
+    }
+    for (IMMachineInput ingredient : this.fluidIngredients) {
+      result += ingredient.getFluidStack().getAmount() + "mb_";
+      result += ingredient.getItem().getItem().getRegistryName().getPath().replace('/', '_') + "_";
+    }
+    result += "_gives_";
+    for (IMMachineOutput resultingItem : this.result) {
+      if (resultingItem.getStackType() == IMStackType.ITEM_STACK){
+        result += resultingItem.getItem().getCount() + "_";
+        result += resultingItem.getItem().getItem().getRegistryName().getPath().replace('/', '_') + "_";
+      } else if (resultingItem.getStackType() == IMStackType.FLUID_STACK) {
+        result += resultingItem.getFluid().getAmount() + "mb_";
+        result += resultingItem.getFluid().getFluid().getRegistryName().getPath().replace('/', '_') + "_";
+      }
+    }
+    return result;
+  }
 
+  public static final class Result implements IFinishedRecipe {
     private final ResourceLocation id;
     private List<IMMachineInput> fluidIngredients;
     private final List<IMMachineOutput> result;

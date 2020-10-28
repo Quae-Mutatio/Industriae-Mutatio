@@ -47,4 +47,15 @@ public class IMFluidStackHelper {
     jsonObject.addProperty("amount", stack.getAmount());
     return jsonObject;
   }
+
+  public static void drainFluidAmount(ItemStack stack, int amount) {
+    CompoundNBT nbt = stack.getTag();
+    if (nbt != null) {
+      FluidStack fluidStack = FluidStack.loadFluidStackFromNBT(nbt);
+      fluidStack.setAmount(fluidStack.getAmount() - amount);
+      CompoundNBT stackNbt = new CompoundNBT();
+      fluidStack.writeToNBT(stackNbt);
+      nbt.put(IMConstants.ITEM_STACK_FLUID_KEY, stackNbt);
+    }
+  }
 }
