@@ -31,6 +31,11 @@ public class IMLanguageProvider extends LanguageProvider {
       this.addBlock(value.getType().getChassisBlock(), value.getEnglishTranslation() + " Machine Chassis");
       this.addBlock(value.getType().getHullBlock(), value.getEnglishTranslation() + " Machine Hull");
     }
+    for (MaterialTranslation value : MaterialTranslation.values()) {
+      for (ProcessedMaterialVariationTranslation variant : ProcessedMaterialVariationTranslation.values()) {
+        this.addItem(value.getMaterial().getVariant(variant.getVariant()), variant.getEnglishTranslation(value));
+      }
+    }
     this.add("item.tooltip.fluidstoragetank", "Stored Fluid: ");
     this.add("item.tooltip.holdshiftformore", "Hold shift for more info");
   }

@@ -6,7 +6,6 @@ import dev.quae.mods.industriae.machine.SpeedTier;
 import dev.quae.mods.industriae.material.Material;
 import dev.quae.mods.industriae.material.ProcessedMaterialVariant;
 import dev.quae.mods.industriae.storage.FluidTankType;
-import javax.annotation.Resource;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
