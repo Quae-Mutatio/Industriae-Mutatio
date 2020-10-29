@@ -30,5 +30,9 @@ public class IMBlockStateProvider extends BlockStateProvider {
       ResourceLocation sides = new ResourceLocation(IndustriaeMutatio.ID, "block/drum/" + value.getRegistryName());
       this.simpleBlock(value.getBlock(), this.models().cubeAll(value.getRegistryName(), sides));
     }
+
+    for (SpeedTier value : SpeedTier.values()) {
+      value.registerBlockState(this);
+    }
   }
 }

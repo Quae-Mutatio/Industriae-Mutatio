@@ -11,7 +11,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class IMRecipeSerializers {
   public static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, IndustriaeMutatio.ID);
 
-
   static {
     for (MachineType value : MachineType.values()) {
       value.createRecipeType();

@@ -7,7 +7,7 @@ import net.minecraftforge.common.ToolType;
 
 public class IMMachineBlock extends IMDirectionalBlock {
 
-  protected IMMachineBlock() {
+  public IMMachineBlock() {
     super(AbstractBlock.Properties.create(Material.IRON)
         .hardnessAndResistance(1, 10)
         .harvestTool(ToolType.PICKAXE)

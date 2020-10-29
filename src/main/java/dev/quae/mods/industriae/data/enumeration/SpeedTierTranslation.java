@@ -11,6 +11,7 @@ public enum SpeedTierTranslation {
   EV( "EV", SpeedTier.EV),
   IV("IV", SpeedTier.IV),
   LUV( "LuV", SpeedTier.LUV),
+  ZPM( "ZPM", SpeedTier.ZPM),
   UV("UV", SpeedTier.UV),
   MAX( "MAX", SpeedTier.MAX);
 
