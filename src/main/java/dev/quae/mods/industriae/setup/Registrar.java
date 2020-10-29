@@ -7,10 +7,11 @@ public class Registrar {
 
   public static void onConstruct() {
     final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-    IMItems.ITEMS.register(bus);
     IMBlocks.BLOCKS.register(bus);
+    IMItems.ITEMS.register(bus);
     IMTiles.TILES.register(bus);
     IMContainers.CONTAINERS.register(bus);
+    IMFeatures.FEATURES.register(bus);
     IMRecipeSerializers.RECIPE_SERIALIZERS.register(bus);
   }
 }
