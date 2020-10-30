@@ -15,8 +15,8 @@ public class ClientEventBusSubscriber {
 
   @SubscribeEvent
   public static void onClientSetup(FMLClientSetupEvent event) {
-    for (IRegistryEnum[] arr : Registrar.REGISTRY_ENUMS) {
-      for (IRegistryEnum obj : arr) {
+    for (IRegistryEnum<?>[] arr : Registrar.REGISTRY_ENUMS) {
+      for (IRegistryEnum<?> obj : arr) {
         obj.registerScreens(event::enqueueWork);
       }
     }

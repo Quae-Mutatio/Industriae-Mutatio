@@ -1,8 +1,7 @@
 package dev.quae.mods.industriae.setup;
 
 import dev.quae.mods.industriae.IndustriaeMutatio;
-import dev.quae.mods.industriae.construct.Construct;
-import dev.quae.mods.industriae.setup.registers.MachineType;
+import dev.quae.mods.industriae.setup.registers.IRegistryEnum;
 import dev.quae.mods.industriae.storage.FluidTankType;
 import dev.quae.mods.industriae.tileentity.InfiniteWaterSourceTileEntity;
 import net.minecraft.tileentity.TileEntityType;
@@ -16,16 +15,14 @@ public class IMTiles {
   public static final DeferredRegister<TileEntityType<?>> TILES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, IndustriaeMutatio.ID);
 
   static {
-    for (MachineType value : MachineType.values()) {
-      value.createTileEntityTypes();
+    for (IRegistryEnum<?>[] arr : Registrar.REGISTRY_ENUMS) {
+      for (IRegistryEnum<?> val : arr) {
+        val.registerTiles(TILES);
+      }
     }
 
     for (FluidTankType value : FluidTankType.values()) {
       value.createTileEntity();
-    }
-
-    for (Construct value : Construct.values()) {
-      value.createTileEntities();
     }
   }
 

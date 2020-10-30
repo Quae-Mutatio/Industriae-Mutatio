@@ -79,7 +79,7 @@ public class BlastFurnaceConstruct extends ConstructBase {
     return new Char2ObjectOpenHashMap<>(ImmutableMap.of(
         'A', ComponentType.BLAST_FURNACE_FRAME,
         'N', ComponentType.COIL,
-        'X', ComponentType.COIL.or(IOType.ANY),
+        'X', ComponentType.BLAST_FURNACE_FRAME.or(IOType.ANY),
         'C', ControllerType.BLAST_FURNACE
     ));
   }

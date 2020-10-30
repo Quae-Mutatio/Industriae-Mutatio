@@ -6,6 +6,7 @@ import dev.quae.mods.industriae.block.IMConstructPartTileBlock;
 import dev.quae.mods.industriae.construct.IConstruct;
 import dev.quae.mods.industriae.construct.IConstruct.Type;
 import dev.quae.mods.industriae.construct.type.ControllerType;
+import dev.quae.mods.industriae.tileentity.IMBlastFurnaceTileEntity;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -18,7 +19,6 @@ import net.minecraft.item.Item.Properties;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.tileentity.BlastFurnaceTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.world.IBlockReader;
@@ -27,7 +27,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import org.jetbrains.annotations.Nullable;
 
 public enum ConstructController implements IRegistryEnum<IRecipe<?>>, IConstruct.Controller {
-  BLAST_FURNACE(ControllerType.BLAST_FURNACE, BlastFurnaceTileEntity::new),
+  BLAST_FURNACE(ControllerType.BLAST_FURNACE, IMBlastFurnaceTileEntity::new),
   ;
 
   private final Type type;
@@ -87,5 +87,9 @@ public enum ConstructController implements IRegistryEnum<IRecipe<?>>, IConstruct
   @Override
   public Type getType() {
     return this.type;
+  }
+
+  public TileEntityType<?> getTileType() {
+    return tileType.get();
   }
 }

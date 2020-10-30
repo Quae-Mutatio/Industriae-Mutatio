@@ -2,13 +2,11 @@ package dev.quae.mods.industriae.setup;
 
 import dev.quae.mods.industriae.IndustriaeMutatio;
 import dev.quae.mods.industriae.block.OreBlock;
-import dev.quae.mods.industriae.construct.Construct;
 import dev.quae.mods.industriae.item.IMBlockItem;
 import dev.quae.mods.industriae.item.IMCraftingItem;
 import dev.quae.mods.industriae.material.IMaterialType;
 import dev.quae.mods.industriae.material.Material;
-import dev.quae.mods.industriae.setup.registers.MachineType;
-import dev.quae.mods.industriae.setup.registers.SpeedTier;
+import dev.quae.mods.industriae.setup.registers.IRegistryEnum;
 import dev.quae.mods.industriae.storage.FluidTankType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -22,19 +20,14 @@ public class IMItems {
   public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, IndustriaeMutatio.ID);
 
   static {
-    for (MachineType value : MachineType.values()) {
-      value.createItems();
-    }
-    for (SpeedTier value : SpeedTier.values()) {
-      value.createChassisItems();
+    for (IRegistryEnum<?>[] arr : Registrar.REGISTRY_ENUMS) {
+      for (IRegistryEnum<?> val : arr) {
+        val.registerItems(ITEMS);
+      }
     }
 
     for (FluidTankType value : FluidTankType.values()) {
       value.createItem();
-    }
-
-    for (Construct value : Construct.values()) {
-      value.createItems();
     }
   }
 
