@@ -1,6 +1,7 @@
 package dev.quae.mods.industriae.setup;
 
 import dev.quae.mods.industriae.IndustriaeMutatio;
+import dev.quae.mods.industriae.block.EnergyBuffer;
 import dev.quae.mods.industriae.block.InfiniteWaterSourceBlock;
 import dev.quae.mods.industriae.machine.MachineType;
 import dev.quae.mods.industriae.machine.SpeedTier;
@@ -30,5 +31,6 @@ public class IMBlocks {
 
 
   public static final RegistryObject<Block> INFINITE_WATER_SOURCE = BLOCKS.register("infinite_water_source", InfiniteWaterSourceBlock::new);
+  public static final RegistryObject<Block> ENERGY_BUFFER = BLOCKS.register("energy_buffer", EnergyBuffer::new);
 
 }

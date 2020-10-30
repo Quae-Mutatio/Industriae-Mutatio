@@ -15,6 +15,7 @@ public class IMLanguageProvider extends LanguageProvider {
   @Override
   protected void addTranslations() {
     this.add(IMItems.INFINITE_WATER_SOURCE.get(), "Infinite Water Source Block");
+    this.add(IMItems.ENERGY_BUFFER.get(), "Energy Buffer");
     for (MachineTranslation value : MachineTranslation.values()) {
       value.registerTranslations(this);
     }

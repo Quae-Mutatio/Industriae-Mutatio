@@ -29,4 +29,5 @@ public class IMItems {
 
   // Misc Block Items
   public static final RegistryObject<Item> INFINITE_WATER_SOURCE = ITEMS.register("infinite_water_source", () -> new IMBlockItem(IMBlocks.INFINITE_WATER_SOURCE, new Item.Properties().group(IndustriaeMutatio.CRAFTING_ITEMS_TAB)));
+  public static final RegistryObject<Item> ENERGY_BUFFER = ITEMS.register("energy_buffer", () -> new IMBlockItem(IMBlocks.ENERGY_BUFFER, new Item.Properties().group(IndustriaeMutatio.CRAFTING_ITEMS_TAB)));
 }

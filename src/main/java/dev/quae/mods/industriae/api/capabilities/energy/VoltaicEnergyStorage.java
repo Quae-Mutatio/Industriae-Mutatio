@@ -7,6 +7,10 @@ public class VoltaicEnergyStorage implements IVoltaicEnergyStorage {
   private int maxReceive;
   private int maxExtract;
 
+  public VoltaicEnergyStorage(Voltage voltage) {
+    this(voltage, voltage.capacity, voltage.capacity, voltage.capacity, 0);
+  }
+
   public VoltaicEnergyStorage(Voltage voltage, int capacity) {
     this(voltage, capacity, capacity, capacity, 0);
   }

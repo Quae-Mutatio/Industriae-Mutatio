@@ -1,8 +1,10 @@
 package dev.quae.mods.industriae.setup;
 
 import dev.quae.mods.industriae.IndustriaeMutatio;
+import dev.quae.mods.industriae.api.capabilities.energy.Voltage;
 import dev.quae.mods.industriae.machine.MachineType;
 import dev.quae.mods.industriae.storage.FluidTankType;
+import dev.quae.mods.industriae.tileentity.EnergyBufferTileEntity;
 import dev.quae.mods.industriae.tileentity.InfiniteWaterSourceTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.tileentity.TileEntityType.Builder;
@@ -25,6 +27,7 @@ public class IMTiles {
   }
 
   public static final RegistryObject<TileEntityType<InfiniteWaterSourceTileEntity>> INFINITE_WATER_SOURCE = TILES.register("infinite_water_source", () -> Builder.create(InfiniteWaterSourceTileEntity::new, IMBlocks.INFINITE_WATER_SOURCE.get()).build(null));
+  public static final RegistryObject<TileEntityType<EnergyBufferTileEntity>> ENERGY_BUFFER = TILES.register("energy_buffer", () -> Builder.create(()->new EnergyBufferTileEntity(Voltage.ULTRA_LOW), IMBlocks.ENERGY_BUFFER.get()).build(null));
 
 
 }
