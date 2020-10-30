@@ -1,6 +1,8 @@
-package dev.quae.mods.industriae.construct;
+package dev.quae.mods.industriae.construct.type;
 
-public enum ControllerType implements IConstruct.Type {
+import dev.quae.mods.industriae.construct.IConstruct.Type;
+
+public enum ControllerType implements Type {
   BLAST_FURNACE("electric_blast_furnace"),
   ;
   private final String name;

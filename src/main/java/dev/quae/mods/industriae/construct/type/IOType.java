@@ -1,8 +1,8 @@
-package dev.quae.mods.industriae.construct;
+package dev.quae.mods.industriae.construct.type;
 
 import dev.quae.mods.industriae.construct.IConstruct.Type;
 
-public enum IOType implements IConstruct.Type {
+public enum IOType implements Type {
   ITEM_IN,
   ITEM_OUT,
   FLUID_IN,

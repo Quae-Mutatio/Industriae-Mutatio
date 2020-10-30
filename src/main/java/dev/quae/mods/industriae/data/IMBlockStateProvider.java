@@ -1,14 +1,12 @@
 package dev.quae.mods.industriae.data;
 
 import dev.quae.mods.industriae.IndustriaeMutatio;
-import dev.quae.mods.industriae.machine.MachineType;
-import dev.quae.mods.industriae.machine.SpeedTier;
+import dev.quae.mods.industriae.setup.registers.MachineType;
+import dev.quae.mods.industriae.setup.registers.SpeedTier;
 import dev.quae.mods.industriae.storage.FluidTankType;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
-import net.minecraftforge.client.model.generators.ItemModelProvider;
-import net.minecraftforge.client.model.generators.ModelFile.UncheckedModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class IMBlockStateProvider extends BlockStateProvider {

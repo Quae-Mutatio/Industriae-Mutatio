@@ -1,8 +1,8 @@
 package dev.quae.mods.industriae.data;
 
 import dev.quae.mods.industriae.data.recipe.IMCustomMachineRecipeBuilder;
-import dev.quae.mods.industriae.machine.MachineType;
 import dev.quae.mods.industriae.setup.IMItems;
+import dev.quae.mods.industriae.setup.registers.MachineType;
 import java.util.function.Consumer;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;

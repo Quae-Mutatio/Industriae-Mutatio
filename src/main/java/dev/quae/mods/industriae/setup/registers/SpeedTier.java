@@ -1,25 +1,27 @@
-package dev.quae.mods.industriae.machine;
+package dev.quae.mods.industriae.setup.registers;
 
-import com.google.common.collect.ImmutableList;
 import dev.quae.mods.industriae.IndustriaeMutatio;
 import dev.quae.mods.industriae.block.IMMachineBlock;
-import dev.quae.mods.industriae.data.IMItemModelProvider;
-import dev.quae.mods.industriae.setup.IMBlocks;
-import dev.quae.mods.industriae.setup.IMItems;
-import javax.annotation.Resource;
-import net.minecraft.block.AbstractBlock;
+import dev.quae.mods.industriae.machine.IMSpeedTier;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Function;
 import net.minecraft.block.Block;
+import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.Properties;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.IRecipeSerializer;
+import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.common.data.LanguageProvider;
 import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
 
-public enum SpeedTier implements IMSpeedTier {
+public enum SpeedTier implements IMSpeedTier, IRegistryEnum<IRecipe<?>> {
   ULV(0.5, "ulv"),
   LV(1, "lv"),
   MV(10, "mv"),
@@ -45,6 +47,43 @@ public enum SpeedTier implements IMSpeedTier {
   }
 
   @Override
+  public void registerBlocks(DeferredRegister<Block> register) {
+    chassisBlock = register.register(getChassisRegistryName(), IMMachineBlock::new);
+    hullBlock = register.register(getHullRegistryName(), IMMachineBlock::new);
+  }
+
+  @Override
+  public void registerItems(DeferredRegister<Item> register) {
+    chassisItem = register.register(getChassisRegistryName(), chassisBlock.lazyMap(it -> new BlockItem(it, new Properties().group(IndustriaeMutatio.MACHINES_TAB))));
+    hullItem = register.register(getHullRegistryName(), hullBlock.lazyMap(it -> new BlockItem(it, new Properties().group(IndustriaeMutatio.MACHINES_TAB))));
+  }
+
+  @Override
+  public void registerTiles(DeferredRegister<TileEntityType<?>> register) {
+
+  }
+
+  @Override
+  public void registerContainers(DeferredRegister<ContainerType<?>> register) {
+
+  }
+
+  @Override
+  public void registerRecipeSerializers(DeferredRegister<IRecipeSerializer<?>> register) {
+
+  }
+
+  @Override
+  public void registerScreens(Function<Runnable, CompletableFuture<Void>> register) {
+
+  }
+
+  @Override
+  public void registerRecipeTypes(Function<String, IRecipeType<IRecipe<?>>> register) {
+
+  }
+
+  @Override
   public double getSpeed() {
     return speed;
   }
@@ -52,16 +91,6 @@ public enum SpeedTier implements IMSpeedTier {
   @Override
   public String getName() {
     return name;
-  }
-
-  public void createChassisItems() {
-    chassisItem = IMItems.ITEMS.register(getChassisRegistryName(), () -> new BlockItem(chassisBlock.get(), new Properties().group(IndustriaeMutatio.MACHINES_TAB)));
-    hullItem = IMItems.ITEMS.register(getHullRegistryName(), () -> new BlockItem(hullBlock.get(), new Properties().group(IndustriaeMutatio.MACHINES_TAB)));
-  }
-
-  public void createChassisBlocks() {
-    chassisBlock = IMBlocks.BLOCKS.register(getChassisRegistryName(), IMMachineBlock::new);
-    hullBlock = IMBlocks.BLOCKS.register(getHullRegistryName(), IMMachineBlock::new);
   }
 
   public void registerBlockState(BlockStateProvider provider) {

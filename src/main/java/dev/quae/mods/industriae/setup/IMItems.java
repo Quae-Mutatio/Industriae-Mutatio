@@ -2,18 +2,17 @@ package dev.quae.mods.industriae.setup;
 
 import dev.quae.mods.industriae.IndustriaeMutatio;
 import dev.quae.mods.industriae.block.OreBlock;
-import dev.quae.mods.industriae.machine.ConstructMachine;
-import dev.quae.mods.industriae.machine.SpeedTier;
-import dev.quae.mods.industriae.material.IMaterialType;
-import dev.quae.mods.industriae.material.Material;
-import net.minecraft.item.BlockItem;
+import dev.quae.mods.industriae.construct.Construct;
 import dev.quae.mods.industriae.item.IMBlockItem;
 import dev.quae.mods.industriae.item.IMCraftingItem;
-import dev.quae.mods.industriae.machine.MachineType;
+import dev.quae.mods.industriae.material.IMaterialType;
+import dev.quae.mods.industriae.material.Material;
+import dev.quae.mods.industriae.setup.registers.MachineType;
+import dev.quae.mods.industriae.setup.registers.SpeedTier;
 import dev.quae.mods.industriae.storage.FluidTankType;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.Properties;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -34,7 +33,7 @@ public class IMItems {
       value.createItem();
     }
 
-    for (ConstructMachine value : ConstructMachine.values()) {
+    for (Construct value : Construct.values()) {
       value.createItems();
     }
   }

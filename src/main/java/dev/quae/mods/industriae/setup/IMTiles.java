@@ -1,8 +1,8 @@
 package dev.quae.mods.industriae.setup;
 
 import dev.quae.mods.industriae.IndustriaeMutatio;
-import dev.quae.mods.industriae.machine.ConstructMachine;
-import dev.quae.mods.industriae.machine.MachineType;
+import dev.quae.mods.industriae.construct.Construct;
+import dev.quae.mods.industriae.setup.registers.MachineType;
 import dev.quae.mods.industriae.storage.FluidTankType;
 import dev.quae.mods.industriae.tileentity.InfiniteWaterSourceTileEntity;
 import net.minecraft.tileentity.TileEntityType;
@@ -24,7 +24,7 @@ public class IMTiles {
       value.createTileEntity();
     }
 
-    for (ConstructMachine value : ConstructMachine.values()) {
+    for (Construct value : Construct.values()) {
       value.createTileEntities();
     }
   }

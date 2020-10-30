@@ -1,24 +1,21 @@
 package dev.quae.mods.industriae.container;
 
-import dev.quae.mods.industriae.machine.MachineType;
-import dev.quae.mods.industriae.machine.SpeedTier;
+import dev.quae.mods.industriae.setup.registers.MachineType;
+import dev.quae.mods.industriae.setup.registers.SpeedTier;
 import dev.quae.mods.industriae.tileentity.IMTieredProcessingMachineTileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IWorldPosCallable;
-import org.jetbrains.annotations.Nullable;
 
 public class IMTieredMachineContainer extends Container {
 
   private final IWorldPosCallable canInteractWithCallable;
-  private MachineType machine;
-  private SpeedTier tier;
+  private final MachineType machine;
+  private final SpeedTier tier;
   public int playerInvY;
   public int titleY;
 

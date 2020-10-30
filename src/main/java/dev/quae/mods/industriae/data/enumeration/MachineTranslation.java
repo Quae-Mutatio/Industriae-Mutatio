@@ -2,8 +2,7 @@ package dev.quae.mods.industriae.data.enumeration;
 
 import dev.quae.mods.industriae.IndustriaeMutatio;
 import dev.quae.mods.industriae.data.IMLanguageProvider;
-import dev.quae.mods.industriae.machine.MachineType;
-import dev.quae.mods.industriae.machine.SpeedTier;
+import dev.quae.mods.industriae.setup.registers.MachineType;
 
 public enum MachineTranslation {
   ALLOY_SMELTER("Alloy Smelter", MachineType.ALLOY_SMELTER),

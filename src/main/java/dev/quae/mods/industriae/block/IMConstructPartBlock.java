@@ -1,31 +1,24 @@
 package dev.quae.mods.industriae.block;
 
+import dev.quae.mods.industriae.construct.IConstruct.Part;
 import dev.quae.mods.industriae.construct.IConstruct.Type;
-import dev.quae.mods.industriae.machine.ConstructMachine;
-import net.minecraft.block.BlockState;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.IBlockReader;
-import org.jetbrains.annotations.Nullable;
 
 public class IMConstructPartBlock extends IMMachineBlock {
 
-  private final ConstructMachine machine;
-  private final Type constructPartType;
+  private final Type type;
+  private final Part part;
 
-  public IMConstructPartBlock(ConstructMachine machine, Type constructPartType) {
-    this.machine = machine;
+  public IMConstructPartBlock(Part part) {
 
-    this.constructPartType = constructPartType;
+    this.type = part.getType();
+    this.part = part;
   }
 
-  @Override
-  public boolean hasTileEntity(BlockState state) {
-    return true;
+  public Type getType() {
+    return type;
   }
 
-  @Nullable
-  @Override
-  public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-    return machine.getTileEntity(constructPartType).get().create();
+  public Part getPart() {
+    return part;
   }
 }

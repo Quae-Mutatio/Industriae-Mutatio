@@ -1,7 +1,6 @@
 package dev.quae.mods.industriae.data.enumeration;
 
-import dev.quae.mods.industriae.machine.MachineType;
-import dev.quae.mods.industriae.machine.SpeedTier;
+import dev.quae.mods.industriae.setup.registers.SpeedTier;
 
 public enum SpeedTierTranslation {
   ULV("ULV", SpeedTier.ULV),

@@ -1,7 +1,7 @@
 package dev.quae.mods.industriae.block;
 
-import dev.quae.mods.industriae.machine.MachineType;
-import dev.quae.mods.industriae.machine.SpeedTier;
+import dev.quae.mods.industriae.setup.registers.MachineType;
+import dev.quae.mods.industriae.setup.registers.SpeedTier;
 import dev.quae.mods.industriae.tileentity.IMTieredProcessingMachineTileEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;

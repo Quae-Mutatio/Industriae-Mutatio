@@ -3,21 +3,14 @@ package dev.quae.mods.industriae.setup;
 import static net.minecraft.block.AbstractBlock.Properties.create;
 
 import dev.quae.mods.industriae.IndustriaeMutatio;
+import dev.quae.mods.industriae.block.InfiniteWaterSourceBlock;
 import dev.quae.mods.industriae.block.OreBlock;
-import dev.quae.mods.industriae.machine.ConstructMachine;
 import dev.quae.mods.industriae.material.IMaterialType;
 import dev.quae.mods.industriae.material.Material;
-import dev.quae.mods.industriae.block.InfiniteWaterSourceBlock;
-import dev.quae.mods.industriae.machine.MachineType;
-import dev.quae.mods.industriae.machine.SpeedTier;
+import dev.quae.mods.industriae.setup.registers.IRegistryEnum;
 import dev.quae.mods.industriae.storage.FluidTankType;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.function.Supplier;
 import net.minecraft.block.Block;
 import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.forgespi.Environment;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -27,11 +20,10 @@ public class IMBlocks {
   public static final RegistryObject<Block> INFINITE_WATER_SOURCE = BLOCKS.register("infinite_water_source_block", InfiniteWaterSourceBlock::new);
 
   static {
-    for (MachineType value : MachineType.values()) {
-      value.createBlocks();
-    }
-    for (SpeedTier value : SpeedTier.values()) {
-      value.createChassisBlocks();
+    for (IRegistryEnum<?>[] arr : Registrar.REGISTRY_ENUMS) {
+      for (IRegistryEnum<?> val : arr) {
+        val.registerBlocks(BLOCKS);
+      }
     }
 
     for (FluidTankType value : FluidTankType.values()) {
@@ -41,10 +33,6 @@ public class IMBlocks {
       if (material.hasOre()) {
         material.setOreBlock(registerOre(material));
       }
-    }
-
-    for (ConstructMachine value : ConstructMachine.values()) {
-      value.createBlocks();
     }
   }
 

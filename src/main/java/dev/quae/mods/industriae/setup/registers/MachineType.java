@@ -1,19 +1,16 @@
-package dev.quae.mods.industriae.machine;
+package dev.quae.mods.industriae.setup.registers;
 
-import dev.quae.mods.industriae.client.gui.IMTieredMachineContainerScreen;
-import dev.quae.mods.industriae.container.IMTieredMachineContainer;
 import dev.quae.mods.industriae.IndustriaeMutatio;
 import dev.quae.mods.industriae.block.IMTieredMachineBlock;
+import dev.quae.mods.industriae.client.gui.IMTieredMachineContainerScreen;
+import dev.quae.mods.industriae.container.IMTieredMachineContainer;
+import dev.quae.mods.industriae.machine.IMMachineType;
 import dev.quae.mods.industriae.recipe.IMCustomMachineRecipe;
-import dev.quae.mods.industriae.setup.IMBlocks;
-import dev.quae.mods.industriae.setup.IMContainers;
-import dev.quae.mods.industriae.setup.IMItems;
-import dev.quae.mods.industriae.setup.IMRecipeSerializers;
-import dev.quae.mods.industriae.setup.IMTiles;
 import dev.quae.mods.industriae.tileentity.IMTieredProcessingMachineTileEntity;
 import java.util.EnumMap;
 import java.util.Map.Entry;
-import javafx.stage.Screen;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Function;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.inventory.container.ContainerType;
@@ -24,12 +21,11 @@ import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.fml.RegistryObject;
-import org.lwjgl.system.CallbackI.P;
+import net.minecraftforge.registries.DeferredRegister;
 
-public enum MachineType implements  IMMachineType, IStringSerializable {
+public enum MachineType implements IMMachineType, IStringSerializable, IRegistryEnum<IMCustomMachineRecipe> {
   ALLOY_SMELTER("alloy_smelter", 4, 2, 0, 0),
   FORGE_HAMMER("forge_hammer", 1, 1, 0, 0),
   AUTOCLAVE("autoclave", 1, 1, 1, 0),
@@ -101,7 +97,50 @@ public enum MachineType implements  IMMachineType, IStringSerializable {
     this.outputTankCount = outputTankCount;
   }
 
+  @Override
+  public void registerBlocks(DeferredRegister<Block> register) {
+    for (SpeedTier value : SpeedTier.values()) {
+      blockMap.put(value, register.register(getRegistryName(value), () -> new IMTieredMachineBlock(value, this)));
+    }
+  }
 
+  @Override
+  public void registerItems(DeferredRegister<Item> register) {
+    for (SpeedTier value : SpeedTier.values()) {
+      itemMap.put(value, register.register(getRegistryName(value), this.blockMap.get(value).lazyMap(it -> new BlockItem(it, new Properties().group(IndustriaeMutatio.MACHINES_TAB)))));
+    }
+  }
+
+  @Override
+  public void registerTiles(DeferredRegister<TileEntityType<?>> register) {
+    for (SpeedTier value : SpeedTier.values()) {
+      tileTypeMap.put(value, register.register(getRegistryName(value), this.blockMap.get(value).lazyMap(it -> TileEntityType.Builder.create(() -> new IMTieredProcessingMachineTileEntity(tileTypeMap.get(value).get(), value, this), it).build(null))));
+    }
+  }
+
+  @Override
+  public void registerContainers(DeferredRegister<ContainerType<?>> register) {
+    for (SpeedTier value : SpeedTier.values()) {
+      containerMap.put(value, register.register(getRegistryName(value), () -> IForgeContainerType.create((id, inv, buf) -> new IMTieredMachineContainer(id, inv, buf, this, value))));
+    }
+  }
+
+  @Override
+  public void registerRecipeSerializers(DeferredRegister<IRecipeSerializer<?>> register) {
+    serializer = register.register(this.name, IMCustomMachineRecipe.Serializer::new);
+  }
+
+  @Override
+  public void registerScreens(Function<Runnable, CompletableFuture<Void>> register) {
+    for (Entry<SpeedTier, RegistryObject<ContainerType<IMTieredMachineContainer>>> entry : containerMap.entrySet()) {
+      register.apply(() -> ScreenManager.registerFactory(entry.getValue().get(), IMTieredMachineContainerScreen::new));
+    }
+  }
+
+  @Override
+  public void registerRecipeTypes(Function<String, IRecipeType<IMCustomMachineRecipe>> register) {
+    recipeType = register.apply(this.name);
+  }
 
   @Override
   public int getInputInventorySize() {
@@ -124,70 +163,33 @@ public enum MachineType implements  IMMachineType, IStringSerializable {
   }
 
   @Override
-  public String getName() {
-    return this.name;
-  }
-
-  public IRecipeSerializer<IMCustomMachineRecipe> getSerializer() {
-    return serializer.get();
-  }
-
-  @Override
   public IRecipeType<IMCustomMachineRecipe> getRecipeType() {
     return this.recipeType;
   }
 
-  public TileEntityType<?> getTypeEntityType(SpeedTier speedTier) {
-    return tileTypeMap.get(speedTier).get();
-  }
-
-  public void createTileEntityTypes() {
-    for (SpeedTier value : SpeedTier.values()) {
-      tileTypeMap.put(value, IMTiles.TILES.register(getRegistryName(value), () -> TileEntityType.Builder.create(() -> new IMTieredProcessingMachineTileEntity(tileTypeMap.get(value).get(), value, this), blockMap.get(value).get()).build(null)));
-    }
-  }
-
-  public void createBlocks() {
-    for (SpeedTier value : SpeedTier.values()) {
-      blockMap.put(value, IMBlocks.BLOCKS.register(getRegistryName(value), () -> new IMTieredMachineBlock(value, this)));
-    }
+  @Override
+  public String getName() {
+    return this.name;
   }
 
   public Block getBlock(SpeedTier speedTier) {
     return blockMap.get(speedTier).get();
   }
 
-  public void createItems() {
-    for (SpeedTier value : SpeedTier.values()) {
-      itemMap.put(value, IMItems.ITEMS.register(getRegistryName(value), () -> new BlockItem(getBlock(value), new Properties().group(IndustriaeMutatio.MACHINES_TAB))));
-    }
-  }
-
   public Item getItem(SpeedTier tier) {
     return itemMap.get(tier).get();
   }
 
-  public void createContainers(){
-    for (SpeedTier value : SpeedTier.values()) {
-      containerMap.put(value, IMContainers.CONTAINERS.register(getRegistryName(value), () -> IForgeContainerType.create((id, inv, buf) -> new IMTieredMachineContainer(id, inv, buf, this, value))));
-    }
+  public TileEntityType<?> getTypeEntityType(SpeedTier speedTier) {
+    return tileTypeMap.get(speedTier).get();
   }
 
-  public void registerScreen(){
-    for (Entry<SpeedTier, RegistryObject<ContainerType<IMTieredMachineContainer>>> entry : containerMap.entrySet()) {
-      ScreenManager.registerFactory(entry.getValue().get(), IMTieredMachineContainerScreen::new);
-    }
-  }
   public ContainerType<?> getContainerType(SpeedTier tier) {
     return this.containerMap.get(tier).get();
   }
 
-  public void createRecipeType() {
-    recipeType = IRecipeType.register(new ResourceLocation(IndustriaeMutatio.ID, this.name).toString());
-  }
-
-  public void createSerializer() {
-    serializer = IMRecipeSerializers.RECIPE_SERIALIZERS.register(this.name, IMCustomMachineRecipe.Serializer::new);
+  public IRecipeSerializer<IMCustomMachineRecipe> getSerializer() {
+    return serializer.get();
   }
 
   public String getRegistryName(SpeedTier speedTier) {

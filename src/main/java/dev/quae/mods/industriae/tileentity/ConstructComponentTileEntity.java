@@ -1,6 +1,5 @@
 package dev.quae.mods.industriae.tileentity;
 
-import dev.quae.mods.industriae.construct.ConstructionBlockType;
 import dev.quae.mods.industriae.construct.IConstruct;
 import dev.quae.mods.industriae.construct.IConstruct.Type;
 import net.minecraft.tileentity.TileEntity;
@@ -17,7 +16,7 @@ public class ConstructComponentTileEntity extends TileEntity implements IConstru
   }
 
   @Override
-  public Type getConstructType() {
+  public Type getType() {
     return type;
   }
 }
