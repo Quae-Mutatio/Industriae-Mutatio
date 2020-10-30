@@ -4,6 +4,7 @@ import static net.minecraft.block.AbstractBlock.Properties.create;
 
 import dev.quae.mods.industriae.IndustriaeMutatio;
 import dev.quae.mods.industriae.block.OreBlock;
+import dev.quae.mods.industriae.machine.ConstructMachine;
 import dev.quae.mods.industriae.material.IMaterialType;
 import dev.quae.mods.industriae.material.Material;
 import dev.quae.mods.industriae.block.InfiniteWaterSourceBlock;
@@ -40,6 +41,10 @@ public class IMBlocks {
       if (material.hasOre()) {
         material.setOreBlock(registerOre(material));
       }
+    }
+
+    for (ConstructMachine value : ConstructMachine.values()) {
+      value.createBlocks();
     }
   }
 

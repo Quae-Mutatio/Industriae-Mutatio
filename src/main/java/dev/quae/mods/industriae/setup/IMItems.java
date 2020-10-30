@@ -2,6 +2,7 @@ package dev.quae.mods.industriae.setup;
 
 import dev.quae.mods.industriae.IndustriaeMutatio;
 import dev.quae.mods.industriae.block.OreBlock;
+import dev.quae.mods.industriae.machine.ConstructMachine;
 import dev.quae.mods.industriae.machine.SpeedTier;
 import dev.quae.mods.industriae.material.IMaterialType;
 import dev.quae.mods.industriae.material.Material;
@@ -31,6 +32,10 @@ public class IMItems {
 
     for (FluidTankType value : FluidTankType.values()) {
       value.createItem();
+    }
+
+    for (ConstructMachine value : ConstructMachine.values()) {
+      value.createItems();
     }
   }
 

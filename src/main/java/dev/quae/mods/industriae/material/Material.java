@@ -97,8 +97,7 @@ public enum Material implements IMaterialType {
   URANIUM("uranium", 0xc9c9c3),
   VANADIUM_MAGNETITE("vanadium_magnetite", 0x434343),
   WULFENITE("wulfenite", 0xe34949),
-  YELLOW_LIMONITE("yellow_limonite", 0xdecf2f),
-  ;
+  YELLOW_LIMONITE("yellow_limonite", 0xdecf2f),;
 
   private final String name;
   private RegistryObject<OreBlock> oreBlock;
