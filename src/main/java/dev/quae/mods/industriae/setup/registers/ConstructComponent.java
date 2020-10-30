@@ -5,6 +5,7 @@ import dev.quae.mods.industriae.block.IMConstructPartBlock;
 import dev.quae.mods.industriae.construct.IConstruct;
 import dev.quae.mods.industriae.construct.IConstruct.Type;
 import dev.quae.mods.industriae.construct.type.ComponentType;
+import dev.quae.mods.industriae.construct.type.IOType;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import net.minecraft.block.Block;
@@ -29,6 +30,12 @@ public enum ConstructComponent implements IRegistryEnum<IRecipe<?>>, IConstruct.
   COIL_NICHROME(ComponentType.COIL),
   COIL_TUNGSTENSTEEL(ComponentType.COIL),
   BLAST_FURNACE_FRAME(ComponentType.BLAST_FURNACE_FRAME),
+  ITEM_INPUT(IOType.ITEM_IN),
+  ITEM_OUTPUT(IOType.ITEM_OUT),
+  FLUID_INPUT(IOType.FLUID_IN),
+  FLUID_OUTPUT(IOType.FLUID_OUT),
+  ENERGY_INPUT(IOType.ENERGY_IN),
+  ENERGY_OUTPUT(IOType.ENERGY_OUT),
   ;
 
   private final Type type;

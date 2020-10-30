@@ -39,7 +39,7 @@ public abstract class ConstructBase implements IConstruct {
           amounts.clear();
           break;
         }
-        amounts.computeInt(type, (t, i) -> i == null ? 1 : i++);
+        amounts.computeInt(type, (t, i) -> i == null ? 1 : ++i);
       }
       if (matchesFlag) {
         break;
