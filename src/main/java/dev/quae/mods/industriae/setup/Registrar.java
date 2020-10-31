@@ -12,5 +12,6 @@ public class Registrar {
     IMTiles.TILES.register(bus);
     IMContainers.CONTAINERS.register(bus);
     IMFeatures.FEATURES.register(bus);
+    IMRecipeSerializers.RECIPE_SERIALIZERS.register(bus);
   }
 }
