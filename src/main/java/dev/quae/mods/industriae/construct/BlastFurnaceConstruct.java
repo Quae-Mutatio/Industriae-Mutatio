@@ -11,11 +11,9 @@ import it.unimi.dsi.fastutil.chars.Char2ObjectMap;
 import it.unimi.dsi.fastutil.chars.Char2ObjectOpenHashMap;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Predicate;
 import net.minecraft.util.math.BlockPos;
 
 public class BlastFurnaceConstruct extends ConstructBase {
-
 
   @Override
   public Map<Type, Amount> getRequiredParts() {
@@ -38,9 +36,11 @@ public class BlastFurnaceConstruct extends ConstructBase {
 
   @Override
   public Amount getRequiredNumberOfParts() {
-    // TODO use layout and remove spaces
-
-    return new Const(34);
+    int count = 0;
+    for (char c : getLayout().toCharArray()) {
+      count += c == ' ' ? 0 : 1;
+    }
+    return new Const(count);
   }
 
 
@@ -75,7 +75,7 @@ public class BlastFurnaceConstruct extends ConstructBase {
   }
 
   @Override
-  public Char2ObjectMap<Predicate<Type>> getLegend() {
+  public Char2ObjectMap<Type> getLegend() {
     return new Char2ObjectOpenHashMap<>(ImmutableMap.of(
         'A', ComponentType.BLAST_FURNACE_FRAME,
         'N', ComponentType.COIL,

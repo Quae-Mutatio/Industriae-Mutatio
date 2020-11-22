@@ -1,6 +1,5 @@
 package dev.quae.mods.industriae.construct;
 
-import dev.quae.mods.industriae.block.IMConstructPartBlock;
 import dev.quae.mods.industriae.construct.task.Amount;
 import it.unimi.dsi.fastutil.chars.Char2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2CharMap;
@@ -10,7 +9,6 @@ import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectSet;
 import java.util.Map;
-import java.util.function.Predicate;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.CachedBlockInfo;
@@ -25,7 +23,7 @@ public abstract class ConstructBase implements IConstruct {
 
   public boolean validateConstruct(BlockPos controllerPos, IWorldReader world) {
     // Check each rotation of the local offsets if the blockstate contains the correct construct type.
-    final Char2ObjectMap<Predicate<Type>> legend = this.getLegend();
+    final Char2ObjectMap<Type> legend = this.getLegend();
     final Object2IntMap<Type> amounts = new Object2IntOpenHashMap<>();
     boolean matchesFlag = false;
     for (Rotation value : Rotation.values()) {
@@ -86,17 +84,13 @@ public abstract class ConstructBase implements IConstruct {
     return OFFSET_MAP;
   }
 
-  private Type matches(CachedBlockInfo cachedBlock, Predicate<Type> typeTest) {
+  private Type matches(CachedBlockInfo cachedBlock, Type typeTest) {
     final BlockState state = cachedBlock.getBlockState();
     //noinspection ConstantConditions
     if (state == null) {
       return null;
     }
     final Block block = state.getBlock();
-    if (block instanceof IMConstructPartBlock) {
-      final Type type = ((IMConstructPartBlock) block).getType();
-      return typeTest.test(type) ? type : null;
-    }
-    return null;
+    return typeTest.test(block) ? typeTest : null;
   }
 }
